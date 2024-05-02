@@ -12,7 +12,8 @@ const Aboutus = (props) => {
             </div>
 
             <div className="absolute top-0 md:top-[-10%] left-0 w-full h-full p-5 flex justify-center items-center">
-                <div className="md:flex justify-around gap-10 w-full md:w-[80%] bg-[#cccccc81] backdrop-blur-sm p-5 rounded-lg">
+                <div className="relative md:flex justify-around gap-10 w-full md:w-[80%] bg-[#cccccc81] backdrop-blur-md p-5 rounded-lg pt-10">
+                    <h1 className="absolute top-2 text-xl">ABOUT US</h1>
                     <div>
                         <h1 className="font-bold text-xl my-1">Mission Statement</h1>
                         <p className="text-lg">Our mission is to provide comprehensive mental health support through innovative technology solutions, fostering a healthier and happier community.</p>
