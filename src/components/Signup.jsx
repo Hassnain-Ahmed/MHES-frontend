@@ -57,7 +57,7 @@ export function Signup({ toggle }) {
               </label>
             </div>
 
-            <Button text="Register" />
+            <Button text="Register" type="submit" class="my-6" />
 
             <div>
               <p>

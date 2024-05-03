@@ -33,7 +33,7 @@ export function Login({ toggle }) {
             />
 
 
-            <Button text="Login" />
+            <Button text="Login" type="submit" class="my-6" />
 
             <div>
               <p>

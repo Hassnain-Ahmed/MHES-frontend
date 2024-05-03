@@ -22,7 +22,7 @@ export default function LoginSignupLayout() {
             <source media="(max-width: 769px)" srcSet={Login650px} />
             <img
               src={LoginBackgroundImage}
-              className="aspect-[8/16] md:aspect-[3/3.5] lg:aspect-[16/9] object-cover blur-[2px] w-full"
+              className="aspect-[8/16] md:aspect-[3/3.5] lg:aspect-[16/9] lg:h-[90vh] object-cover blur-[2px] w-full"
               alt=""
             />
           </picture>

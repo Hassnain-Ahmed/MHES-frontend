@@ -8,8 +8,9 @@ import Home from "./Pages/Home";
 import LoginSignupLayout from "./Pages/LoginSignupLayout";
 import ContactUs from "./components/ContactUs";
 import Aboutus from "./components/Aboutus";
+import UserDashboard from "./Pages/UserDashboard";
 // import Footer from "./components/Footer";
 
 export default function App() {
-  return <Home />
+  return <UserDashboard />
 }

@@ -55,3 +55,10 @@ body {
 .input-field:focus + .input-label + .input-highlight {
   width: 100%;
 }
+
+
+.userDashboard:hover .userDashboard-fa6{
+  fill: white;
+  stroke: #f9f9f9;
+  stroke-width: 10;
+}

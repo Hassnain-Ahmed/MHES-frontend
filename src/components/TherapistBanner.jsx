@@ -1,6 +1,6 @@
 import React from "react";
 import { TherapistCard } from "./TherapistCard";
-export function TherapistBannar() {
+export function TherapistBannar(props) {
   const userData = [
     {
       id: 1,
@@ -35,9 +35,9 @@ export function TherapistBannar() {
   return (
     <>
       <h1 className="text-center my-4 font-bold text-[#555] text-2xl md:text-3xl">
-        OUR THERAPISTS
+        {props.heading}
       </h1>
-      <div className="flex flex-wrap justify-center">
+      <div className={`flex flex-wrap justify-center ${props.class}`}>
         {userData.map((info) => (
           <TherapistCard
             key={info.id}

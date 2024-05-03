@@ -24,22 +24,25 @@ export function TherapistCard(props) {
 
   return (
     <div
-      className="border-2 rounded-xl m-3 relative lg:w-[22%] md:w-[35%] w-[100%] hover:cursor-pointer"
+      className="border-2 rounded-xl m-2 relative lg:w-[22%] md:w-[45%] w-[100%] hover:cursor-pointer"
       key={props.id}
     >
       <div>
         <img className="saturate-50" src={profilePlaceholder} alt="" />
       </div>
 
-      <div className="md:px-4 p-2 absolute bottom-0 bg-[#ffffffb5]">
-        <div className="flex justify-between">
-          <h2 className="text-xl font-bold">{props.name}</h2>
+      <div className="md:px-4 p-2 absolute bottom-0 bg-[#ffffffb5] w-full">
+
+        <div className="flex justify-between flex-col lg:flex-row">
+          <h2 className="text-lg font-bold truncate">{props.name}</h2>
           <div className="ratings flex items-center">
             {printRatings(props.rating)}
           </div>
         </div>
-        <p className="line-clamp-2">{props.about}</p>
+
+        <p className="line-clamp-2 md:line-clamp-1 lg:line-clamp-2">{props.about}</p>
       </div>
+
     </div>
   );
 }
