@@ -8,14 +8,23 @@ import { Signup } from "../components/Signup";
 
 import LoginBackgroundImage from "/LoginBackgroundImage1.png";
 import Login650px from "/Login650px.png";
+import ProfileNavMobile from "../components/ProfileNavMobile.jsx";
+import ProfileNav from "../components/ProfileNav.jsx";
 
 export default function LoginSignupLayout() {
   const [showLogin, setShowLogin] = useState(false);
   const changeState = () => setShowLogin((prevState) => !prevState);
 
+  const userAuth = {
+    id: 1,
+    name: "Hassnain Ahmed",
+    profilePic: "/img1.jpg",
+    token: "abc123",
+  }
+
   return (
     <>
-      <Navbar />
+      <Navbar user={userAuth} componentMobile={ProfileNavMobile} component={ProfileNav} />
       <main>
         <div>
           <picture>

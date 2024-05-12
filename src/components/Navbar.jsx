@@ -38,7 +38,7 @@ export function Navbar(props) {
         ))}
       </ul>
       <div className="hidden lg:flex">
-        {props.user.id && ProfileNavbar}
+        {props.user.id ? ProfileNavbar : ""}
       </div>
 
       {/* Mobile View */}
