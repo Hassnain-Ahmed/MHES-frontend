@@ -11,12 +11,12 @@ import Aboutus from "./components/Aboutus";
 import UserDashboard from "./Pages/UserDashboard";
 import ProfileNavMobile from "./components/ProfileNavMobile";
 import ProfileNav from "./components/ProfileNav";
+import Therapist from "./Pages/Therapist";
+import Admin from "./Pages/Admin";
 // import Footer from "./components/Footer";
 
 export default function App() {
 
-
-
   // return <Home />
-  return <UserDashboard />
+  return <Admin />
 }

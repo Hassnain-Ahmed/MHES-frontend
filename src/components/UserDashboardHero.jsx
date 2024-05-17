@@ -64,7 +64,7 @@ const UserDashboardHero = (props) => {
                         }
                     </ul>
 
-                    <div className="absolute bottom-3 hidden lg:flex right-3 items-center gap-2 py-2 px-4 bg-gradient-to-r from-[#bc5555] to-[#7f3939] text-white rounded-md">
+                    <div className="absolute bottom-3 hidden lg:flex right-3 items-center gap-2 py-2 px-4 bg-gradient-to-r from-[#bc5555] to-[#7f3939] text-white rounded-md cursor-pointer">
                         Logout <FaRightFromBracket />
                     </div>
 

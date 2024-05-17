@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@fontsource/poppins": "^5.0.14",
+    "chart.js": "^4.4.2",
     "framer-motion": "^11.1.7",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.1.0",
     "react-router-dom": "^6.23.0"

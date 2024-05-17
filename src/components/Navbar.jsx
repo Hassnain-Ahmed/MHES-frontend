@@ -14,8 +14,8 @@ export function Navbar(props) {
     { id: 4, item: "Contact Us", route: "#", icon: <FaPhone size={16} fill="transparent" stroke="#333" strokeWidth={50} /> },
   ];
 
-  const ProfileNavbar = <props.component userInfo={props.user} />
-  const ProfileNavbarMobile = <props.componentMobile userInfo={props.user} />
+  const ProfileNavbar = <props.component imgClass={props.imgClass} userInfo={props.user} />
+  const ProfileNavbarMobile = <props.componentMobile imgClass={props.imgClass} userInfo={props.user} />
 
   return (
     <nav className="flex justify-between items-center py-3 px-4 shadow">

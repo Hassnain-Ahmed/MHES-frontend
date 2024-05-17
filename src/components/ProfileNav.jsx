@@ -40,7 +40,7 @@ const ProfileNav = (props) => {
         {
             key: "m2",
             from: "Humera Shaikh",
-            message: "Bhar me jao!!"
+            message: "Wishing you a happy journey!"
         },
     ]
 
@@ -49,7 +49,7 @@ const ProfileNav = (props) => {
 
             <div className="relative">
                 <LuBell size={22} className="cursor-pointer" onClick={togglBell} />
-                <div className={`absolute w-[200px] right-[0px] ${isBell ? `block` : `hidden`}`}>
+                <div className={`absolute w-[200px] right-[0px] z-10 ${isBell ? `block` : `hidden`}`}>
                     <FaCaretUp size={20} className={`absolute right-0 top-[0px]`} />
                     <ul className="bg-[#ccc] p-2 rounded flex flex-col gap-2 mt-3">
                         {
@@ -70,7 +70,7 @@ const ProfileNav = (props) => {
 
             <div className="relative">
                 <LuMail size={22} className="cursor-pointer" onClick={toggleMessage} />
-                <div className={`absolute w-[200px] right-[0px] ${isMessage ? `block` : `hidden`}`}>
+                <div className={`absolute w-[200px] right-[0px] z-10 ${isMessage ? `block` : `hidden`}`}>
                     <FaCaretUp size={20} className={`absolute right-0 top-[0px]`} />
                     <ul className="bg-[#ccc] p-2 rounded flex flex-col gap-2 mt-3">
                         {
@@ -93,7 +93,7 @@ const ProfileNav = (props) => {
             </div>
 
             <span className="truncate w-[90px] text-right">{props.userInfo.name}</span>
-            <img src={props.userInfo.profilePic} alt="" className="w-[40px] h-[40px] rounded-[100%]" />
+            <img src={props.userInfo.profilePic} alt="" className={`w-[40px] h-[40px] rounded-[100%] ${props.imgClass}`} />
 
         </div>
     )
