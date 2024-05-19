@@ -1,4 +1,4 @@
-import { ChatWithBloom } from "../components/ChatWithBloomBtn";
+import { ChatWithBloomBtn } from "../components/ChatWithBloomBtn";
 import { Navbar } from "../components/Navbar";
 import ProfileNav from "../components/ProfileNav";
 import ProfileNavMobile from "../components/ProfileNavMobile";
@@ -16,7 +16,7 @@ const UserDashboard = () => {
         <>
             <Navbar user={userAuth} componentMobile={ProfileNavMobile} component={ProfileNav} />
             <UserDashboardHero data={userAuth} />
-            <ChatWithBloom />
+            <ChatWithBloomBtn />
         </>
     )
 }

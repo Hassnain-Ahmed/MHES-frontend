@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu, AiOutlineLogout } from "react-icons/ai";
 import { FaHouse, FaUserDoctor, FaCircleInfo, FaPhone } from "react-icons/fa6";
+import ProfileNav from "./ProfileNav";
+import ProfileNavMobile from "./ProfileNavMobile";
 
 export function Navbar(props) {
-
+  // console.log(props)
+  const { id, name, profilePic } = props.user
   const [nav, setNav] = useState(false);
   const handleNav = () => setNav(!nav);
 
@@ -14,8 +17,8 @@ export function Navbar(props) {
     { id: 4, item: "Contact Us", route: "#", icon: <FaPhone size={16} fill="transparent" stroke="#333" strokeWidth={50} /> },
   ];
 
-  const ProfileNavbar = <props.component imgClass={props.imgClass} userInfo={props.user} />
-  const ProfileNavbarMobile = <props.componentMobile imgClass={props.imgClass} userInfo={props.user} />
+  const ProfileNavbar = <ProfileNav id={id} name={name} profilePic={profilePic} imgClass="" />
+  const ProfileNavbarMobile = <ProfileNavMobile id={id} name={name} profilePic={profilePic} imgClass="" />
 
   return (
     <nav className="flex justify-between items-center py-3 px-4 shadow">
@@ -38,7 +41,7 @@ export function Navbar(props) {
         ))}
       </ul>
       <div className="hidden lg:flex">
-        {props.user.id ? ProfileNavbar : ""}
+        {id ? ProfileNavbar : ""}
       </div>
 
       {/* Mobile View */}
@@ -63,7 +66,7 @@ export function Navbar(props) {
         <br />
 
 
-        {props.user.id ? ProfileNavbarMobile : ""}
+        {id ? ProfileNavbarMobile : ""}
 
         <ul className="mt-4">
           {navItems.map((item) => (
@@ -83,7 +86,7 @@ export function Navbar(props) {
         <div className="fixed bottom-[5%] w-[50%] md:w-[55%]">
 
           {
-            props.user.id == 0
+            id == 0
               ? <div className="p-3 bg-gradient-to-r from-[#55BC97] to-[#275645] rounded-xl text-white hover:cursor-pointer text-center">
                 <p>Login or Sign up</p>
               </div>

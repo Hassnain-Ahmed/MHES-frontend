@@ -26,7 +26,7 @@ const AdminSideBar = () => {
     ]
 
     return (
-        <div className="bg-zinc-100 px-1 lg:px-3 py-0 lg:py-5 rounded-lg flex lg:flex-col justify-around lg:justify-start relative h-auto ">
+        <div className="bg-zinc-100 px-1 lg:px-3 py-0 lg:py-5 rounded-lg flex lg:flex-col justify-around lg:justify-start relative ">
             {
                 sidebarItems.map(item => (
                     <div key={item.id} className="flex lg:flex-col items-center gap-1 my-5 px-2 md:px-5 lg:px-1 pb-3 pt-4 rounded-xl bg-zinc-300 hover:bg-zinc-400 cursor-pointer">

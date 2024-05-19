@@ -5,6 +5,8 @@ import { FaCaretUp } from "react-icons/fa6"
 
 const ProfileNav = (props) => {
 
+    // console.log(props)
+
     const [isBell, setIsBell] = useState(false)
     const [isMessage, setIsMessage] = useState(false)
 
@@ -92,8 +94,8 @@ const ProfileNav = (props) => {
                 <LuUser size={22} className="cursor-pointer" />
             </div>
 
-            <span className="truncate w-[90px] text-right">{props.userInfo.name}</span>
-            <img src={props.userInfo.profilePic} alt="" className={`w-[40px] h-[40px] rounded-[100%] ${props.imgClass}`} />
+            <span className="truncate w-[90px] text-right">{props.name}</span>
+            <img src={props.profilePic} alt="" className={`w-[40px] h-[40px] rounded-[100%] ${props.imgClass}`} />
 
         </div>
     )
