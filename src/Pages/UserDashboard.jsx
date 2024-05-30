@@ -1,7 +1,5 @@
 import { ChatWithBloomBtn } from "../components/ChatWithBloomBtn";
 import { Navbar } from "../components/Navbar";
-import ProfileNav from "../components/ProfileNav";
-import ProfileNavMobile from "../components/ProfileNavMobile";
 import UserDashboardHero from "../components/UserDashboardHero";
 
 const userAuth = {
@@ -14,7 +12,7 @@ const userAuth = {
 const UserDashboard = () => {
     return (
         <>
-            <Navbar user={userAuth} componentMobile={ProfileNavMobile} component={ProfileNav} />
+            <Navbar user={userAuth} />
             <UserDashboardHero data={userAuth} />
             <ChatWithBloomBtn />
         </>

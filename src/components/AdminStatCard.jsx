@@ -2,7 +2,8 @@ import { FaRightFromBracket } from "react-icons/fa6"
 
 const AdminStatCard = (props) => {
     return (
-        <div className="flex flex-col bg-[#fff] w-100 my-4 md:my-0 md:w-[47%] lg:w-[22%] lg:h-[38%] p-3 gap-y-5 justify-around rounded-lg">
+        // <div className="flex flex-col bg-[#fff] w-100 my-4 md:my-0 md:w-[47%] lg:w-[22%] lg:h-[38%] p-3 gap-y-5 justify-around rounded-lg">
+        <div className="flex flex-col bg-[#fff] my-4 py-5 px-6 gap-y-5 rounded-lg dark:bg-neutral-900 dark:text-white w-[100%]">
             <p className="line-clamp-2">{props.title}</p>
             <div className="text-center relative">
                 {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { ChatWithBloomBtn } from "../components/ChatWithBloomBtn";
 import { Hero } from "../components/Hero";
@@ -11,12 +11,11 @@ import ChatWithBloom from "./ChatWithBloom";
 export default function Home() {
 
   const { body } = document
-
   const [showChat, setShowChat] = useState(false)
-
   const toggleChat = () => {
     setShowChat(!showChat)
   }
+
 
   showChat ? body.style.overflow = "hidden" : body.style.overflow = "auto"
 

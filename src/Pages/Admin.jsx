@@ -1,3 +1,4 @@
+import { useContext } from "react"
 import AdminSideBar from "../components/AdminSidebar"
 import AdminStatBannar from "../components/AdminStatBannar"
 import AdminStatCard from "../components/AdminStatCard"
@@ -21,7 +22,7 @@ const Admin = () => {
     return (
         <>
             <Navbar user={userAuth} imgClass="scale-[0.9] border-2 border-[#ccc]" componentMobile={ProfileNavMobile} component={ProfileNav} />
-            <div className="flex justify-around gap-4 mt-2 p-2 flex-col lg:flex-row ">
+            <div className="flex justify-around gap-4 px-2 py-4 flex-col lg:flex-row">
                 <AdminSideBar />
                 <AdminStatBannar />
             </div>
