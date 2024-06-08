@@ -20,12 +20,12 @@ export default function Home() {
   showChat ? body.style.overflow = "hidden" : body.style.overflow = "auto"
 
   const userAuth = {
-    id: 1,
+    id: 0,
     name: "Hassnain Ahmed",
     profilePic: "/img1.jpg",
     token: "abc123",
   }
-
+  // This is the initial landing page
   return (
     <>
       {

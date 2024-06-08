@@ -14,6 +14,7 @@ const Therapist = () => {
         profilePic: "/ProfileImage.png",
         token: "abc123",
     }
+    // This is the therapist's Component
     return (
         <>
             <Navbar user={userAuth} componentMobile={ProfileNavMobile} component={ProfileNav} />

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu, AiOutlineLogout } from "react-icons/ai";
 import { FaHouse, FaUserDoctor, FaCircleInfo, FaPhone } from "react-icons/fa6";
@@ -13,10 +14,14 @@ export function Navbar(props) {
   const handleNav = () => setNav(!nav);
 
   const navItems = [
-    { id: 1, item: "Home", route: "#", icon: <FaHouse size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
-    { id: 2, item: "Therapists", route: "#", icon: <FaUserDoctor size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
-    { id: 3, item: "About Us", route: "#", icon: <FaCircleInfo size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
-    { id: 4, item: "Contact Us", route: "#", icon: <FaPhone size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
+    // { id: 1, item: "Home", route: "/", icon: <FaHouse size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
+    // { id: 2, item: "Therapists", route: "/therapist", icon: <FaUserDoctor size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
+    // { id: 3, item: "About Us", route: "/aboutus", icon: <FaCircleInfo size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
+    // { id: 4, item: "Contact Us", route: "/contact_us", icon: <FaPhone size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
+    { id: 1, item: "Home", route: "/", icon: <FaHouse size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
+    { id: 2, item: "Patient", route: "/patient", icon: <FaUserDoctor size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
+    { id: 3, item: "Therapist", route: "/therapist", icon: <FaCircleInfo size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
+    { id: 4, item: "Admin", route: "/admin", icon: <FaPhone size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
   ];
 
   const ProfileNavbar = <ProfileNav id={id} name={name} profilePic={profilePic} imgClass="" />
@@ -43,7 +48,7 @@ export function Navbar(props) {
         ))}
       </ul>
       <div className="hidden lg:flex">
-        {id ? ProfileNavbar : ""}
+        {id ? ProfileNavbar : <Link to='/login'> Login or Signup </Link>}
       </div>
 
       {/* Mobile View */}

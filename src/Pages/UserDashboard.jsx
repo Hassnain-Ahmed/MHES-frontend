@@ -9,6 +9,8 @@ const userAuth = {
     token: "abc123",
 }
 
+// This is the patient's interface component
+
 const UserDashboard = () => {
     return (
         <>

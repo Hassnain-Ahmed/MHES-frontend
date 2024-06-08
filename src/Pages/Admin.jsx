@@ -18,7 +18,7 @@ const Admin = () => {
     const stats = {
 
     }
-
+    // This is the Admin's interface component
     return (
         <>
             <Navbar user={userAuth} imgClass="scale-[0.9] border-2 border-[#ccc]" componentMobile={ProfileNavMobile} component={ProfileNav} />

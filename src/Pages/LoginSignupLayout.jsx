@@ -12,16 +12,18 @@ import ProfileNavMobile from "../components/ProfileNavMobile.jsx";
 import ProfileNav from "../components/ProfileNav.jsx";
 
 export default function LoginSignupLayout() {
-  const [showLogin, setShowLogin] = useState(false);
+
+  const [showLogin, setShowLogin] = useState(true);
   const changeState = () => setShowLogin((prevState) => !prevState);
 
   const userAuth = {
-    id: 1,
+    id: 0,
     name: "Hassnain Ahmed",
     profilePic: "/img1.jpg",
     token: "abc123",
   }
 
+  // This the login Signup page
   return (
     <>
       <Navbar user={userAuth} componentMobile={ProfileNavMobile} component={ProfileNav} />

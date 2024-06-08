@@ -9,6 +9,8 @@ export default function Input(props) {
         className="input-field"
         type={props.type}
         name={props.name}
+        value={props.value}
+        onChange={props.onChange}
       />
       <label htmlFor="input-field" className="input-label">
         {props.label}

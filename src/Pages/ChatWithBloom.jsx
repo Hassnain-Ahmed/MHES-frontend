@@ -14,7 +14,7 @@ const ChatWithBloom = (props) => {
     useEffect(() => {
         scrollToBottom();
     }, []);
-
+    // This is the Chat with bloom interface component
     return (
         <div className='fixed top-0 left-0 z-20 w-screen h-screen'>
             <div className="bg-[#cccccc82] backdrop-blur-sm h-screen flex flex-col justify-between p-2 relative">
