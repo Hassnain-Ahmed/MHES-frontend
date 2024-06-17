@@ -34,7 +34,7 @@ export function TherapistBannar(props) {
 
   return (
     <>
-      <h1 className="text-center my-4 font-bold text-[#555] text-2xl md:text-3xl">
+      <h1 className="text-center my-4 font-bold text-[#555] dark:text-neutral-200 text-2xl md:text-3xl">
         {props.heading}
       </h1>
       <div className={`flex flex-wrap justify-center ${props.class}`}>

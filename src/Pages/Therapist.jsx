@@ -19,7 +19,11 @@ const Therapist = () => {
         <>
             <Navbar user={userAuth} componentMobile={ProfileNavMobile} component={ProfileNav} />
             <TherapistHero user={userAuth} />
-            <Testimonials />
+            <div className="flex justify-center items-center">
+                <div className="w-[80%]">
+                    <Testimonials />
+                </div>
+            </div>
             <TherapistBannar heading="More Therapists" />
             <Footer />
         </>

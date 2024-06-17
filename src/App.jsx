@@ -26,11 +26,6 @@ export default function App() {
     themeMode == "dark" ? htmlDark.style.backgroundColor = "#444" : htmlDark.style.backgroundColor = "#f9f9f9"
   }, [themeMode])
 
-  {/* <Admin /> */ }
-  {/* <UserDashboard /> */ }
-  {/* <Therapist /> */ }
-  {/* <LoginSignupLayout /> */ }
-  {/* <Home /> */ }
   return (
     <ThemeProvider value={{ themeMode, darkTheme, lightTheme }}>
 

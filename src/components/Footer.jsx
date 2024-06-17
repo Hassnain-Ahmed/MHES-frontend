@@ -24,7 +24,7 @@ const footerAbout = [
 
 export function Footer() {
   return (
-    <div className="text-2xl bg-[#eee] block lg:flex lg:flex-wrap lg:gap-4 lg:justify-around px-5 py-8 my-2">
+    <div className="text-2xl bg-zinc-200 dark:bg-gray-800 dark:text-gray-200 block lg:flex lg:flex-wrap lg:gap-4 lg:justify-around px-5 py-8 mt-2">
       <div>
         <h1 className=" text-2xl font-extrabold">
           MENTAL HEALTH <br />
@@ -40,7 +40,7 @@ export function Footer() {
               <a
                 href={item.route}
                 key={item.id}
-                className="text-gray-700 hover:cursor-pointer focus:font-bold text-[1.1rem]"
+                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:cursor-pointer focus:font-bold text-[1.1rem]"
               >
                 {item.item}
               </a>
@@ -57,7 +57,7 @@ export function Footer() {
               <a
                 href={service.route}
                 key={service.id}
-                className="text-gray-700 hover:cursor-pointer focus:font-bold text-[1.1rem]"
+                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:cursor-pointer focus:font-bold text-[1.1rem]"
               >
                 {service.item}
               </a>
@@ -73,7 +73,7 @@ export function Footer() {
             <li key={about.id}>
               <a
                 href={about.route}
-                className="text-gray-700 hover:cursor-pointer focus:font-bold text-[1.1rem]"
+                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:cursor-pointer focus:font-bold text-[1.1rem]"
                 key={about.id}
               >
                 {about.item}
