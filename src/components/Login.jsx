@@ -25,8 +25,9 @@ export function Login({ toggle }) {
   }
 
   return (
-    <div className="absolute bottom-0 left-0 flex justify-center items-center w-full h-[90%]">
-      <div className="w-[80%] md:w-[70%] lg:w-[55%] h-auto rounded-lg py-10 bg-[#3333339f] text-[#f9f9f9] text-center ">
+    // <div className="absolute bottom-0 left-0 flex justify-center items-center w-full h-[90%]">
+    <div className="flex justify-center items-center w-full h-[90%] my-10">
+      <div className="w-[80%] md:w-[70%] lg:w-[55%] h-auto rounded-lg py-10 bg-neutral-800 bg-opacity-85 text-[#f9f9f9] text-center ">
 
         <h1 className="w-full h-auto text-3xl font-bold">LOGIN</h1>
         <p>Enter your Credentails to Signin</p>

@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 
 export function Signup({ toggle }) {
   return (
-    <div className="absolute bottom-0 left-0 flex justify-center items-center w-full h-[90%]">
-      <div className="w-[80%] md:w-[70%] lg:w-[55%] h-auto rounded-lg py-5 my-5 bg-[#3333339f] text-[#f9f9f9] text-center ">
+    // <div className="absolute bottom-0 left-0 flex justify-center items-center w-full h-[90%]">
+    <div className="flex justify-center items-center w-full h-[90%] my-10">
+      <div className="w-[80%] md:w-[70%] lg:w-[55%] h-auto rounded-lg py-5 my-5 bg-neutral-800 bg-opacity-85 text-[#f9f9f9] text-center ">
         <h1 className="w-full h-auto text-3xl font-bold">Sign Up</h1>
         <p className="">Enter your Credentails to Signup</p>
         <form action="" method="post">
@@ -51,7 +52,7 @@ export function Signup({ toggle }) {
               />
               <label
                 htmlFor="link-checkbox"
-                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="ms-2 text-sm font-medium text-gray-100"
               >
                 Sign up as a Therapist
               </label>

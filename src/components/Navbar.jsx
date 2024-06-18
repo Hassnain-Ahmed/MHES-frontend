@@ -56,7 +56,7 @@ export function Navbar(props) {
         onClick={handleNav}
         className="block lg:hidden cursor-pointer"
       >
-        {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+        {nav ? <AiOutlineClose size={20} className="text-zinc-800 dark:text-zinc-100" /> : <AiOutlineMenu size={20} className="text-zinc-800 dark:text-zinc-100" />}
       </div>
 
       <div
