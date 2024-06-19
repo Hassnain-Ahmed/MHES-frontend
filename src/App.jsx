@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import Admin from './Pages/Admin';
-import UserDashboard from './Pages/UserDashboard';
 import Therapist from './Pages/Therapist';
 import Home from './Pages/Home';
 import LoginSignupLayout from './Pages/LoginSignupLayout';
 import { ThemeProvider } from './context/ThemeContext';
-
 import { Route, Routes } from "react-router-dom"
+import PatientDashboard from './Pages/PatientDashboard';
+import { TherapistBannar } from './components/TherapistBanner';
 
 export default function App() {
 
@@ -31,7 +31,7 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/patient" element={<UserDashboard />} />
+        <Route path="/patient/*" element={<PatientDashboard />} />
         <Route path="/therapist" element={<Therapist />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/login" element={<LoginSignupLayout />} />
