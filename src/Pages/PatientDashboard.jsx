@@ -4,6 +4,10 @@ import { TherapistBannar } from "../components/TherapistBanner"
 import { Footer } from "../components/Footer"
 import { Navbar } from '../components/Navbar';
 import { ChatWithBloomBtn } from '../components/ChatWithBloomBtn';
+import PatientProfile from '../components/PatientProfile';
+import PatientTherapist from '../components/PatientTherapist';
+import PatientSessions from '../components/PatientSessions';
+
 
 const userAuth = {
     id: 1,
@@ -33,9 +37,9 @@ const PatientDashboard = () => {
         <Routes>
             <Route path='/' element={<PatientLayout />}>
                 <Route path='/' element={<TherapistBannar heading="Recommended Therapists" />} />
-                <Route path='/profile' element={<TherapistBannar heading="Recommended Therapists" />} />
-                <Route path='/mytherapist' element={<TherapistBannar heading="Recommended Therapists" />} />
-                <Route path='/sessions' element={<TherapistBannar heading="Recommended Therapists" />} />
+                <Route path='/profile' element={<PatientProfile />} />
+                <Route path='/mytherapist' element={<PatientTherapist />} />
+                <Route path='/sessions' element={<PatientSessions />} />
             </Route>
         </Routes>
     );
