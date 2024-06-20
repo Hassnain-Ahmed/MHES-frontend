@@ -28,7 +28,7 @@ export default function LoginSignupLayout() {
     <>
       <Navbar user={userAuth} />
       <main>
-        <div className="absolute -z-10">
+        <div className="absolute -z-10 w-full">
           <picture>
             <source media="(max-width: 769px)" srcSet={Twofactorauthentication} />
             <img

@@ -43,6 +43,14 @@ export function Signup({ toggle }) {
               label="At Least 8 Characters"
             />
 
+            <Input
+              Key={"K" + 5}
+              type="password"
+              placeholder="Confirm Password"
+              name="Password"
+              label="Enter same as Before"
+            />
+
             <div className="flex items-center mx-5">
               <input
                 id="link-checkbox"
