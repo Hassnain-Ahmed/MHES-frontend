@@ -3,7 +3,7 @@ import profile from "/img1.jpg"
 
 const PatientProfile = (props) => {
 
-    const [patientProfileForm, setPatientProfileForm] = useState({ name: "", username: "", email: "", password: "" })
+    const [patientProfileForm, setPatientProfileForm] = useState({ name: "Hassnain Ahmed", username: "hassnain123", email: "dev.hassnain77@gmail.com", password: "somepassword" })
     const handleForm = (e) => {
         const { name, value } = e.target
         setPatientProfileForm({
@@ -16,35 +16,33 @@ const PatientProfile = (props) => {
         <div className="rounded-md p-5 bg-stone-200 dark:bg-stone-800">
             <h1 className="text-neutral-700 dark:text-neutral-200 text-2xl border-b-2 dark:border-neutral-400  border-neutral-400">Profile</h1>
 
-            <div className="flex gap-x-5 bg-stone-300 dark:bg-stone-700 my-2 px-4 py-3 rounded-lg">
+            <div className="flex flex-col lg:flex-row gap-x-5 bg-stone-300 dark:bg-stone-700 my-2 px-4 py-3 rounded-lg">
 
-                <div className="w-auto">
-                    <div className="flex flex-col w-60">
+                <div className="w-auto ">
+
+                    <div className="flex flex-col">
 
                         <div>
-                            <img src={profile} className="rounded-full w-full my-2" alt=""
-                            />
-                            {/* <input
-
-                            key={"inp" + 1} 
-                            type="file" 
-                            name="" id="" className="text-neutral-700 dark:text-neutral-100" 
-                            /> */}
-
+                            <div className="flex flex-col items-center justify-center">
+                                <img src={profile} className="rounded-full w-60 my-2" alt="" />
+                            </div>
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="file_input
                                 ">Upload Profile</label>
                             <input
-                                className="block w-full text-sm text-gray-900 border border-gray-300 p-1 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input
-                                " type="file" accept=".jpg,.pnd,.jpeg"
+                                className="block w-full text-sm text-gray-900 border border-gray-300 p-1 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                id="file_input"
+                                type="file"
+                                accept=".jpg,.pnd,.jpeg"
                             />
                         </div>
 
-                        <div className="my-4 dark:text-gray-100">
+                        <div className="my-4 text-gray-100 bg-gray-600 p-2 rounded-md">
                             <h1 className="text-md">Subscription Status: </h1>
                             <ul className="mx-2">
-                                <li className="text-emerald-400">Trail Member</li>
+                                <li className="text-emerald-400 p-1 px-3 rounded-xl">Trail Member</li>
                             </ul>
                         </div>
+
                     </div>
                 </div>
 
