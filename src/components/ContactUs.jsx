@@ -11,7 +11,7 @@ const ContactUs = (props) => {
             <div>
                 <picture>
                     <source media="(max-width: 769px)" srcSet={contactImageMobile} sizes="" />
-                    <img src={contactImage} className="w-full aspect-[14/20] md:aspect-[16/14] lg:aspect-[16/7] object-cover blur-sm" alt="" />
+                    <img src={contactImage} className="w-full aspect-[14/20] md:aspect-[16/14] lg:aspect-[16/9] object-cover blur-sm" alt="" />
                 </picture>
             </div>
 

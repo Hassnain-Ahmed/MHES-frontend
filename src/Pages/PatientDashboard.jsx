@@ -38,7 +38,7 @@ const PatientDashboard = () => {
             <Route path='/' element={<PatientLayout />}>
                 <Route path='/' element={<TherapistBannar heading="Recommended Therapists" />} />
                 <Route path='/profile' element={<PatientProfile />} />
-                <Route path='/mytherapist' element={<PatientTherapist />} />
+                <Route path='/mytherapist' element={<PatientTherapist subscribed={true} />} />
                 <Route path='/sessions' element={<PatientSessions />} />
             </Route>
         </Routes>

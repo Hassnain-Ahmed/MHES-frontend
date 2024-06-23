@@ -39,19 +39,19 @@ const PatientDashboardProfileBannar = (props) => {
             id: 4,
             item: "Sessions",
             route: "/patient/Sessions",
-            icon: <FaClapperboard fill="transparent" className={`${routeState === "/patient/Sessions" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`} stroke={themeMode === "dark" ? "#ccc" : "#555"} strokeWidth={55} />
+            icon: <FaClapperboard fill="transparent" className={`${routeState == "/patient/Sessions" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`} stroke={themeMode === "dark" ? "#ccc" : "#555"} strokeWidth={55} />
         },
         {
             id: 5,
             item: "My Subscriptions",
             route: "/patient/subscription",
-            icon: <FaFileInvoiceDollar fill="transparent" className={`${routeState === "/patient/Sessions" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`} stroke={themeMode === "dark" ? "#ccc" : "#555"} strokeWidth={55} />
+            icon: <FaFileInvoiceDollar fill="transparent" className={`${routeState === "/patient/Subscription" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`} stroke={themeMode === "dark" ? "#ccc" : "#555"} strokeWidth={55} />
         }
     ];
 
     return (
 
-        <div className="bg-neutral-300 dark:bg-neutral-800 rounded-lg w-full md:w-[60%] h-[50vh] md:h-[80vh] lg:w-[30%] py-2 px-2 relative overflow-auto">
+        <div className="bg-neutral-300 dark:bg-neutral-800 rounded-lg w-full md:w-[60%] h-[50vh] md:h-[80vh] lg:w-[30%] p-4 relative overflow-auto">
 
             <div className="flex flex-col my-5 border-b-2 dark:border-neutral-900">
                 {/* <img src={props.data.profilePic} className="w-[30%] rounded-[100%]" alt="" /> */}
@@ -66,7 +66,7 @@ const PatientDashboardProfileBannar = (props) => {
                         <Link to={item.route} key={item.id}>
                             <li
                                 onClick={() => (handleRoute(item.route))}
-                                className={`flex items-baseline gap-2 bg-[#eee] hover:bg-[#555] hover:text-white w-[60%] p-2 my-2 rounded-md cursor-pointer userDashboard dark:bg-neutral-600 dark:hover:bg-neutral-700 dark:text-gray-300 dark:hover:text-white ${isActiveRoute(item.route)}`}
+                                className={`flex items-baseline gap-2 bg-[#eee] hover:bg-[#555] hover:text-white p-3 my-2 rounded-md cursor-pointer userDashboard dark:bg-neutral-600 dark:hover:bg-neutral-700 dark:text-gray-300 dark:hover:text-white ${isActiveRoute(item.route)}`}
                             >
                                 {item.icon}
                                 {item.item}
