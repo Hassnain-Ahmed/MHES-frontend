@@ -1,4 +1,4 @@
-import { FaMessage, FaPenToSquare, FaShareFromSquare } from "react-icons/fa6"
+import { FaMessage, FaPenToSquare, FaShareFromSquare, FaUserDoctor } from "react-icons/fa6"
 import TherapistHero from "./TherapistHero"
 
 
@@ -18,23 +18,23 @@ const PatientTherapist = (props) => {
                     ?
                     <div>
 
-                        <div className="p-2 my-2 bg-zinc-100 shadow rounded-md">
+                        <div className="p-2 my-2 bg-zinc-100 dark:bg-neutral-600 dark:text-gray-300 shadow-md rounded-md">
                             {/* <ul className="flex flex-col lg:flex-row justify-evenly gap-2"> */}
                             <ul className="flex overflow-x-auto gap-2 justify-evenly py-2">
-                                <li key={1} className="flex items-center gap-2 bg-slate-200 py-2 px-4 rounded-3xl w-30">
-                                    <FaMessage fill="#555" size={20} />
+                                <li key={1} className="flex items-center gap-2 bg-neutral-200 dark:bg-zinc-800 py-2 px-4 rounded-3xl w-30 cursor-pointer shadow hover:shadow-gray-400 hover:shadow-md hover:bg-zinc-300 dark:hover:shadow-neutral-800 dark:hover:shadow-md dark:hover:bg-zinc-700 transition-shadow duration-300">
+                                    <FaUserDoctor size={20} className="fill-gray-600 dark:fill-gray-200" />
+                                    <span>Profile</span>
+                                </li>
+                                <li key={2} className="flex items-center gap-2 bg-neutral-200 dark:bg-zinc-800 py-2 px-4 rounded-3xl w-30 cursor-pointer shadow hover:shadow-gray-400 hover:shadow-md hover:bg-zinc-300 dark:hover:shadow-neutral-800 dark:hover:shadow-md dark:hover:bg-zinc-700 transition-shadow duration-300">
+                                    <FaMessage fill="#555" size={20} className="fill-gray-600 dark:fill-gray-200" />
                                     <span>Message</span>
                                 </li>
-                                <li key={2} className="flex items-center gap-2 bg-slate-200 py-2 px-4 rounded-3xl w-30">
-                                    <FaMessage fill="#555" size={20} />
-                                    <span>Sessions</span>
-                                </li>
-                                <li key={3} className="flex items-center gap-2 bg-slate-200 py-2 px-4 rounded-3xl w-30">
-                                    <FaPenToSquare fill="#555" size={20} />
+                                <li key={3} className="flex items-center gap-2 bg-neutral-200 dark:bg-zinc-800 py-2 px-4 rounded-3xl w-30 cursor-pointer shadow hover:shadow-gray-400 hover:shadow-md hover:bg-zinc-300 dark:hover:shadow-neutral-800 dark:hover:shadow-md dark:hover:bg-zinc-700 transition-shadow duration-300">
+                                    <FaPenToSquare fill="#555" size={20} className="fill-gray-600 dark:fill-gray-200" />
                                     <span>Review</span>
                                 </li>
-                                <li key={4} className="flex items-center gap-2 bg-slate-200 py-2 px-4 rounded-3xl w-30">
-                                    <FaShareFromSquare fill="#555" size={20} />
+                                <li key={4} className="flex items-center gap-2 bg-neutral-200 dark:bg-zinc-800 py-2 px-4 rounded-3xl w-30 cursor-pointer shadow hover:shadow-gray-400 hover:shadow-md hover:bg-zinc-300 dark:hover:shadow-neutral-800 dark:hover:shadow-md dark:hover:bg-zinc-700 transition-shadow duration-300">
+                                    <FaShareFromSquare fill="#555" size={20} className="fill-gray-600 dark:fill-gray-200" />
                                     <span>Recommend</span>
                                 </li>
                             </ul>
