@@ -7,6 +7,7 @@ import { ChatWithBloomBtn } from '../components/ChatWithBloomBtn';
 import PatientProfile from '../components/PatientProfile';
 import PatientTherapist from '../components/PatientTherapist';
 import PatientSessions from '../components/PatientSessions';
+import PatientSubscription from '../components/PatientSubscription';
 
 
 const userAuth = {
@@ -40,6 +41,7 @@ const PatientDashboard = () => {
                 <Route path='/profile' element={<PatientProfile />} />
                 <Route path='/mytherapist' element={<PatientTherapist subscribed={true} />} />
                 <Route path='/sessions' element={<PatientSessions />} />
+                <Route path='/subscription' element={<PatientSubscription />} />
             </Route>
         </Routes>
     );

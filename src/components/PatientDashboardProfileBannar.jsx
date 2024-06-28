@@ -45,7 +45,7 @@ const PatientDashboardProfileBannar = (props) => {
             id: 5,
             item: "My Subscriptions",
             route: "/patient/subscription",
-            icon: <FaFileInvoiceDollar fill="transparent" className={`${routeState === "/patient/Subscription" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`} stroke={themeMode === "dark" ? "#ccc" : "#555"} strokeWidth={55} />
+            icon: <FaFileInvoiceDollar fill="transparent" className={`${routeState == "/patient/subscription" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`} stroke={themeMode === "dark" ? "#ccc" : "#555"} strokeWidth={55} />
         }
     ];
 
@@ -66,7 +66,7 @@ const PatientDashboardProfileBannar = (props) => {
                         <Link to={item.route} key={item.id}>
                             <li
                                 onClick={() => (handleRoute(item.route))}
-                                className={`flex items-baseline gap-2 bg-[#eee] hover:bg-[#555] hover:text-white p-3 my-2 rounded-md cursor-pointer userDashboard dark:bg-neutral-600 dark:hover:bg-neutral-700 dark:text-gray-300 dark:hover:text-white ${isActiveRoute(item.route)}`}
+                                className={`flex items-baseline gap-2 bg-[#eee] hover:bg-[#555]  p-3 my-2 rounded-md cursor-pointer userDashboard dark:bg-neutral-600 dark:hover:bg-neutral-700 dark:text-gray-300 dark:hover:text-white ${isActiveRoute(item.route)}`}
                             >
                                 {item.icon}
                                 {item.item}
