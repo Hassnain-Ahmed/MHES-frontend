@@ -63,9 +63,5 @@ If you have any questions or want to connect, you can reach out to me at:
 - **Email**: dev.hassnain77@gmail.com
 - **LinkedIn**: [Hassnain Ahmed](https://www.linkedin.com/in/hasnain-ahmed-869741291/)
 
----
 
 Thank you for your interest in the MHES frontend project. Let's create something meaningful together!
-``` 
-
-This README file provides an interactive and informative overview of the MHES frontend project, highlighting its technologies, installation instructions, and contact information. It emphasizes that the project is under development and not intended for personal or commercial use.
