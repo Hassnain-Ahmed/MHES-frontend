@@ -31,9 +31,9 @@ const TherapistHero = (props) => {
             <div className="md:w-[60%] lg:w-[50%] border-2 dark:border-neutral-500 p-5 rounded-lg">
 
                 <div className="therapist-heading my-5 lg:mb-5">
-                    <div className="relative">
+                    <div className="flex justify-between">
                         <h2 className="font-bold text-xl text-[#333] dark:text-[#f9f9f9]">{props.user.name}</h2>
-                        <div className="absolute right-0 top-0 flex items-baseline">{printRatings(4)} &nbsp; 4/5</div>
+                        <div className="flex items-baseline">{printRatings(4)} &nbsp; 4/5</div>
                     </div>
                     <span className="text-neutral-500 dark:text-neutral-400">PHD in Therapy</span>
                 </div>
