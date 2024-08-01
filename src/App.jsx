@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import Admin from './Pages/Admin';
 import Therapist from './Pages/Therapist';
 import Home from './Pages/Home';
@@ -20,7 +20,7 @@ export default function App() {
   }
 
   const htmlDark = document.querySelector('html')
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.querySelector('html').classList.remove("dark", "light")
     document.querySelector('html').classList.add(themeMode)
     themeMode == "dark" ? htmlDark.style.backgroundColor = "#444" : htmlDark.style.backgroundColor = "#f9f9f9"

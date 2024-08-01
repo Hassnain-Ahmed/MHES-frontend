@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LuBell, LuMail, LuUser } from "react-icons/lu"
 import { FaCaretUp } from "react-icons/fa6"
 import useTheme from "../context/ThemeContext";
@@ -9,8 +9,21 @@ const ProfileNav = (props) => {
     const { themeMode, lightTheme, darkTheme } = useTheme()
     const themeOnChange = (e) => {
         const themeStatus = e.currentTarget.checked
-        themeMode == 'dark' ? lightTheme() : darkTheme()
+        // themeMode == 'dark' ? lightTheme() : darkTheme()
+        if (themeMode == "dark") {
+            lightTheme()
+            localStorage.setItem("themeMode", 'light')
+        } else {
+            darkTheme()
+            localStorage.setItem("themeMode", "dark")
+        }
     }
+
+    useEffect(() => {
+        const localThemeState = localStorage.getItem("themeMode")
+        console.log("local ", localThemeState)
+        localThemeState == "light" ? lightTheme() : darkTheme()
+    }, [])
 
     const [isBell, setIsBell] = useState(false)
     const [isMessage, setIsMessage] = useState(false)
