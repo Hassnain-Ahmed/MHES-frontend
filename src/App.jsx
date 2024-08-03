@@ -32,7 +32,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/patient/*" element={<PatientDashboard />} />
-        <Route path="/therapist" element={<Therapist />} />
+        <Route path="/therapist/*" element={<Therapist />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/login" element={<LoginSignupLayout />} />
       </Routes>

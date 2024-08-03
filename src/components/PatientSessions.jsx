@@ -3,7 +3,7 @@ import { FaArrowUpRightFromSquare, FaFileCircleExclamation } from "react-icons/f
 
 const PatientSessions = () => {
 
-    const [isSessions, setIsSessions] = useState(true)
+    const [isSessions, setIsSessions] = useState(false)
 
     return (
         <div className="rounded-md md:p-5">

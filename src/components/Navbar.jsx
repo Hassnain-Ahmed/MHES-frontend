@@ -77,6 +77,8 @@ export function Navbar(props) {
         {nav ? <AiOutlineClose size={20} className="text-zinc-800 dark:text-zinc-100" /> : <AiOutlineMenu size={20} className="text-zinc-800 dark:text-zinc-100" />}
       </div>
 
+      <div onClick={handleNav} className={` ${nav ? "block" : "hidden"} h-screen w-screen fixed top-0 right-0 z-10`} ></div>
+
       <div
         className={
           nav

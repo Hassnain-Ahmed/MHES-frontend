@@ -1,14 +1,9 @@
 import { useState } from "react"
 import profile from "/img1.jpg"
 
-const PatientProfile = ({ userData }) => {
+const TherapistProfile = (props) => {
 
-    const [patientProfileForm, setPatientProfileForm] = useState({
-        name: userData.name,
-        username: userData.username,
-        email: userData.email,
-        password: userData.password
-    })
+    const [patientProfileForm, setPatientProfileForm] = useState({ name: "Hassnain Ahmed", username: "hassnain123", email: "dev.hassnain77@gmail.com", password: "somepassword" })
     const handleForm = (e) => {
         const { name, value } = e.target
         setPatientProfileForm({
@@ -18,7 +13,7 @@ const PatientProfile = ({ userData }) => {
     }
 
     return (
-        <div className="rounded-md p-5 bg-stone-200 dark:bg-stone-800">
+        <div className="rounded-md p-5 bg-stone-200 dark:bg-stone-800 w-full">
             <h1 className="text-neutral-700 dark:text-neutral-200 text-2xl border-b-2 dark:border-neutral-400  border-neutral-400">Profile</h1>
 
             <div className="flex flex-col lg:flex-row gap-x-5 bg-stone-300 dark:bg-stone-700 my-2 px-4 py-3 rounded-lg">
@@ -29,7 +24,7 @@ const PatientProfile = ({ userData }) => {
 
                         <div>
                             <div className="flex flex-col items-center justify-center">
-                                <img src={userData.profilePic} className="rounded-full w-60 my-2" alt="" />
+                                <img src={profile} className="rounded-full w-60 my-2" alt="" />
                             </div>
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="file_input
                                 ">Upload Profile</label>
@@ -128,4 +123,4 @@ const PatientProfile = ({ userData }) => {
     )
 }
 
-export default PatientProfile
+export default TherapistProfile

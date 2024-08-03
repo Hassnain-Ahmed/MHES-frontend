@@ -13,6 +13,9 @@ import PatientSubscription from '../components/PatientSubscription';
 const userAuth = {
     id: 1,
     name: "Hassnain Ahmed",
+    username: "hassnain77",
+    email: "ahmedhasnain625@gmail.com",
+    password: "somePass123",
     profilePic: "/img1.jpg",
     token: "abc123",
 }
@@ -38,7 +41,7 @@ const PatientDashboard = () => {
         <Routes>
             <Route path='/' element={<PatientLayout />}>
                 <Route path='/' element={<TherapistBannar heading="Recommended Therapists" />} />
-                <Route path='/profile' element={<PatientProfile />} />
+                <Route path='/profile' element={<PatientProfile userData={userAuth} />} />
                 <Route path='/mytherapist' element={<PatientTherapist subscribed={true} />} />
                 <Route path='/sessions' element={<PatientSessions />} />
                 <Route path='/subscription' element={<PatientSubscription />} />

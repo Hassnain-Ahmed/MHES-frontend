@@ -1,6 +1,6 @@
 import { FaPen, FaRegStar, FaShareFromSquare, FaStar } from "react-icons/fa6";
 
-const TherapistHero = (props) => {
+const TherapistHeroEdit = (props) => {
 
     const printRatings = (rate) => {
         let rating = [];
@@ -25,6 +25,9 @@ const TherapistHero = (props) => {
 
             <div>
                 <img src={props.user.profilePic} className="w-96" alt="" />
+                <div className="flex justify-center p-2">
+                    <input type="file" name="" id="" className="w-full bg-neutral-200 dark:bg-zinc-800 dark:text-zinc-100 p-2 rounded-lg text-neutral-900" />
+                </div>
             </div>
 
             <div className="md:w-[60%] lg:w-[50%] relative">
@@ -45,10 +48,21 @@ const TherapistHero = (props) => {
                         </ul>
                     </div>
                 </div>
+                <div className="flex justify-start p-2 w-full gap-2">
+                    <button className="flex items-center gap-2 py-2 px-4 bg-neutral-200 dark:bg-zinc-800 dark:text-zinc-100 text-neutral-700 rounded-lg">
+                        <FaPen />
+                        Edit
+                    </button>
+
+                    <button className="flex items-center gap-2 py-2 px-4 bg-neutral-200 dark:bg-zinc-800 dark:text-zinc-100 rounded-lg text-neutral-700">
+                        <FaShareFromSquare />
+                        Share
+                    </button>
+                </div>
             </div>
 
         </div>
     )
 }
 
-export default TherapistHero
+export default TherapistHeroEdit
