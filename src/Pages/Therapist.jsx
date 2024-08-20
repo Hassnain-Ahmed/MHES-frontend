@@ -5,19 +5,15 @@ import { Footer } from "../components/Footer"
 import { Navbar } from "../components/Navbar"
 
 import ProfileNav from "../components/ProfileNav"
-// const ProfileNav = () => (import("../components/ProfileNav"))
 import ProfileNavMobile from "../components/ProfileNavMobile"
 import Testimonials from "../components/Testimonials"
-// import TherapistDashboardSidebar from "../components/TherapistDashboardSidebar"
-// import PatientProfile from "../components/PatientProfile"
-// import TherapistHeroEdit from "../components/TherapistHeroEdit"
-// import TherapistPatients from "../components/TherapistPatients"
-// import PatientSessions from "../components/PatientSessions"
+
 const TherapistDashboardSidebar = lazy(() => import("../components/TherapistDashboardSidebar"))
 const PatientProfile = lazy(() => import("../components/PatientProfile"))
 const TherapistHeroEdit = lazy(() => import("../components/TherapistHeroEdit"))
 const TherapistPatients = lazy(() => import("../components/TherapistPatients"))
 const PatientSessions = lazy(() => import("../components/PatientSessions"))
+const TherapistAppointments = lazy(() => import("../components/TherapistAppointments"))
 
 const userAuth = {
     id: 1,
@@ -49,7 +45,6 @@ const TherapistLayout = () => {
 
 const Therapist = () => {
 
-    // This is the therapist's Component
     return (
         <Routes>
             <Route element={<TherapistLayout />}>
@@ -73,6 +68,7 @@ const Therapist = () => {
                 <Route path="/profile" element={<PatientProfile userData={userAuth} />} />
                 <Route path="/MyPatients" element={<TherapistPatients />} />
                 <Route path="/Sessions" element={<PatientSessions />} />
+                <Route path="/Appointments" element={<TherapistAppointments />} />
             </Route>
         </Routes>
     )

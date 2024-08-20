@@ -5,7 +5,7 @@ const TherapistPatients = () => {
         <div className="p-5">
 
             <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
-                <li className="border-2 p-4 rounded-md shadow-md hover:scale-105 transition-all overflow-auto">
+                <li className="border-2 p-4 rounded-md shadow-md hover:scale-105 transition-all overflow-auto dark:text-neutral-50">
                     <p>ID: 41231</p>
                     <h1 className="font-bold">Personal Info</h1>
                     <div className="ml-2">
@@ -20,7 +20,7 @@ const TherapistPatients = () => {
                         <p>Attendance: 15</p>
                         <p>Leaves: 2</p>
                     </div>
-                    <Link to="report" className="block text-center mt-4 bg-amber-200 hover:bg-amber-300 transition-colors px-2 py-1 rounded">View Report</Link>
+                    <Link to="report" className="block text-center mt-4 text-neutral-900 bg-amber-200 hover:bg-amber-300 transition-colors px-2 py-1 rounded">View Report</Link>
                 </li>
 
             </ul>

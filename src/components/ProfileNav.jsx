@@ -9,7 +9,6 @@ const ProfileNav = (props) => {
     const { themeMode, lightTheme, darkTheme } = useTheme()
     const themeOnChange = (e) => {
         const themeStatus = e.currentTarget.checked
-        // themeMode == 'dark' ? lightTheme() : darkTheme()
         if (themeMode == "dark") {
             lightTheme()
             localStorage.setItem("themeMode", 'light')
@@ -21,7 +20,6 @@ const ProfileNav = (props) => {
 
     useEffect(() => {
         const localThemeState = localStorage.getItem("themeMode")
-        console.log("local ", localThemeState)
         localThemeState == "light" ? lightTheme() : darkTheme()
     }, [])
 

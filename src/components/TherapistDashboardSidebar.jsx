@@ -1,4 +1,4 @@
-import { FaChartSimple, FaUser, FaUserDoctor, FaClapperboard, FaRightFromBracket, FaFileInvoiceDollar } from "react-icons/fa6"
+import { FaChartSimple, FaUser, FaUserDoctor, FaClapperboard, FaRightFromBracket, FaFileInvoiceDollar, FaCalendarDays } from "react-icons/fa6"
 import useTheme from "../context/ThemeContext"
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -54,6 +54,15 @@ const TherapistDashboardSidebar = (props) => {
             item: "Sessions",
             route: "/therapist/Sessions",
             icon: <FaClapperboard fill="transparent" className={`${routeState == "/therapist/Sessions" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`}
+                stroke={themeMode === "dark" ? "#ccc" : "#555"}
+                strokeWidth={55}
+            />
+        },
+        {
+            id: 5,
+            item: "Appointments",
+            route: "/therapist/Appointments",
+            icon: <FaCalendarDays fill="transparent" className={`${routeState == "/therapist/Appointments" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`}
                 stroke={themeMode === "dark" ? "#ccc" : "#555"}
                 strokeWidth={55}
             />
