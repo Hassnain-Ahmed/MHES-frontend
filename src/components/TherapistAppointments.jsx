@@ -9,6 +9,12 @@ const TherapistAppointments = () => {
         const now = new Date()
         const formatedDate = now.toISOString().slice(0, 16)
         dateTimeInputRef.current.min = formatedDate
+
+        // const nextFormatedMonth = new Date(now.setMonth(now.getMonth() + 1)).toISOString().slice(0, 16)
+        // dateTimeInputRef.current.max = nextFormatedMonth
+
+        // console.log(nextFormatedMonth);
+
     }, [])
 
     return (

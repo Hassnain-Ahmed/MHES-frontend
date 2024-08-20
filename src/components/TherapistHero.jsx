@@ -21,13 +21,13 @@ const TherapistHero = (props) => {
         return rating;
     };
     return (
-        <div className="flex gap-5 flex-col items-center md:items-start md:flex-row md:justify-evenly p-5 border-b-2 dark:border-b-neutral-500 dark:text-[#eee] text-[#333] transition-all duration-500">
+        <div className="flex gap-5 flex-col items-center md:flex-col md:justify-evenly lg:items-start lg:flex-row p-5 border-b-2 dark:border-b-neutral-500 dark:text-[#eee] text-[#333] transition-all duration-500">
 
             <div>
                 <img src={props.user.profilePic} className="w-96" alt="" />
             </div>
 
-            <div className="md:w-[60%] lg:w-[50%] relative">
+            <div className="w-[100%] lg:w-[50%] relative">
                 <div className="w-full border-2 dark:border-neutral-500 p-5 rounded-lg ">
                     <div className="therapist-heading my-5 lg:mb-5">
                         <div className="flex justify-between">
