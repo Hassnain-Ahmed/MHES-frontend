@@ -1,4 +1,5 @@
 import { FaRightFromBracket } from "react-icons/fa6"
+import { Link } from "react-router-dom"
 
 const AdminStatCard = (props) => {
     return (
@@ -11,7 +12,7 @@ const AdminStatCard = (props) => {
                 }
                 <p className={`text-center line-clamp-1 ${props.number > 9999 ? "text-5xl" : "text-6xl md:text-7xl"} font-bold text-[#555] ${props.class}`}>{props.number}</p>
             </div>
-            <p><a href="" className="text-end flex justify-end gap-2"><span>View All</span> <FaRightFromBracket size={20} fill="#555" /></a></p>
+            <p><Link to={props.route} className="text-end flex justify-end gap-2"><span>View All</span> <FaRightFromBracket size={20} fill="#555" /></Link></p>
         </div>
     )
 }

@@ -9,28 +9,28 @@ const AdminStatBannar = () => {
             id: 1,
             title: "Registered Accounts",
             number: 598,
-            route: "",
+            route: "Users",
             class: "text-green-700 dark:text-green-600"
         },
         {
             id: 2,
             title: "Therapist Requests",
             number: 10,
-            route: "",
+            route: "Therapists",
             class: "text-red-700 dark:text-red-600"
         },
         {
             id: 3,
             title: "Total Revenue",
             number: 9999,
-            route: "",
+            route: "Revenue",
             class: "text-[#333] dark:text-[#ccc]"
         },
         {
             id: 4,
-            title: "Therapist Requests",
-            number: 10,
-            route: "",
+            title: "New Users",
+            number: 22,
+            route: "Users",
             class: "text-[#333] dark:text-[#ccc]"
         },
     ]

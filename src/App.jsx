@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import Admin from './Pages/Admin';
 import Therapist from './Pages/Therapist';
 import Home from './Pages/Home';
@@ -33,7 +33,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/patient/*" element={<PatientDashboard />} />
         <Route path="/therapist/*" element={<Therapist />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/*" element={<Admin />} />
         <Route path="/login" element={<LoginSignupLayout />} />
       </Routes>
 
