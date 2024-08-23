@@ -14,9 +14,11 @@ const AdminUsers = () => {
 
     const handleShowUserBanModal = () => {
         console.log(userBanBtnRef.current.getAttribute("aria-valueText"));
+        setShowUserModal(true)
     }
     const handleShowUserDeleteModal = () => {
         console.log(userDeleteBtnRef.current.getAttribute("aria-valueText"));
+        setShowUserDeleteModal(true)
     }
 
     const handleSelectUserbaseInputRef = () => {
@@ -67,18 +69,20 @@ const AdminUsers = () => {
                                 <div className="flex gap-2">
                                     <div
                                         aria-valuetext="yesBan"
+                                        className="p-2 cursor-pointer group"
                                         ref={userBanBtnRef}
                                         onClick={handleShowUserBanModal}
                                     >
-                                        <FaBan title="Ban User" className="text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100" />
+                                        <FaBan title="Ban User" className="text-neutral-600 group-hover:text-neutral-900 dark:text-neutral-300 dark:group-hover:text-neutral-100" />
                                     </div>
 
                                     <div
                                         aria-valuetext="yesDelete"
+                                        className="p-2 cursor-pointer group"
                                         ref={userDeleteBtnRef}
                                         onClick={handleShowUserDeleteModal}
                                     >
-                                        <FaTrash title="Delete User" className="text-red-400 hover:text-red-500" />
+                                        <FaTrash title="Delete User" className="text-red-400 group-hover:text-red-500" />
                                     </div>
                                 </div>
                             </td>
@@ -87,16 +91,25 @@ const AdminUsers = () => {
                 </table>
             </div>
             {
-                showUserBanModal ?
-                    <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
-                        <div>
-
-                        </div>
+                showUserBanModal &&
+                <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
+                    <div className="dark:bg-neutral-700 bg-neutral-400 rounded-lg p-4 m-4">
+                        <p className="text-lg my-2">Are you Sure you want to <b>ban</b> this User?</p>
+                        <button className="mx-2 p-2 rounded-md bg-red-400 hover:bg-red-500 transition-colors">Yes</button>
+                        <button className="mx-2 p-2 rounded-md bg-neutral-200 hover:bg-neutral-300 transition-colors text-neutral-900" onClick={() => { setShowUserModal(false) }}>Cancel</button>
                     </div>
-                    :
-                    <div>
-                    </div>
+                </div>
+            }
 
+            {
+                showUserDeleteModal &&
+                <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
+                    <div className="dark:bg-neutral-700 bg-neutral-400 rounded-lg p-4 m-4">
+                        <p className="text-lg my-2">Are you Sure you want to <b>Delete</b> this User?</p>
+                        <button className="mx-2 p-2 rounded-md bg-red-400 hover:bg-red-500 transition-colors">Yes</button>
+                        <button className="mx-2 p-2 rounded-md bg-neutral-200 hover:bg-neutral-300 transition-colors text-neutral-900" onClick={() => { setShowUserDeleteModal(false) }}>Cancel</button>
+                    </div>
+                </div>
             }
         </div>
     )
