@@ -7,6 +7,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { Route, Routes } from "react-router-dom"
 import PatientDashboard from './Pages/PatientDashboard';
 import { TherapistBannar } from './components/TherapistBanner';
+import { LoginV2 } from './components/LoginV2';
 
 export default function App() {
 
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/therapist/*" element={<Therapist />} />
         <Route path="/admin/*" element={<Admin />} />
         <Route path="/login" element={<LoginSignupLayout />} />
+        <Route path="/loginV2/*" element={<LoginV2 />} />
       </Routes>
 
     </ThemeProvider>

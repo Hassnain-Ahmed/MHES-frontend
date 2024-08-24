@@ -11,7 +11,6 @@ import Twofactorauthentication from '/Twofactorauthentication-bro.svg'
 
 export default function LoginSignupLayout() {
 
-  const { themeMode } = useTheme()
 
   const [showLogin, setShowLogin] = useState(true);
   const changeState = () => setShowLogin((prevState) => !prevState);

@@ -1,16 +1,18 @@
-import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import { AiOutlineClose, AiOutlineMenu, AiOutlineLogout } from "react-icons/ai";
 import { FaHouse, FaUserDoctor, FaCircleInfo, FaPhone } from "react-icons/fa6";
+
+import useTheme from "../context/ThemeContext";
+
 import ProfileNav from "./ProfileNav";
 import ProfileNavMobile from "./ProfileNavMobile";
-import useTheme from "../context/ThemeContext";
 
 export function Navbar(props) {
 
   const { themeMode, lightTheme, darkTheme } = useTheme()
   const themeOnChange = (e) => {
-    const themeStatus = e.currentTarget.checked
     themeMode == 'dark' ? lightTheme() : darkTheme()
   }
   const { id, name, profilePic } = props.user
@@ -18,10 +20,6 @@ export function Navbar(props) {
   const handleNav = () => setNav(!nav);
 
   const navItems = [
-    // { id: 1, item: "Home", route: "/", icon: <FaHouse size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
-    // { id: 2, item: "Therapists", route: "/therapist", icon: <FaUserDoctor size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
-    // { id: 3, item: "About Us", route: "/aboutus", icon: <FaCircleInfo size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
-    // { id: 4, item: "Contact Us", route: "/contact_us", icon: <FaPhone size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
     { id: 1, item: "Home", route: "/", icon: <FaHouse size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
     { id: 2, item: "Patient", route: "/patient", icon: <FaUserDoctor size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
     { id: 3, item: "Therapist", route: "/therapist", icon: <FaCircleInfo size={16} fill="transparent" stroke={themeMode == "dark" ? "#ccc" : "#333"} strokeWidth={50} /> },
@@ -33,12 +31,12 @@ export function Navbar(props) {
 
   return (
     <nav className={`flex justify-between items-center py-3 px-4 shadow dark:bg-gray-800 transition-all duration-300`}>
-      <h1 className="text-2xl font-extrabold text-[#333] dark:text-[#f9f9f9]">
+      <Link to="/" className="text-2xl font-extrabold text-[#333] dark:text-[#f9f9f9]">
         Mental Health <br />
         Evaluator System
-      </h1>
+      </Link>
 
-      <ul className="lg:flex md:gap-3 lg:gap-5 hidden text-gray-700 dark:text-[#f9f9f9]">
+      {/* <ul className="lg:flex md:gap-3 lg:gap-5 hidden text-gray-700 dark:text-[#f9f9f9]">
         {navItems.map((item) => (
           <li key={item.id}>
             <a
@@ -50,13 +48,14 @@ export function Navbar(props) {
             </a>
           </li>
         ))}
-      </ul>
+      </ul> */}
+
       <div className="hidden lg:flex">
         {
           id
             ? ProfileNavbar
             : <div className="flex items-center gap-x-2">
-              <Link to='/login' className=""> Login or Signup </Link>
+              <Link to='/loginV2' className=""> Login or Signup </Link>
               <div className="relative ml-[-10px]">
                 <label className="switch scale-[.7]">
                   <span className="sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="#ffd43b"><circle r="5" cy="12" cx="12"></circle><path d="m21 13h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm-17 0h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm13.66-5.66a1 1 0 0 1 -.66-.29 1 1 0 0 1 0-1.41l.71-.71a1 1 0 1 1 1.41 1.41l-.71.71a1 1 0 0 1 -.75.29zm-12.02 12.02a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.41l.71-.66a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1 -.7.24zm6.36-14.36a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm0 17a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm-5.66-14.66a1 1 0 0 1 -.7-.29l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.29zm12.02 12.02a1 1 0 0 1 -.7-.29l-.66-.71a1 1 0 0 1 1.36-1.36l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.24z"></path></g></svg></span>
@@ -70,20 +69,22 @@ export function Navbar(props) {
       </div>
 
       {/* Mobile View */}
-      <div
-        onClick={handleNav}
-        className="block lg:hidden cursor-pointer"
-      >
-        {nav ? <AiOutlineClose size={20} className="text-zinc-800 dark:text-zinc-100" /> : <AiOutlineMenu size={20} className="text-zinc-800 dark:text-zinc-100" />}
+      <div onClick={handleNav} className="block lg:hidden cursor-pointer">
+        {
+          nav ?
+            <AiOutlineClose size={20} className="text-zinc-800 dark:text-zinc-100" />
+            :
+            <AiOutlineMenu size={20} className="text-zinc-800 dark:text-zinc-100" />}
       </div>
 
       <div onClick={handleNav} className={` ${nav ? "block" : "hidden"} h-screen w-screen fixed top-0 right-0 z-10`} ></div>
 
       <div
         className={
-          nav
-            ? `lg:hidden fixed w-[60%] h-full left-0 top-0 ease-in-out duration-500 px-5 py-4 bg-[#e3e3e3] dark:bg-neutral-700 dark:text-[#eee] z-10`
-            : `ease-in-out duration-500 fixed top-0 bottom-0 left-[-100%] w-[60%] h-full px-5 py-4 bg-[#e3e3e3] dark:bg-neutral-700 dark:text-[#eee] z-10`
+          nav ?
+            `lg:hidden fixed w-[60%] h-full left-0 top-0 ease-in-out duration-500 px-5 py-4 bg-[#e3e3e3] dark:bg-neutral-700 dark:text-[#eee] z-10`
+            :
+            `ease-in-out duration-500 fixed top-0 bottom-0 left-[-100%] w-[60%] h-full px-5 py-4 bg-[#e3e3e3] dark:bg-neutral-700 dark:text-[#eee] z-10`
         }
       >
 
@@ -98,6 +99,7 @@ export function Navbar(props) {
             </label>
           </div>
         </h1>{" "}
+
         <br />
 
 
