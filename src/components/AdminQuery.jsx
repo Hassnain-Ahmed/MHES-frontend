@@ -44,7 +44,9 @@ const AdminQuery = () => {
                             <h2 className="mt-1">Query:</h2>
                             <p className="text-sm line-clamp-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium commodi excepturi molestiae qui similique exercitationem. Atque, earum nesciunt. Cum, dolor?</p>
                             <h2 className="mt-2">Response:</h2>
-                            <p className="text-sm line-clamp-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum sapiente, atque ipsum labore obcaecati expedita modi aliquam a vero mollitia.</p>
+                            <p className="text-sm line-clamp-2">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum sapiente, atque ipsum labore obcaecati expedita modi aliquam a vero mollitia.
+                            </p>
                         </div>
 
                     </div>

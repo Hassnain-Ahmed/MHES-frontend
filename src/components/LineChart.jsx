@@ -70,7 +70,7 @@ export const LineChart = (props) => {
         ],
         datasets: [
             {
-                label: "Yearly Traffic Data",
+                label: props.chartHeading,
                 data: [1, 50, 3, 40, 5, 6, 20, 8, 9, 10, 11, 80],
                 borderRadius: 4,
                 tension: 0.4,
@@ -82,5 +82,5 @@ export const LineChart = (props) => {
         ]
     };
 
-    return <Line ref={chartRef} options={options} data={data} width={500} className={`${props.class} dark:bg-gray-800`} />;
+    return <Line ref={chartRef} options={options} data={data} className={`${props.class} dark:bg-gray-800`} />;
 };

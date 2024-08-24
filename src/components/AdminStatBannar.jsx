@@ -45,14 +45,14 @@ const AdminStatBannar = () => {
                     ))
                 }
             </div>
-            {/* <div className="flex lg:flex-row flex-col items-center justify-center gap-5 my-5"> */}
-            <div className="flex gap-5 flex-col lg:flex-row justify-center">
-                <div className="bg-[#fff] rounded-md p-2 w-full h-full dark:bg-neutral-900 dark:text-white">
-                    <LineChart class="w-full h-full dark:text-white" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {/* <div className="flex gap-5 flex-col lg:flex-row justify-center"> */}
+                <div className="bg-[#fff] rounded-md p-2 w-full h-full dark:bg-neutral-900 dark:text-white col-span-2">
+                    <LineChart chartHeading="Generated revenue this month" />
                 </div>
 
-                <div className="bg-[#fff] rounded-md p-2 dark:bg-neutral-900 dark:text-white">
-                    <BarChart class="w-full h-[250px] dark:text-white" />
+                <div className="bg-[#fff] rounded-md p-2 dark:bg-neutral-900 dark:text-white ">
+                    <BarChart />
                 </div>
             </div>
 
