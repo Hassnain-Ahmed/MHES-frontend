@@ -20,7 +20,7 @@ const ContactUs = (props) => {
                 <div className="w-[90%]  md:w-[60%] h-auto bg-neutral-800 bg-opacity-85 rounded-3xl p-2 backdrop-blur-sm px-5">
 
                     <h1 className="text-center text-xl font-bold text-[#f3f3f3] py-2">Contat Us</h1>
-                    <form action="" className="md:*:my-8 lg:*:my-6">
+                    <form action="/" className="md:*:my-8 lg:*:my-6">
                         <Input
                             type="text"
                             placeholder="Name"

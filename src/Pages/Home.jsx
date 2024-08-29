@@ -34,8 +34,8 @@ export default function Home() {
       <Navbar user={userAuth} />
       <Hero />
       <TherapistBannar heading="OUR THERAPISTS" />
-      <Aboutus class="my-5" />
-      <ContactUs class="my-2 bg-[#ccc]" />
+      <Aboutus />
+      <ContactUs />
       <ChatWithBloomBtn toggle={toggleChat} />
       <Footer />
     </>

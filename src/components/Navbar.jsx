@@ -36,7 +36,7 @@ export function Navbar(props) {
         Evaluator System
       </Link>
 
-      {/* <ul className="lg:flex md:gap-3 lg:gap-5 hidden text-gray-700 dark:text-[#f9f9f9]">
+      <ul className="lg:flex md:gap-3 lg:gap-5 hidden text-gray-700 dark:text-[#f9f9f9]">
         {navItems.map((item) => (
           <li key={item.id}>
             <a
@@ -48,7 +48,7 @@ export function Navbar(props) {
             </a>
           </li>
         ))}
-      </ul> */}
+      </ul>
 
       <div className="hidden lg:flex">
         {
