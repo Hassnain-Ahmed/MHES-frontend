@@ -1,19 +1,19 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import { lazy, Suspense } from "react"
 
-import AdminSideBar from "../components/AdminSidebar"
+import AdminSideBar from "../components/admin/AdminSidebar"
 // import AdminStatBannar from "../components/AdminStatBannar"
 
-import { Navbar } from "../components/Navbar"
-import ProfileNav from "../components/ProfileNav"
-import ProfileNavMobile from "../components/ProfileNavMobile"
+import { Navbar } from "../components/home/Navbar"
+import ProfileNav from "../components/home/ProfileNav"
+import ProfileNavMobile from "../components/home/ProfileNavMobile"
 
-const AdminStatBannar = lazy(() => import("../components/AdminStatBannar"))
-const AdminUsers = lazy(() => import("../components/AdminUsers"))
-const AdminQuery = lazy(() => import("../components/AdminQuery"))
-const PatientSessions = lazy(() => import("../components/PatientSessions"))
-const AdminTherapists = lazy(() => import("../components/AdminTherapists"))
-const AdminRevenue = lazy(() => import("../components/AdminRevenue"))
+const AdminStatBannar = lazy(() => import("../components/admin/AdminStatBannar"))
+const AdminUsers = lazy(() => import("../components/admin/AdminUsers"))
+const AdminQuery = lazy(() => import("../components/admin/AdminQuery"))
+const PatientSessions = lazy(() => import("../components/patient/PatientSessions"))
+const AdminTherapists = lazy(() => import("../components/admin/AdminTherapists"))
+const AdminRevenue = lazy(() => import("../components/admin/AdminRevenue"))
 
 const Admin = () => {
 

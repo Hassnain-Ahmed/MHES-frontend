@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMenu, AiOutlineLogout } from "react-icons/ai";
 import { FaHouse, FaUserDoctor, FaCircleInfo, FaPhone } from "react-icons/fa6";
 
-import useTheme from "../context/ThemeContext";
+import useTheme from "../../context/ThemeContext";
 
 import ProfileNav from "./ProfileNav";
 import ProfileNavMobile from "./ProfileNavMobile";

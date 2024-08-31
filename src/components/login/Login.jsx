@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Button from "./UI/Button";
-import Input from "./UI/Input";
+import Button from "../UI/Button";
+import Input from "../UI/Input";
 import { Link } from "react-router-dom";
 
 export function Login({ toggle }) {

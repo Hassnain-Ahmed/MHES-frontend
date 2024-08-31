@@ -1,13 +1,13 @@
 import { Outlet, Routes, Route } from 'react-router-dom';
-import PatientDashboardProfileBannar from "../components/PatientDashboardProfileBannar"
-import { TherapistBannar } from "../components/TherapistBanner"
-import { Footer } from "../components/Footer"
-import { Navbar } from '../components/Navbar';
-import { ChatWithBloomBtn } from '../components/ChatWithBloomBtn';
-import PatientProfile from '../components/PatientProfile';
-import PatientTherapist from '../components/PatientTherapist';
-import PatientSessions from '../components/PatientSessions';
-import PatientSubscription from '../components/PatientSubscription';
+import PatientDashboardProfileBannar from "../components/patient/PatientDashboardProfileBannar"
+import { TherapistBannar } from "../components/therapist/TherapistBanner"
+import { Footer } from "../components/home/Footer"
+import { Navbar } from '../components/home/Navbar';
+import { ChatWithBloomBtn } from '../components/chatbot/ChatWithBloomBtn';
+import PatientProfile from '../components/patient/PatientProfile';
+import PatientTherapist from '../components/patient/PatientTherapist';
+import PatientSessions from '../components/patient/PatientSessions';
+import PatientSubscription from '../components/patient/PatientSubscription';
 
 
 const userAuth = {

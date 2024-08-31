@@ -1,15 +1,14 @@
 import { lazy, Suspense, useState } from "react"
 import { helix } from "ldrs"
 
-import { Footer } from "./Footer"
-import { Navbar } from "./Navbar"
+import { Footer } from "../home/Footer"
+import { Navbar } from "../home/Navbar"
 
 import { TherapistRegisterStepsBar } from "./TherapistRegisterStepsBar"
 import TherapistRegistrationStepExperience from "./TherapistRegistrationStepExperience"
 
 const TherapistRegistrationStepInformation = lazy(() => import("./TherapistRegistrationStepInformation"))
 const TherapistRegistrationStepEducation = lazy(() => import("./TherapistRegistrationStepEducation"))
-const TherapistRegistrationStepDocuments = lazy(() => import("./TherapistRegistrationStepDocuments"))
 
 export const TherapistRegister = () => {
 

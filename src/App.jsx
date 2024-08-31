@@ -1,13 +1,17 @@
 import { useLayoutEffect, useState } from 'react';
+import { Route, Routes } from "react-router-dom"
+
+import { ThemeProvider } from './context/ThemeContext';
+
 import Admin from './Pages/Admin';
 import Therapist from './Pages/Therapist';
-import Home from './Pages/Home';
-import LoginSignupLayout from './Pages/LoginSignupLayout';
-import { ThemeProvider } from './context/ThemeContext';
-import { Route, Routes } from "react-router-dom"
 import PatientDashboard from './Pages/PatientDashboard';
-import { TherapistBannar } from './components/TherapistBanner';
-import { LoginV2 } from './components/LoginV2';
+
+import Home from './Pages/Home';
+
+import LoginSignupLayout from './Pages/LoginSignupLayout';
+import { LoginV2 } from './components/login/LoginV2';
+
 
 export default function App() {
 

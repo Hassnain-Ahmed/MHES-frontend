@@ -1,6 +1,6 @@
 import AdminStatCard from "./AdminStatCard"
-import { LineChart } from "./LineChart"
-import { BarChart } from "./BarChart"
+import { LineChart } from "../chartsGraphs/LineChart"
+import { BarChart } from "../chartsGraphs/BarChart"
 
 const AdminStatBannar = () => {
 

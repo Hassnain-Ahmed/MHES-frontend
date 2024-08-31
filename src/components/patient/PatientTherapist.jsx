@@ -1,5 +1,5 @@
 import { FaMessage, FaPenToSquare, FaPersonCircleQuestion, FaShareFromSquare, FaUserDoctor } from "react-icons/fa6"
-import TherapistHero from "./TherapistHero"
+import TherapistHero from "../therapist/TherapistHero"
 
 
 const PatientTherapist = (props) => {

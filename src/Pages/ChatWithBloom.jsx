@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { BiSend } from "react-icons/bi";
 import { FaXmark } from "react-icons/fa6";
-import ChatMessageBannarSender from "../components/ChatMessageBannarSender";
-import ChatMessageBannarReciever from "../components/ChatMessageBannarReciever";
+import ChatMessageBannarSender from "../components/chatbot/ChatMessageBannarSender";
+import ChatMessageBannarReciever from "../components/chatbot/ChatMessageBannarReciever";
 
 const ChatWithBloom = (props) => {
     const messagesEndRef = useRef(null);

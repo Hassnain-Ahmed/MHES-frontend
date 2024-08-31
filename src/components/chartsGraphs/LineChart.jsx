@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, Legend, Tooltip, Colors } from 'chart.js/auto';
-import useTheme from '../context/ThemeContext';
+import useTheme from '../../context/ThemeContext';
 
 Chart.register(
     CategoryScale, LinearScale, PointElement, LineElement, Title, Legend, Tooltip

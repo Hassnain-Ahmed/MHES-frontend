@@ -1,5 +1,5 @@
 import { FaChartSimple, FaUser, FaUserDoctor, FaClapperboard, FaRightFromBracket, FaFileInvoiceDollar, FaCalendarDays } from "react-icons/fa6"
-import useTheme from "../context/ThemeContext"
+import useTheme from "../../context/ThemeContext"
 import { Link } from "react-router-dom";
 import { useState } from "react";
 

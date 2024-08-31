@@ -1,19 +1,19 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import { lazy, Suspense } from 'react'
 
-import { Footer } from "../components/Footer"
-import { Navbar } from "../components/Navbar"
+import { Footer } from "../components/home/Footer"
+import { Navbar } from "../components/home/Navbar"
 
-import ProfileNav from "../components/ProfileNav"
-import ProfileNavMobile from "../components/ProfileNavMobile"
-import Testimonials from "../components/Testimonials"
+import ProfileNav from "../components/home/ProfileNav"
+import ProfileNavMobile from "../components/home/ProfileNavMobile"
+import Testimonials from "../components/patient/Testimonials"
 
-const TherapistDashboardSidebar = lazy(() => import("../components/TherapistDashboardSidebar"))
-const PatientProfile = lazy(() => import("../components/PatientProfile"))
-const TherapistHeroEdit = lazy(() => import("../components/TherapistHeroEdit"))
-const TherapistPatients = lazy(() => import("../components/TherapistPatients"))
-const PatientSessions = lazy(() => import("../components/PatientSessions"))
-const TherapistAppointments = lazy(() => import("../components/TherapistAppointments"))
+const TherapistDashboardSidebar = lazy(() => import("../components/therapist/TherapistDashboardSidebar"))
+const PatientProfile = lazy(() => import("../components/patient/PatientProfile"))
+const TherapistHeroEdit = lazy(() => import("../components/therapist/TherapistHeroEdit"))
+const TherapistPatients = lazy(() => import("../components/therapist/TherapistPatients"))
+const PatientSessions = lazy(() => import("../components/patient/PatientSessions"))
+const TherapistAppointments = lazy(() => import("../components/therapist/TherapistAppointments"))
 
 const userAuth = {
     id: 1,

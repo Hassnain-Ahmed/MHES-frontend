@@ -2,10 +2,10 @@ import { useState } from "react";
 import useTheme from "../context/ThemeContext.jsx";
 import { Link } from "react-router-dom";
 
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
-import { Login } from "../components/Login.jsx";
-import { Signup } from "../components/Signup";
+import { Navbar } from "../components/home/Navbar.jsx";
+import { Footer } from "../components/home/Footer.jsx";
+import { Login } from "../components/login/Login.jsx";
+import { Signup } from "../components/login/Signup.jsx";
 
 import Twofactorauthentication from '/Twofactorauthentication-bro.svg'
 

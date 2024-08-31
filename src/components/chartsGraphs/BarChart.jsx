@@ -1,6 +1,6 @@
 import { Doughnut } from "react-chartjs-2"
 import { Chart, CategoryScale, LinearScale, Title, Legend, Tooltip, Colors } from 'chart.js/auto'
-import useTheme from "../context/ThemeContext"
+import useTheme from "../../context/ThemeContext"
 
 Chart.register(
     CategoryScale, LinearScale, Title, Legend, Tooltip

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { FaPrint } from "react-icons/fa6"
-import { LineChart } from "./LineChart"
+import { LineChart } from "../chartsGraphs/LineChart"
 
 
 const AdminRevenue = () => {

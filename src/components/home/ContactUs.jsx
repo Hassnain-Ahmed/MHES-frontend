@@ -1,6 +1,6 @@
-import Button from "./UI/Button"
-import Input from "./UI/Input"
-import Textarea from "./UI/Textarea"
+import Button from "../UI/Button"
+import Input from "../UI/Input"
+import Textarea from "../UI/Textarea"
 import contactImage from "/contactus.svg"
 import contactImageMobile from "/contactusmobile.svg"
 

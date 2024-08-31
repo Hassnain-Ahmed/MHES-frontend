@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { FaCircleInfo, FaEnvelope, FaGlobe, FaHouse, FaPhone, FaRoad, FaUser } from "react-icons/fa6"
-import { handlePicture } from "./logic/handlePicture"
+import { handlePicture } from "../logic/handlePicture"
 
 import placeholderImgae from "/placeholderProfileImg.png"
 

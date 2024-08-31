@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from 'react-router-dom'
 
-import { Navbar } from './Navbar'
-import { Footer } from './Footer'
+import { Navbar } from '../home/Navbar'
+import { Footer } from '../home/Footer'
 
 import { UserLogin } from './UserLogin'
 import { UserRegister } from './UserRegister'

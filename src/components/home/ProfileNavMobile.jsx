@@ -1,11 +1,6 @@
 import { LuBell, LuMail, LuUser } from "react-icons/lu"
-import useTheme from "../context/ThemeContext"
 
 const ProfileNavMobile = (props) => {
-    // const { themeMode, darkTheme, lightTheme } = useTheme()
-    // const themeOnChange = () => {
-    //     themeMode === "dark" ? lightTheme() : darkTheme()
-    // }
     return (
         <div className="bg-[#eee] rounded-lg p-5 border-2 relative dark:bg-gray-800 dark:border-gray-800 dark:text-white">
 

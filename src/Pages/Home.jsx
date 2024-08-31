@@ -1,12 +1,16 @@
-import { useContext, useState } from "react";
-import { Navbar } from "../components/Navbar";
-import { ChatWithBloomBtn } from "../components/ChatWithBloomBtn";
-import { Hero } from "../components/Hero";
-import { TherapistBannar } from "../components/TherapistBanner";
-import { Footer } from "../components/Footer";
-import ContactUs from "../components/ContactUs";
-import Aboutus from "../components/Aboutus";
+import { useState } from "react";
+
+import { Navbar } from "../components/home/Navbar";
+import { Hero } from "../components/home/Hero";
+import { TherapistBannar } from "../components/therapist/TherapistBanner";
+import ContactUs from "../components/home/ContactUs";
+import Aboutus from "../components/home/Aboutus";
+import { Footer } from "../components/home/Footer";
+
 import ChatWithBloom from "./ChatWithBloom";
+import { ChatWithBloomBtn } from "../components/chatbot/ChatWithBloomBtn";
+
+
 
 export default function Home() {
 
