@@ -26,6 +26,8 @@ export const handlePicture = (event, acceptableExtensions, sizeLimit, errorRef, 
         reader.addEventListener("load", () => {
             displayRef.current.src = reader.result;
         });
+
+        return picture
     }
     catch (e) {
         errorRef.current.innerHTML = `Please Upload an Image!`;
