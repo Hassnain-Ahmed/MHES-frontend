@@ -1,10 +1,15 @@
-import { FaChartSimple, FaUser, FaUserDoctor, FaClapperboard, FaRightFromBracket, FaFileInvoiceDollar, FaCalendarDays } from "react-icons/fa6"
-import useTheme from "../../context/ThemeContext"
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { authService } from "../../service/authService";
+
+import useTheme from "../../context/ThemeContext"
+
+import { FaChartSimple, FaUser, FaUserDoctor, FaClapperboard, FaRightFromBracket, FaFileInvoiceDollar, FaCalendarDays, FaListCheck } from "react-icons/fa6"
 
 
 const TherapistDashboardSidebar = (props) => {
+
+    const navigate = useNavigate()
 
     const { themeMode } = useTheme()
     const [routeState, setRouteState] = useState("/therapist/")
@@ -67,16 +72,15 @@ const TherapistDashboardSidebar = (props) => {
                 strokeWidth={55}
             />
         },
-        // {
-        //     id: 5,
-        //     item: "My Subscriptions",
-        //     route: "/patient/subscription",
-        //     icon: <FaFileInvoiceDollar fill="transparent"
-        //         className={`${routeState == "/patient/subscription" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`}
-        //         stroke={themeMode === "dark" ? "#ccc" : "#555"}
-        //         strokeWidth={55}
-        //     />
-        // }
+        {
+            id: 6,
+            item: "Listing",
+            route: "/therapist/listing",
+            icon: <FaListCheck fill="transparent" className={`${routeState == "/therapist/listing" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`}
+                stroke={themeMode === "dark" ? "#ccc" : "#555"}
+                strokeWidth={55}
+            />
+        },
     ];
 
     return (
@@ -87,7 +91,7 @@ const TherapistDashboardSidebar = (props) => {
                 {/* <img src={props.data.profilePic} className="w-[30%] rounded-[100%]" alt="" /> */}
                 <h1 className="text-xl font-bold text-neutral-800 dark:text-neutral-300">{props.data.name}</h1>
                 <p className="text-neutral-600 dark:text-neutral-400">Platform User for: 22 Months</p>
-                <p className="text-neutral-600 dark:text-neutral-400">Trial Member</p>
+                {/* <p className="text-neutral-600 dark:text-neutral-400">Trial Member</p> */}
             </div>
 
             <ul>
@@ -106,10 +110,9 @@ const TherapistDashboardSidebar = (props) => {
                 }
             </ul>
 
-            <div className="absolute bottom-3 hidden lg:flex right-3 items-center gap-2 py-2 px-4 bg-gradient-to-r from-[#bc5555] to-[#7f3939] text-white rounded-md cursor-pointer">
+            <div onClick={() => authService.logout(navigate)} className="absolute bottom-3 hidden lg:flex right-3 items-center gap-2 py-2 px-4 bg-gradient-to-r from-[#bc5555] to-[#7f3939] text-white rounded-md cursor-pointer">
                 Logout <FaRightFromBracket />
             </div>
-
         </div>
 
     )

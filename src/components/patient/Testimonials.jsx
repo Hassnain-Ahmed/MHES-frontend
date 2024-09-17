@@ -54,9 +54,9 @@ const Testimonials = () => {
                             {card.img}
                         </div>
                         <div>
-                            <div className="relative mb-2">
+                            <div className="flex justify-evenly mb-2">
                                 <h2 className="text-xl">{card.name}</h2>
-                                <div className="absolute md:relative lg:absolute right-0 top-1 flex gap-1">{printRatings(card.rating)}</div>
+                                <div className=" flex gap-1">{printRatings(card.rating)}</div>
                             </div>
                             <p className=""> {card.commnet}</p>
                         </div>

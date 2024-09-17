@@ -1,13 +1,15 @@
 import { useState, useRef } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import { lineSpinner } from "ldrs"
 import axios from "axios"
-import { Link } from "react-router-dom"
+import { authService } from "../../service/authService"
 
 export const UserLogin = () => {
 
+    const navigate = useNavigate();
     lineSpinner.register()
 
-    const [error, setErros] = useState("")
+    const [error, setErrors] = useState("")
 
     const [loginForm, setLoginForm] = useState({
         email: "",
@@ -27,30 +29,81 @@ export const UserLogin = () => {
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        submitBtn.current.disabled = true
+        e.preventDefault();
 
-        document.getElementById("submitText").classList.add("hidden")
-        document.getElementById("submitLoader").classList.remove("hidden")
+        // Disable submit button and show loader
+        toggleSubmitState(true);
 
-        const formData = new FormData()
-
-        formData.append("email", loginForm.email)
-        formData.append("password", loginForm.password)
+        const formData = new FormData();
+        formData.append("email", loginForm.email);
+        formData.append("password", loginForm.password);
 
         try {
-            const { data } = await axios.post("http://localhost:5000/api/users/login", formData, {
+            // Use environment variable for API URL
+            const { data } = await axios.post(`http://localhost:5000/api/users/login`, formData, {
                 headers: {
                     "Content-Type": "application/json"
                 }
-            })
-            console.log(data);
+            });
+
+            // Check for errors in response code
+            if (data?.response?.code) {
+                handleError(data.response.code);
+                toggleSubmitState(false);
+                return;
+            }
+
+            // Handle successful login based on user role
+            await handleRoleBasedNavigation(data.response.role, data);
+            data?.response?.userData && localStorage.setItem("userData", JSON.stringify(data.response.userData))
+            data?.response?.adminData && localStorage.setItem("userData", JSON.stringify(data.response.adminData))
+            data?.response?.therapistData && localStorage.setItem("userData", JSON.stringify(data.response.therapistData))
+
         } catch (error) {
-            console.error(error);
+            // Log error for debugging and show a user-friendly message
+            console.error("Login Error:", error);
+            setErrors("Something went wrong, please try again.");
+
         } finally {
-            submitBtn.current.disabled = false
+            // Always re-enable submit button and hide loader
+            toggleSubmitState(false);
         }
-    }
+    };
+
+    // Helper to toggle submit button and loader
+    const toggleSubmitState = (isSubmitting) => {
+        submitBtn.current.disabled = isSubmitting;
+        document.getElementById("submitText").classList.toggle("hidden", isSubmitting);
+        document.getElementById("submitLoader").classList.toggle("hidden", !isSubmitting);
+    };
+
+    // Handle login errors (e.g., display them to the user)
+    const handleError = (errorCode) => {
+        setErrors(errorCode); // Assuming `setErrors` displays errors on the UI
+    };
+
+    // Handle navigation based on the user role
+    const handleRoleBasedNavigation = async (role, data) => {
+        authService.saveLoginInfo(data);
+        await authService.isLoggedIn();
+        authService.getUserRole();
+
+        switch (role) {
+            case "admin":
+                navigate("/admin");
+                break;
+            case "therapist":
+                navigate("/therapist");
+                break;
+            case "user":
+                navigate("/patient");
+                break;
+            default:
+                setErrors("Unknown role");
+                break;
+        }
+    };
+
 
 
     return (
@@ -85,9 +138,9 @@ export const UserLogin = () => {
                             required
                         />
                     </div>
-                    {/* {
-                        errorRef && <p>{errorRef}</p>
-                    } */}
+                    {
+                        error && <p>{error}</p>
+                    }
                     <div className='mt-4'>
                         <button ref={submitBtn} type='submit' className='bg-stone-400/70 hover:bg-stone-400 w-full p-2 rounded-full'>
                             <span id="submitText">Login</span>

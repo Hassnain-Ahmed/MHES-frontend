@@ -1,27 +1,51 @@
-import { Link } from "react-router-dom"
+import axios from "axios"
+import { useEffect, useState } from "react"
+
+const imgPlaceholder = "/placeholderProfileImg.png"
 
 const TherapistPatients = () => {
-    return (
-        <div className="p-5">
 
-            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
-                <li className="border-2 p-4 rounded-md shadow-md hover:scale-105 transition-all overflow-auto dark:text-neutral-50">
-                    <p>ID: 41231</p>
-                    <h1 className="font-bold">Personal Info</h1>
-                    <div className="ml-2">
-                        <p>Hassnain Ahmed</p>
-                        <p>dev.hassnain77@gmail.com</p>
-                        <p>03103582990</p>
-                    </div>
-                    <h1 className="font-bold">Educational Info</h1>
-                    <div className="ml-2">
-                        <p>BSCS</p>
-                        <p>Classes: 12</p>
-                        <p>Attendance: 15</p>
-                        <p>Leaves: 2</p>
-                    </div>
-                    <Link to="report" className="block text-center mt-4 text-neutral-900 bg-amber-200 hover:bg-amber-300 transition-colors px-2 py-1 rounded">View Report</Link>
-                </li>
+    const [paitnets, setPatients] = useState(JSON.parse(localStorage.getItem("myPatients")) || [])
+
+    const getPatinets = async () => {
+        try {
+            const therapistDocId = JSON.parse(localStorage.getItem("credentials")).response.docId
+            const { data } = await axios.post("http://localhost:5000/api/therapists/getPatients", { therapistDocId })
+            setPatients(data.message)
+            localStorage.setItem("myPatients", JSON.stringify(data.message))
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    useEffect(() => {
+        getPatinets()
+    }, [0])
+
+    return (
+        <div className="p-5 dark:bg-neutral-800 rounded">
+            <h1 className="text-2xl dark:text-neutral-300 border-b-2">My Patients</h1>
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2 my-4">
+                {
+                    paitnets &&
+                    paitnets.map((patient) =>
+                    (<li key={patient.userId} className="dark:bg-neutral-700 p-4 rounded-md shadow-lg overflow-auto dark:text-neutral-50 flex flex-col lg:flex-row gap-2">
+                        <div>
+                            <img src={patient.userData.profileUrl || imgPlaceholder} alt="" className="w-24 aspect-square object-cover rounded-lg" />
+                        </div>
+
+                        <div className="flex flex-col justify-between">
+                            <div>
+                                <p className="text-lg font-semibold">{patient.userData.name}</p>
+                                <p className="text-gray-400 capitalize">{patient.planData.plan} plan User</p>
+                                <p className="text-md ">{patient.userData.email}</p>
+                            </div>
+                            <p>
+                                <span className="bg-gradient-to-br from-emerald-500 to-emerald-700 py-1 px-2 rounded-lg text-sm">Active Subscriber</span>
+                            </p>
+                        </div>
+                    </li>
+                    ))
+                }
 
             </ul>
 

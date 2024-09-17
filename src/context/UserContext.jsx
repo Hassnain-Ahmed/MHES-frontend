@@ -1,9 +1,9 @@
 import { createContext, useState } from "react"
 
-export const userContext = createContext({ LoggenIn: false })
+export const userContext = createContext()
 
 const UserContext = ({ children }) => {
-    const [user, setUser] = useState(() => ({ LoggenIn: false }))
+    const [user, setUser] = useState(() => ({}))
 
     return (
         <userContext.Provider value={user} >
