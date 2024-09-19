@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 import { Navbar } from "../components/home/Navbar";
 import { Hero } from "../components/home/Hero";
@@ -6,22 +5,11 @@ import { TherapistBannar } from "../components/therapist/TherapistBanner";
 import ContactUs from "../components/home/ContactUs";
 import Aboutus from "../components/home/Aboutus";
 import { Footer } from "../components/home/Footer";
-
-import ChatWithBloom from "./ChatWithBloom";
 import { ChatWithBloomBtn } from "../components/chatbot/ChatWithBloomBtn";
 
 
 
 export default function Home() {
-
-  const { body } = document
-  const [showChat, setShowChat] = useState(false)
-  const toggleChat = () => {
-    setShowChat(!showChat)
-  }
-
-
-  showChat ? body.style.overflow = "hidden" : body.style.overflow = "auto"
 
   const userAuth = {
     id: 0,
@@ -32,15 +20,12 @@ export default function Home() {
   // This is the initial landing page
   return (
     <>
-      {
-        showChat && <ChatWithBloom toggle={toggleChat} />
-      }
       <Navbar user={userAuth} />
       <Hero />
       <TherapistBannar heading="OUR THERAPISTS" />
       <Aboutus />
       <ContactUs />
-      <ChatWithBloomBtn toggle={toggleChat} />
+      <ChatWithBloomBtn />
       <Footer />
     </>
   );

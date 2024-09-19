@@ -1,6 +1,9 @@
-import { Doughnut } from "react-chartjs-2"
+import axios from "axios"
 import { Chart, CategoryScale, LinearScale, Title, Legend, Tooltip, Colors } from 'chart.js/auto'
+import { Doughnut } from "react-chartjs-2"
+
 import useTheme from "../../context/ThemeContext"
+import { useEffect, useState } from "react"
 
 Chart.register(
     CategoryScale, LinearScale, Title, Legend, Tooltip
@@ -9,6 +12,29 @@ Chart.register(
 export const BarChart = (props) => {
 
     const { themeMode } = useTheme()
+
+    const [userType, setUserType] = useState({
+        trailUser: 0,
+        premiumUser: 0
+    })
+
+    const getUserByPlan = async () => {
+        try {
+            const { data } = await axios.post(`http://localhost:5000/api/admin/usersByPlan`)
+            // console.log(data.message);
+            setUserType({
+                trailUser: data.message.usersNotInPlan.length,
+                premiumUser: data.message.usersInPlan.length,
+            })
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        getUserByPlan()
+    }, [])
+
 
     const options = {
         plugins: {
@@ -32,7 +58,7 @@ export const BarChart = (props) => {
         datasets: [
             {
                 label: "Subscription Based Users",
-                data: [500, 150],
+                data: [userType.trailUser, userType.premiumUser],
                 backgroundColor: [
                     "#A3333D",
                     "#FFCDBC",

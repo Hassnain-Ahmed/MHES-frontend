@@ -1,17 +1,35 @@
-import { useRef, useState, lazy, Suspense } from "react"
+import axios from "axios"
+import { useRef, useState, useEffect } from "react"
+import AdminTherapistProfileCard from "./AdminTherapistProfileCard"
 
-const AdminTherapistProfileCard = lazy(() => import("./AdminTherapistProfileCard"))
 
 const AdminTherapists = () => {
+
+    const [therapistData, setTherapistData] = useState([])
+    const [showThatTherapist, setShowThatTherapist] = useState({})
 
     const [showTherapist, setShowTherapist] = useState(false)
     const viewTherapistProfileRef = useRef(null)
 
-    const handleShowTherapist = () => {
+    const handleShowTherapist = (therapist) => {
         setShowTherapist(prev => !prev)
-        console.log(viewTherapistProfileRef.current.getAttribute("aria-valueText"));
-
+        setShowThatTherapist(therapist)
     }
+
+    const getTherapists = async () => {
+        try {
+            const { data } = await axios.post("http://localhost:5000/api/admin/therapistRequests")
+            setTherapistData(data.message)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    useEffect(() => {
+        getTherapists()
+    }, [showTherapist])
+
+
+
 
     return (
         <div className="w-100 lg:w-[90%] p-5 bg-zinc-100 rounded-lg dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100">
@@ -25,47 +43,40 @@ const AdminTherapists = () => {
                             <th className="p-2">Full Name</th>
                             <th className="p-2">Joined</th>
                             <th className="p-2">Documents</th>
-                            <th className="p-2">Status</th>
                             <th className="p-2">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="border-t">
-                            <td className="p-2">T-002</td>
-                            <td className="p-2">Dr. Mirza K</td>
-                            <td className="p-2">Pending...</td>
-                            <td className="p-2">Complete</td>
-                            <td className="p-2">Unapproved</td>
-                            <td className="p-2">
-                                <span
-                                    className="font-semibold cursor-pointer"
-                                    aria-valuetext="id"
-                                    ref={viewTherapistProfileRef}
-                                    onClick={handleShowTherapist}
-                                >
-                                    View Request
-                                </span>
-                            </td>
-                        </tr>
+
+                        {
+                            therapistData && therapistData.map((therapist, index) => (
+                                <tr className="border-t" key={therapist.id}>
+                                    <td className="p-2">{therapist.id}</td>
+                                    <td className="p-2">{therapist.therapistFullName}</td>
+                                    <td className="p-2">Complete</td>
+                                    <td className="p-2">Unapproved</td>
+                                    <td className="p-2">
+                                        <span
+                                            className="font-semibold cursor-pointer"
+                                            ref={viewTherapistProfileRef}
+                                            onClick={() => handleShowTherapist(therapist, index)}
+                                        >
+                                            View Request
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))
+                        }
                     </tbody>
                 </table>
             </div>
-            {
-                showTherapist && (
-                    <Suspense
-                        fallback={
-                            <div className="absolute top-0 left-0 w-full h-full flex justify-center">
-                                Loading...
-                            </div>
-                        }
-                    >
-                        <div className="absolute top-0 left-0 w-full h-full flex justify-center">
-                            <AdminTherapistProfileCard setShowTherapist={setShowTherapist} />
-                        </div>
-                    </Suspense>
-                )
-            }
 
+            {
+                showTherapist &&
+                <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
+                    <AdminTherapistProfileCard setShowTherapist={setShowTherapist} showThatTherapist={showThatTherapist} />
+                </div>
+            }
         </div>
     )
 }

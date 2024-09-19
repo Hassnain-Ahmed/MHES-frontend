@@ -4,14 +4,15 @@ import { useEffect, useState } from "react"
 const imgPlaceholder = "/placeholderProfileImg.png"
 
 const TherapistPatients = () => {
-
-    const [paitnets, setPatients] = useState(JSON.parse(localStorage.getItem("myPatients")) || [])
+    // JSON.parse(localStorage.getItem("myPatients"))
+    const [paitnets, setPatients] = useState([])
 
     const getPatinets = async () => {
         try {
             const therapistDocId = JSON.parse(localStorage.getItem("credentials")).response.docId
             const { data } = await axios.post("http://localhost:5000/api/therapists/getPatients", { therapistDocId })
-            setPatients(data.message)
+            console.log(data);
+            setPatients(data.message == " " && data.message)
             localStorage.setItem("myPatients", JSON.stringify(data.message))
         } catch (error) {
             console.error(error);
@@ -19,7 +20,7 @@ const TherapistPatients = () => {
     }
     useEffect(() => {
         getPatinets()
-    }, [0])
+    }, [])
 
     return (
         <div className="p-5 dark:bg-neutral-800 rounded">

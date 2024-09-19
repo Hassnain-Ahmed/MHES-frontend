@@ -37,15 +37,15 @@ export const UserRegister = () => {
         formData.append("role", "user")
 
         try {
-            const response = await axios.post("http://localhost:5000/api/users/register", formData, {
+            const { data } = await axios.post("http://localhost:5000/api/users/register", formData, {
                 headers: {
                     "Content-Type": "application/json"
                 }
             })
-            setErrors(response.data.response);
-            console.log(response.data.response);
+            setErrors(data.message);
+            console.log(data.message);
         } catch (error) {
-            setErrors(error?.response?.data?.response);
+            setErrors(error?.data?.response);
             console.error(error);
         } finally {
             submitBtn.current.disabled = false

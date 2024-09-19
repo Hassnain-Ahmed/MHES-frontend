@@ -1,7 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, Legend, Tooltip, Colors } from 'chart.js/auto';
+import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, Legend, Tooltip } from 'chart.js/auto';
 import useTheme from '../../context/ThemeContext';
+import axios from 'axios';
 
 Chart.register(
     CategoryScale, LinearScale, PointElement, LineElement, Title, Legend, Tooltip
@@ -10,6 +11,40 @@ Chart.register(
 export const LineChart = (props) => {
     const { themeMode } = useTheme();
     const chartRef = useRef(null);
+    const [chartData, setChartData] = useState({ labels: [], datasets: [] });
+
+    const getWeeklyRevenue = async () => {
+        try {
+            const { data } = await axios.post(`http://localhost:5000/api/admin/monthlySubscriptions`);
+
+            // Process the data
+            const labels = data.message.map(item => item.weekYear);
+            const revenueData = data.message.map(item => item.revenue);
+
+            // Update the chart data
+            setChartData({
+                labels,
+                datasets: [
+                    {
+                        label: props.chartHeading,
+                        data: revenueData,
+                        borderRadius: 4,
+                        tension: 0.4,
+                        borderColor: 'rgba(94, 114, 228, 0.5)',
+                        fill: true,
+                        pointRadius: 10,             // Set the point radius
+                        pointHoverRadius: 15,        // Set the point hover radius
+                    }
+                ]
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        getWeeklyRevenue();
+    }, []);
 
     useEffect(() => {
         const chart = chartRef.current;
@@ -21,8 +56,8 @@ export const LineChart = (props) => {
             gradientStroke.addColorStop(0, themeMode === "dark" ? 'rgba(94, 114, 228, 0)' : 'rgba(94, 114, 228, 0)');
 
             const updatedData = {
-                ...data,
-                datasets: data.datasets.map(dataset => ({
+                ...chart.config.data,
+                datasets: chart.config.data.datasets.map(dataset => ({
                     ...dataset,
                     backgroundColor: gradientStroke
                 }))
@@ -64,23 +99,5 @@ export const LineChart = (props) => {
         }
     };
 
-    const data = {
-        labels: [
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-        ],
-        datasets: [
-            {
-                label: props.chartHeading,
-                data: [1, 50, 3, 40, 5, 6, 20, 8, 9, 10, 11, 80],
-                borderRadius: 4,
-                tension: 0.4,
-                borderColor: 'rgba(94, 114, 228, 0.5)',
-                fill: true,
-                pointRadius: 10,             // Add this line to set the point radius
-                pointHoverRadius: 15,        // Add this line to set the point hover radius
-            }
-        ]
-    };
-
-    return <Line ref={chartRef} options={options} data={data} className={`${props.class} dark:bg-gray-800`} />;
+    return <Line ref={chartRef} options={options} data={chartData} className={`${props.class} dark:bg-gray-800`} />;
 };

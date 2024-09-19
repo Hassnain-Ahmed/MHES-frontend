@@ -46,9 +46,11 @@ export const UserLogin = () => {
                 }
             });
 
+            console.log(data.response);
+
             // Check for errors in response code
-            if (data?.response?.code) {
-                handleError(data.response.code);
+            if (data?.response?.message) {
+                handleError(data.response.message);
                 toggleSubmitState(false);
                 return;
             }
@@ -97,6 +99,9 @@ export const UserLogin = () => {
                 break;
             case "user":
                 navigate("/patient");
+                break;
+            case "!approved":
+                setErrors("Your therapist account is still pending approval. Please contact support for assistance.");
                 break;
             default:
                 setErrors("Unknown role");

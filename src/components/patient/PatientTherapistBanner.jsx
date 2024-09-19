@@ -28,7 +28,7 @@ export function PatientTherapistBanner({ heading }) {
 
   useEffect(() => {
     therapistJsonFetch();
-  }, [0]);
+  }, []);
 
   const credentials = JSON.parse(localStorage.getItem("credentials"))
 
@@ -89,8 +89,7 @@ export function PatientTherapistBanner({ heading }) {
       <h1 className="text-center font-bold text-[#555] dark:text-neutral-200 text-2xl md:text-2xl border-b mb-4">
         {heading}
       </h1>
-
-      <div className={`grid grid-cols-4 w-full`}>
+      <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full`}>
 
         {therapists.message.map((info) => (
           <div key={info.listingId} >

@@ -79,7 +79,7 @@ const Therapist = () => {
     }, []);
 
     if (!userAuth) {
-        return <div>Loading user data...</div>; // Optionally add a loading state
+        return <div>Loading user data...</div>;
     }
 
     return (

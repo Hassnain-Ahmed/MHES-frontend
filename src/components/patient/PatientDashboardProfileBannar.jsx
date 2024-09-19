@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { authService } from "../../service/authService";
 import ChatbotIcon from "/ChatbotIcon.svg";
+import { FaClock } from "react-icons/fa";
 
 
 const PatientDashboardProfileBannar = (props) => {
@@ -21,12 +22,12 @@ const PatientDashboardProfileBannar = (props) => {
     }
 
     const userDashboardItems = [
-        {
-            id: 1,
-            item: "Dashboard",
-            route: "/patient/",
-            icon: <FaChartSimple fill="transparent" className={`${routeState === "/patient/" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`} stroke={themeMode === "dark" ? "#ccc" : "#555"} strokeWidth={55} />
-        },
+        // {
+        //     id: 1,
+        //     item: "Dashboard",
+        //     route: "/patient/",
+        //     icon: <FaChartSimple fill="transparent" className={`${routeState === "/patient/" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`} stroke={themeMode === "dark" ? "#ccc" : "#555"} strokeWidth={55} />
+        // },
         {
             id: 2,
             item: "Profile",
@@ -56,7 +57,14 @@ const PatientDashboardProfileBannar = (props) => {
             item: "Listings",
             route: "/patient/listings",
             icon: <FaList fill="transparent" className={`${routeState == "/patient/listings" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`} stroke={themeMode === "dark" ? "#ccc" : "#555"} strokeWidth={55} />
-        }
+        },
+        {
+            id: 7,
+            item: "Appointments",
+            route: "/patient/appointments",
+            icon: <FaClock fill="transparent" className={`${routeState == "/patient/appointments" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`} stroke={themeMode === "dark" ? "#ccc" : "#555"} strokeWidth={55} />
+        },
+
     ];
 
     return (
@@ -84,7 +92,17 @@ const PatientDashboardProfileBannar = (props) => {
                         </Link>
                     ))
                 }
-                <Link to="chatbot">
+                <Link to="chatbot" onClick={() => handleRoute("")}>
+                    <li className="flex rounded-lg md:bg-gradient-to-r md:from-[#6355BC] md:to-[#2D2756]">
+                        <button className="flex gap-2 items-center w-full h-full p-2 font-bold text-lg text-white">
+                            <div>
+                                <img src={ChatbotIcon} className="w-[30px]" alt="" />
+                            </div>
+                            <p className="">Chat With Bloom</p>
+                        </button>
+                    </li>
+                </Link>
+                {/* <Link to="chatbot">
                     <li className="flex rounded-lg md:bg-gradient-to-r md:from-[#6355BC] md:to-[#2D2756]">
                         <button className="flex gap-2 items-center w-full h-full p-2 font-bold text-lg text-white">
                             <div>
@@ -93,7 +111,7 @@ const PatientDashboardProfileBannar = (props) => {
                             <p className="hidden md:block">Chat With Bloom</p>
                         </button>
                     </li>
-                </Link>
+                </Link> */}
             </ul>
 
             <div onClick={() => authService.logout(navigate)} className="absolute bottom-3 hidden lg:flex right-3 items-center gap-2 py-2 px-4 bg-gradient-to-r from-[#bc5555] to-[#7f3939] text-white rounded-md cursor-pointer">

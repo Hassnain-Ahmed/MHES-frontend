@@ -48,7 +48,7 @@ export function TherapistCard(props) {
         <p title={props.slogan} className="line-clamp-1 md:line-clamp-1 lg:line-clamp-2 dark:text-gray-300 text-gray-700">{props.slogan}</p>
         <p title={props.about} className="line-clamp-2 md:line-clamp-1 lg:line-clamp-2 dark:text-gray-300 text-gray-700 text-sm">{props.about}</p>
 
-        <button onClick={props.handleShowModel} disabled={Boolean(props.isSubscribed)} className="w-full mt-2 px-4 py-1 bg-gradient-to-br from-slate-400 bg-slate-500 hover:from-slate-400/80 hover:bg-slate-500/80 rounded-md hover:text-white transition-all disabled:bg-gray-500 disabled:text-gray-400">Subscribe</button>
+        <button onClick={props.handleShowModel} disabled={props.isSubscribed} className="w-full mt-2 px-4 py-1 bg-gradient-to-br from-slate-400 bg-slate-500 hover:from-slate-400/80 hover:bg-slate-500/80 rounded-md hover:text-white transition-all disabled:bg-gray-500 disabled:text-gray-400">Subscribe</button>
         {/* <button onClick={props.handleShowModel} className="w-full mt-2 px-4 py-1 bg-gradient-to-br from-slate-400 bg-slate-500 hover:from-slate-400/80 hover:bg-slate-500/80 rounded-md hover:text-white transition-all disabled:bg-gray-500 disabled:text-gray-400">Subscribe</button> */}
       </div>
     </div>
