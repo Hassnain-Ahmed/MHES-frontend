@@ -36,7 +36,7 @@ export function Navbar(props) {
         Evaluator System
       </Link>
 
-      <ul className="lg:flex md:gap-3 lg:gap-5 hidden text-gray-700 dark:text-[#f9f9f9]">
+      {/* <ul className="lg:flex md:gap-3 lg:gap-5 hidden text-gray-700 dark:text-[#f9f9f9]">
         {navItems.map((item) => (
           <li key={item.id}>
             <a
@@ -48,14 +48,14 @@ export function Navbar(props) {
             </a>
           </li>
         ))}
-      </ul>
+      </ul> */}
 
       <div className="hidden lg:flex">
         {
           id
             ? ProfileNavbar
             : <div className="flex items-center gap-x-2">
-              <Link to='/loginV2' className=""> Login or Signup </Link>
+              <Link to='/loginV2' className="dark:text-white"> Login or Signup </Link>
               <div className="relative ml-[-10px]">
                 <label className="switch scale-[.7]">
                   <span className="sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="#ffd43b"><circle r="5" cy="12" cx="12"></circle><path d="m21 13h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm-17 0h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm13.66-5.66a1 1 0 0 1 -.66-.29 1 1 0 0 1 0-1.41l.71-.71a1 1 0 1 1 1.41 1.41l-.71.71a1 1 0 0 1 -.75.29zm-12.02 12.02a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.41l.71-.66a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1 -.7.24zm6.36-14.36a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm0 17a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm-5.66-14.66a1 1 0 0 1 -.7-.29l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.29zm12.02 12.02a1 1 0 0 1 -.7-.29l-.66-.71a1 1 0 0 1 1.36-1.36l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.24z"></path></g></svg></span>
@@ -124,9 +124,12 @@ export function Navbar(props) {
 
           {
             id == 0
-              ? <div className="p-3 bg-gradient-to-r from-[#55BC97] to-[#275645] rounded-xl text-white hover:cursor-pointer text-center">
-                <p>Login or Sign up</p>
-              </div>
+              ?
+              <Link to="/loginV2">
+                <div className="p-3 bg-gradient-to-r from-[#55BC97] to-[#275645] rounded-xl text-white hover:cursor-pointer text-center">
+                  <p>Login or Sign up</p>
+                </div>
+              </Link>
               : <div className="flex items-center gap-2 flex-row-reverse p-3 bg-gradient-to-r from-[#55BC97] to-[#275645] rounded-xl text-white hover:cursor-pointer text-center"> <AiOutlineLogout /> Logout</div>
           }
 

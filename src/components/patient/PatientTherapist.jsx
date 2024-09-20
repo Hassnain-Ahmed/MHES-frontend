@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import TherapistHero from "../therapist/TherapistHero";
+import Testimonials from "./Testimonials";
 
 const PatientTherapist = () => {
     const [userAuth, setUserAuth] = useState();
@@ -28,6 +29,7 @@ const PatientTherapist = () => {
             {userAuth?.therapistId ? (
                 <div>
                     <TherapistHero setFireFetch={setFireFetch} user={userAuth} userTherapistIDs={{ therapistId: userAuth.therapistId, userId }} />
+                    <Testimonials therapistId={userAuth.therapistId} fireFetch={fireFetch} />
                 </div>
             ) : (
                 <div className="p-2 text-lg dark:text-white">

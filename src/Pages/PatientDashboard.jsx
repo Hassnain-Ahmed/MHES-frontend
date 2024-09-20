@@ -1,14 +1,12 @@
 import { Outlet, Routes, Route } from 'react-router-dom';
 import { useRef, useState, useEffect } from "react"
 
-import io from 'socket.io-client';
-import Peer from 'peerjs';
 
-import { Footer } from "../components/home/Footer"
+// import { Footer } from "../components/home/Footer"
 import { Navbar } from '../components/home/Navbar';
 
 import { TherapistBannar } from "../components/therapist/TherapistBanner"
-import { ChatWithBloomBtn } from '../components/chatbot/ChatWithBloomBtn';
+// import { ChatWithBloomBtn } from '../components/chatbot/ChatWithBloomBtn';
 
 import PatientDashboardProfileBannar from "../components/patient/PatientDashboardProfileBannar"
 import PatientProfile from '../components/patient/PatientProfile';
@@ -16,13 +14,14 @@ import PatientTherapist from '../components/patient/PatientTherapist';
 import PatientSessions from '../components/patient/PatientSessions';
 import PatientSubscription from '../components/patient/PatientSubscription';
 import PatientListings from '../components/patient/PatientListings';
+import { PatientChatbot } from '../components/patient/PatientChatbot';
 
 import { initializeApp } from 'firebase/app';
 import { collection, getFirestore, doc, onSnapshot, getDoc, updateDoc, addDoc, deleteDoc } from 'firebase/firestore';
 import { FaPhone, FaPhoneSlash } from 'react-icons/fa6';
 import { PatientAppointments } from '../components/patient/PatientAppointments';
+
 import axios from 'axios';
-import { PatientChatbot } from '../components/patient/PatientChatbot';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -55,7 +54,7 @@ const PatientLayout = () => {
         try {
             const docId = JSON.parse(localStorage.getItem("credentials")).response.docId
             const { data } = await axios.post("http://localhost:5000/api/users/getPatientAppointments", { docId })
-            console.log(data);
+            // console.log(data);
             setMyAppointments(data?.message[0]?.id || null)
         } catch (error) {
             console.error(error);
@@ -101,7 +100,7 @@ const PatientLayout = () => {
         };
 
         listenForIncomingCalls();
-    });
+    }, []);
 
     // Function to set up media sources
     const setupMedia = async () => {
@@ -215,7 +214,7 @@ const PatientLayout = () => {
         password: userData?.response?.userData?.password,
         profilePic: userData?.response?.userData?.profileUrl,
         plan: userData?.response?.subscriptionData?.plan || "Trail",
-        created_at: userData?.response?.subscriptionData?.plan || "Trail",
+        created_at: userData?.response?.userData?.createdAt || "Error",
     }
 
     return (
@@ -244,7 +243,7 @@ const PatientLayout = () => {
                         startVideoChat && (
                             <div className="fixed top-0 left-0 flex justify-center items-center w-full h-full">
                                 <div className="relative bg-neutral-800/70 backdrop-blur-lg w-[90%] h-[90%] p-5 rounded-xl">
-                                    <div className="w-full h-full bg-red-500/20 rounded-lg">
+                                    <div className="w-full h-full bg-red-500/20 rounded-lg aspect-[16/9] overflow-hidden">
                                         <video ref={remoteVideoRef} autoPlay playsInline className='w-full' />
                                     </div>
 
@@ -278,7 +277,9 @@ const PatientDashboard = () => {
         contact: userData?.response?.userData?.contact,
         email: userData?.response?.userData?.email,
         password: userData?.response?.userData?.password,
-        profilePic: userData?.response?.userData?.profileUrl
+        profilePic: userData?.response?.userData?.profileUrl,
+        plan: userData?.response?.subscriptionData?.plan || "Trail",
+        created_at: userData?.response?.userData?.createdAt || "Error",
     }
 
     return (

@@ -6,7 +6,7 @@ import placeholderImage from "/placeholderProfileImg.png"
 import { FaCheck, FaXmark } from "react-icons/fa6"
 
 
-const PatientProfile = () => {
+const PatientProfile = ({ userData }) => {
 
     lineSpinner.register()
 
@@ -160,7 +160,7 @@ const PatientProfile = () => {
                             <div className="my-4 text-gray-100 bg-gray-600 p-2 rounded-md">
                                 <h1 className="text-md">Subscription Status: </h1>
                                 <ul className="mx-2">
-                                    <li className="text-emerald-400 p-1 px-3 rounded-xl">Trail Member</li>
+                                    <li className="text-emerald-400 p-1 px-3 rounded-xl">{userData?.plan} Member</li>
                                 </ul>
                             </div>
 

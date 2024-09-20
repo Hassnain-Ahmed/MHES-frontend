@@ -12,7 +12,7 @@ const PatientDashboardProfileBannar = (props) => {
     const navigate = useNavigate();
 
     const { themeMode } = useTheme()
-    const [routeState, setRouteState] = useState("/patient/")
+    const [routeState, setRouteState] = useState("/patient/Profile")
 
     const handleRoute = (route) => {
         setRouteState(route)
