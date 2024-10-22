@@ -16,11 +16,14 @@ const AdminRevenue = lazy(() => import("../components/admin/AdminRevenue"))
 
 const Admin = () => {
 
+    const adminData = JSON.parse(localStorage.getItem("credentials"))
+
     const userAuth = {
         id: 1,
         name: "Admin",
         profilePic: "/user.png",
         token: "abc123",
+        ...adminData.response
     }
 
     const AdminLayout = () => {

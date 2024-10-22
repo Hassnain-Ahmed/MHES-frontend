@@ -1,6 +1,5 @@
 import { useLayoutEffect, useState } from 'react';
 import { Route, Routes } from "react-router-dom"
-// import dotenv from "dotenv"
 
 import { LoginV2 } from './components/login/LoginV2';
 import { ThemeProvider } from './context/ThemeContext';
@@ -14,8 +13,6 @@ import Admin from './Pages/Admin';
 import Therapist from './Pages/Therapist';
 import PatientDashboard from './Pages/PatientDashboard';
 
-
-// dotenv.config()
 
 export default function App() {
 

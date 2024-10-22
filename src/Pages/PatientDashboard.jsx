@@ -11,7 +11,7 @@ import { TherapistBannar } from "../components/therapist/TherapistBanner"
 import PatientDashboardProfileBannar from "../components/patient/PatientDashboardProfileBannar"
 import PatientProfile from '../components/patient/PatientProfile';
 import PatientTherapist from '../components/patient/PatientTherapist';
-import PatientSessions from '../components/patient/PatientSessions';
+// import PatientSessions from '../components/patient/PatientSessions';
 import PatientSubscription from '../components/patient/PatientSubscription';
 import PatientListings from '../components/patient/PatientListings';
 import { PatientChatbot } from '../components/patient/PatientChatbot';
@@ -22,6 +22,8 @@ import { FaPhone, FaPhoneSlash } from 'react-icons/fa6';
 import { PatientAppointments } from '../components/patient/PatientAppointments';
 
 import axios from 'axios';
+import PatientExercise from '../components/patient/PatientExercise';
+import PatientMusic from '../components/patient/PatientMusic';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -205,7 +207,7 @@ const PatientLayout = () => {
 
 
     const userData = JSON.parse(localStorage.getItem("credentials"))
-    // console.log(userData);
+    console.log(userData);
     const userAuth = {
         id: userData?.response?.docId,
         name: userData?.response?.userData?.name,
@@ -215,6 +217,7 @@ const PatientLayout = () => {
         profilePic: userData?.response?.userData?.profileUrl,
         plan: userData?.response?.subscriptionData?.plan || "Trail",
         created_at: userData?.response?.userData?.createdAt || "Error",
+        role: userData?.response?.role || "Error",
     }
 
     return (
@@ -222,6 +225,8 @@ const PatientLayout = () => {
             <Navbar user={userAuth} />
             <div className="flex flex-col md:flex-row items-start justify-between px-4 py-2 gap-5">
                 <PatientDashboardProfileBannar data={userAuth} />
+                {/* <div className='w-full'>
+                </div> */}
                 <div className="w-full">
                     <Outlet />
                 </div>
@@ -230,7 +235,7 @@ const PatientLayout = () => {
                     {incomingCall && !isCallActive && (
                         <div className='absolute z-40 top-4 right-4 bg-neutral-900/20 backdrop-blur-md p-5 rounded-lg'>
                             <div className="flex flex-col">
-                                <h3 className='text-lg font-semibold text-white'>Incoming Call</h3>
+                                <h3 className='text-lg font-semibold text-white'>Incoming Call from Therapist</h3>
                                 <div>
                                     <button onClick={answerCall} className='p-2 rounded-full bg-green-200'><FaPhone size={22} /></button>
                                     <button onClick={() => setIncomingCall(false)} className='ml-2 p-2 rounded-full bg-red-200'><FaPhoneSlash size={24} /></button>
@@ -289,11 +294,13 @@ const PatientDashboard = () => {
                 {/* <Route path='/dashboard' element={<TherapistBannar heading="Recommended Therapists" />} /> */}
                 <Route path='/profile' element={<PatientProfile userData={userAuth} />} />
                 <Route path='/mytherapist' element={<PatientTherapist subscribed={true} />} />
-                <Route path='/sessions' element={<PatientSessions />} />
+                {/* <Route path='/sessions' element={<PatientSessions />} /> */}
                 <Route path='/subscription' element={<PatientSubscription />} />
                 <Route path='/listings' element={<PatientListings />} />
                 <Route path='/chatbot' element={<PatientChatbot />} />
                 <Route path='/appointments' element={<PatientAppointments />} />
+                <Route path='/exercise' element={<PatientExercise />} />
+                <Route path='/music' element={<PatientMusic />} />
                 <Route path='*' element={<TherapistBannar heading="Recommended Therapists" />} />
             </Route>
         </Routes>

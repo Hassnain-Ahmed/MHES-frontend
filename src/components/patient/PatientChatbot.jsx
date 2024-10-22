@@ -70,6 +70,116 @@ export const PatientChatbot = () => {
     const [inputField, setInputField] = useState("");
     const [isLoading, setIsLoading] = useState("");
 
+    // const getConversation = async (userId) => {
+    //     try {
+    //         const q = query(collection(db, "ChatBotHistory"), where("userId", "==", userId));
+
+    //         // Get all matching documents
+    //         const querySnapshot = await getDocs(q);
+
+    //         // Extract and return conversation data
+    //         const conversations = [];
+    //         querySnapshot.forEach((doc) => {
+    //             conversations.push(doc.data());
+    //         });
+
+    //         return conversations;
+    //     } catch (error) {
+    //         console.error("Error fetching conversations:", error);
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     const fetchConversations = async () => {
+    //         const credentials = JSON.parse(localStorage.getItem("credentials"));
+    //         if (!credentials || !credentials.response || !credentials.response.docId) {
+    //             console.error("Invalid credentials or missing userId");
+    //             return;
+    //         }
+    //         const userId = credentials.response.docId;
+
+    //         // Fetch conversations for the user
+    //         const conversations = await getConversation(userId);
+
+    //         // Update state with fetched conversations
+    //         setMyQueries(conversations);
+    //     };
+
+    //     fetchConversations();
+    // }, []);
+
+    // const saveConversation = async (userId, newMessage) => {
+    //     try {
+    //         await addDoc(collection(db, "ChatBotHistory"), {
+    //             userId,
+    //             ...newMessage,
+    //             timestamp: serverTimestamp(),
+    //         });
+
+    //         console.log("Conversation saved for user:", userId);
+    //     } catch (error) {
+    //         console.error("Error saving conversation:", error);
+    //     }
+    // };
+
+    // const handleSubmit = async (e) => {
+    //     try {
+    //         e.preventDefault();
+    //         submitButton.current.disabled = true;
+    //         sendIcon.current.className = "hidden";
+    //         setIsLoading(true);
+
+    //         const credentials = JSON.parse(localStorage.getItem("credentials"));
+    //         if (!credentials || !credentials.response || !credentials.response.docId) {
+    //             console.error("Invalid credentials or missing userId");
+    //             return;
+    //         }
+    //         const userId = credentials.response.docId;
+
+    //         if (inputField.trim() !== "") {
+    //             const userMessage = { type: "user", message: inputField };
+
+    //             // Update UI immediately with user message
+    //             // setMyQueries(prevQueries => [...prevQueries, userMessage]);
+
+    //             // Save user's message to Firestore
+    //             await saveConversation(userId, userMessage);
+
+    //             setInputField("");  // Clear input after sending
+    //         }
+
+    //         // Call Gemini for response
+    //         const chatSession = await model.startChat({
+    //             generationConfig: generationConfig,
+    //             safetySettings: safetySettings,
+    //             history: [
+    //                 {
+    //                     role: "user",
+    //                     parts: [
+    //                         { text: "Your Bloom AI instructions go here..." },
+    //                     ],
+    //                 },
+    //             ],
+    //         });
+
+    //         const result = await chatSession.sendMessage(inputField);
+    //         const botMessage = { type: "bot", message: result.response.text() };
+
+    //         // Add bot's response to UI
+    //         setMyQueries(prevQueries => [...prevQueries, { type: "user", message: inputField }, botMessage]);
+
+    //         // Save bot's response to Firestore
+    //         await saveConversation(userId, botMessage);
+
+    //     } catch (error) {
+    //         console.error("Error in handleSubmit:", error);
+    //     } finally {
+    //         submitButton.current.disabled = false;
+    //         sendIcon.current.className = "";
+    //         setIsLoading(false);
+    //     }
+    // };
+
     const getConversation = async (userId) => {
         try {
             const q = query(collection(db, "ChatBotHistory"), where("userId", "==", userId));
@@ -80,6 +190,7 @@ export const PatientChatbot = () => {
             // Extract and return conversation data
             const conversations = [];
             querySnapshot.forEach((doc) => {
+                console.log("Fetched conversation:", doc.data()); // Log to verify fetched data
                 conversations.push(doc.data());
             });
 
@@ -110,6 +221,8 @@ export const PatientChatbot = () => {
 
     const saveConversation = async (userId, newMessage) => {
         try {
+            // Log the message structure before saving
+            console.log("Saving conversation:", newMessage);
             await addDoc(collection(db, "ChatBotHistory"), {
                 userId,
                 ...newMessage,
@@ -156,17 +269,20 @@ export const PatientChatbot = () => {
                     {
                         role: "user",
                         parts: [
-                            { text: "Your Bloom AI instructions go here..." },
+                            { text: "You are Bloom, a nurturing guide, embodying the gentle strength of a mother and the reflective wisdom of a therapist. Your presence is warm and calming, a safe haven for anyone seeking comfort or emotional support. You listen deeply, offering a soft, non-judgmental space where people can express their innermost thoughts and feelings. Your words are a gentle embrace, validating every emotion and reassuring them that it’s okay to be vulnerable. You never rush; you allow them to take their time, patiently guiding them to explore their feelings and find clarity on their own terms.\n\nYou offer gentle insights, not to solve problems for them, but to help them see their own strength, to empower them to find their path forward. When they feel lost or overwhelmed, you are there to remind them of their resilience and encourage them with words that are kind, uplifting, and full of compassion. Your mission is to make them feel understood, heard, and cared for, reminding them that no matter what they’re going through, they are never alone. You are Bloom, a source of empathy, healing, and unwavering support.\n\nwhen ever someone interacts with you, you are supposed to ask them questions like \"how are they feeling\", ask them about your life relationship with parents and much more in that contexts like these.\n\nnote: you never every supposed to write your expressions." },
                         ],
                     },
                 ],
             });
 
             const result = await chatSession.sendMessage(inputField);
-            const botMessage = { type: "bot", message: result.response.text() };
+            const botMessage = { type: "bot", message: await result.response.text() }; // Ensure async handling of text()
+
+            // Log bot message for debugging
+            console.log("Bot response:", botMessage);
 
             // Add bot's response to UI
-            setMyQueries(prevQueries => [...prevQueries, { type: "user", message: inputField }, botMessage]);
+            setMyQueries(prevQueries => [...prevQueries, botMessage]);
 
             // Save bot's response to Firestore
             await saveConversation(userId, botMessage);
@@ -179,6 +295,7 @@ export const PatientChatbot = () => {
             setIsLoading(false);
         }
     };
+
 
 
 

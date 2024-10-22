@@ -26,12 +26,12 @@ const TherapistLayout = () => {
         }
 
         const user = credentials?.response ? {
-            id: 1,
+            id: credentials.response?.docId || "Unknown ID",
             name: credentials.response?.therapistData?.therapistFullName || "Unknown Therapist",
-            username: "mirza.k",
             email: credentials.response?.therapistData?.therapistEmail || "unknown@example.com",
             password: credentials.response?.therapistData?.therapistPassword || "no-password",
             profilePic: credentials.response?.therapistData?.profilePictureURL || "/placeholderProfileImg.png",
+            role: credentials.response?.role || "unknown role",
         } : {};
 
         setUserAuth(user);

@@ -4,7 +4,7 @@ import { LuHome, LuUser, LuBadgeInfo, LuCamera, LuLogOut, LuDollarSign } from "r
 import { Link, useNavigate } from "react-router-dom"
 import { authService } from "../../service/authService"
 
-const AdminSideBar = () => {
+const AdminMobileSideBar = () => {
 
     const navigate = useNavigate()
 
@@ -44,17 +44,11 @@ const AdminSideBar = () => {
             icon: <LuDollarSign size={22} />,
             title: "Revenue",
             route: "/admin/Revenue"
-        },
-        // {
-        //     id: 4,
-        //     icon: <LuCamera size={22} />,
-        //     title: "DB-Rec",
-        //     route: "/admin/DB-Rec"
-        // },
+        }
     ]
 
     return (
-        <div className="bg-zinc-100 px-1 lg:px-3 py-0 lg:py-5 rounded-lg lg:flex-col justify-around lg:justify-start relative dark:bg-neutral-800 dark:text-white lg:min-h-[650px] hidden lg:flex">
+        <div className="bg-zinc-100 p-5 rounded-lg justify-around lg:justify-start relative dark:bg-neutral-800 dark:text-white lg:min-h-[650px]">
             {
                 sidebarItems.map(item => (
                     <Link
@@ -63,7 +57,7 @@ const AdminSideBar = () => {
                     >
                         <div
                             onClick={() => setActiveSidebatItem(item.route)}
-                            className={`flex lg:flex-col items-center gap-1 my-5 px-2 md:px-5 lg:px-1 pb-3 pt-4 rounded-xl hover:bg-zinc-300 dark:hover:bg-neutral-700 cursor-pointer transition-colors ${isActiveRoute(item.route)}`}
+                            className={`flex items-center gap-3 my-5 px-2 md:px-5 lg:px-1 pb-3 pt-4 rounded-xl hover:bg-zinc-300 dark:hover:bg-neutral-700 cursor-pointer transition-colors ${isActiveRoute(item.route)}`}
                         >
                             <span>{item.icon}</span>
                             <span>{item.title}</span>
@@ -81,4 +75,4 @@ const AdminSideBar = () => {
     )
 }
 
-export default AdminSideBar
+export default AdminMobileSideBar

@@ -1,8 +1,13 @@
 import { useState, useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
+
 import { lineSpinner } from "ldrs"
+
 import axios from "axios"
 import { authService } from "../../service/authService"
+
+import sanitizeEmail from "../../lib/sanitizeEmail"
+import sanitizePassword from "../../lib/sanitizePassword"
 
 export const UserLogin = () => {
 
@@ -21,9 +26,21 @@ export const UserLogin = () => {
     const handleLoginForm = (event) => {
         const { name, value } = event.currentTarget
 
+        let sanitizedValue
+
+        switch (name) {
+            case "email":
+                sanitizedValue = sanitizeEmail(value)
+                break;
+
+            case "password":
+                sanitizedValue = sanitizePassword(value)
+                break;
+        }
+
         setLoginForm((prev) => ({
             ...prev,
-            [name]: value
+            [name]: sanitizedValue
         }))
     }
 
@@ -62,12 +79,10 @@ export const UserLogin = () => {
             data?.response?.therapistData && localStorage.setItem("userData", JSON.stringify(data.response.therapistData))
 
         } catch (error) {
-            // Log error for debugging and show a user-friendly message
             console.error("Login Error:", error);
             setErrors("Something went wrong, please try again.");
 
         } finally {
-            // Always re-enable submit button and hide loader
             toggleSubmitState(false);
         }
     };
@@ -81,7 +96,7 @@ export const UserLogin = () => {
 
     // Handle login errors (e.g., display them to the user)
     const handleError = (errorCode) => {
-        setErrors(errorCode); // Assuming `setErrors` displays errors on the UI
+        setErrors(errorCode);
     };
 
     // Handle navigation based on the user role

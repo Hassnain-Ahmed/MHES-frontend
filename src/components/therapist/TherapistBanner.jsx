@@ -31,7 +31,7 @@ export function TherapistBannar({ handleGigToggle, heading }) {
         {heading}
       </h1>
 
-      <div className={`grid grid-cols-4 w-full`}>
+      <div className={`grid md:grid-cols-3 lg:grid-cols-4 w-full`}>
 
         {therapists.message.map((info) => (
           <div key={info.listingId} >

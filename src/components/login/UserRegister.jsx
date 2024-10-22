@@ -2,6 +2,12 @@ import axios from "axios"
 import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 
+
+import sanitizeString from "../../lib/sanitizeString"
+import sanitizeNumber from "../../lib/sanitizeNumber"
+import sanitizeEmail from "../../lib/sanitizeEmail"
+import sanitizePassword from "../../lib/sanitizePassword"
+
 export const UserRegister = () => {
 
     const [errors, setErrors] = useState("")
@@ -18,9 +24,31 @@ export const UserRegister = () => {
     const handleRegisterForm = (event) => {
         const { name, value } = event.currentTarget
 
+        let sanitizedValue
+        switch (name) {
+            case "fullname":
+                sanitizedValue = sanitizeString(value)
+                break;
+
+            case "contact":
+                sanitizedValue = sanitizeNumber(value)
+                break;
+
+            case "email":
+                sanitizedValue = sanitizeEmail(value)
+                break;
+
+            case "password":
+                sanitizedValue = sanitizePassword(value)
+                break;
+
+            default:
+                break;
+        }
+
         setRegisterForm((prev) => ({
             ...prev,
-            [name]: value
+            [name]: sanitizedValue
         }))
     }
 

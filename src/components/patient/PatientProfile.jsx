@@ -6,6 +6,12 @@ import placeholderImage from "/placeholderProfileImg.png"
 import { FaCheck, FaXmark } from "react-icons/fa6"
 
 
+import sanitizeString from "../../lib/sanitizeString"
+import sanitizeNumber from "../../lib/sanitizeNumber"
+import sanitizeEmail from "../../lib/sanitizeEmail"
+import sanitizePassword from "../../lib/sanitizePassword"
+
+
 const PatientProfile = ({ userData }) => {
 
     lineSpinner.register()
@@ -30,9 +36,36 @@ const PatientProfile = ({ userData }) => {
     // Handling form inputs
     const handleForm = (e) => {
         const { name, value, files } = e.target;
+
+        let sanitizedValue
+        switch (name) {
+            case "fullname":
+                sanitizedValue = sanitizeString(value)
+                break;
+
+            case "contact":
+                sanitizedValue = sanitizeNumber(value)
+                break;
+
+            case "email":
+                sanitizedValue = sanitizeEmail(value)
+                break;
+
+            case "password":
+                sanitizedValue = sanitizePassword(value)
+                break;
+
+            case "gender":
+                sanitizedValue = sanitizeString(value)
+                break;
+
+            default:
+                break;
+        }
+
         setPatientProfileForm({
             ...patientProfileForm,
-            [name]: files ? files[0] : value
+            [name]: files ? files[0] : sanitizedValue
         });
     };
 

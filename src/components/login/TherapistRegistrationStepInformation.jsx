@@ -1,9 +1,17 @@
 import { useEffect, useRef, useState } from "react"
 import axios from "axios"
+
 import { FaCheck, FaCircleInfo, FaEnvelope, FaGlobe, FaHouse, FaKey, FaPhone, FaRoad, FaUser, FaXmark } from "react-icons/fa6"
+
 import { lineSpinner } from 'ldrs'
 import { handlePicture } from "../logic/handlePicture"
 import placeholderImgae from "/placeholderProfileImg.png"
+
+
+import sanitizeString from "../../lib/sanitizeString"
+import sanitizeNumber from "../../lib/sanitizeNumber"
+import sanitizeEmail from "../../lib/sanitizeEmail"
+import sanitizePassword from "../../lib/sanitizePassword"
 
 
 const TherapistRegistrationStepInformation = () => {
@@ -34,9 +42,46 @@ const TherapistRegistrationStepInformation = () => {
 
     const handleTherapistPersonalForm = (e) => {
         const { name, value } = e.currentTarget
+        let sanitizedValue
+        switch (name) {
+            case "therapistFullName":
+                sanitizedValue = sanitizeString(value)
+                break;
+
+            case "therapistPhone":
+                sanitizedValue = sanitizeNumber(value)
+                break;
+
+            case "therapistEmail":
+                sanitizedValue = sanitizeEmail(value)
+                break;
+
+            case "therapistPassword":
+                sanitizedValue = sanitizePassword(value)
+                break;
+
+            case "therapistEmergency":
+                sanitizedValue = sanitizeNumber(value)
+                break;
+
+            case "therapistAddressStreet":
+                sanitizedValue = sanitizeString(value)
+                break;
+
+            case "therapistAddressAppartment":
+                sanitizedValue = sanitizeString(value)
+                break;
+
+            case "therapistAddressCity":
+                sanitizedValue = sanitizeString(value)
+                break;
+
+            default:
+                break;
+        }
         setTherapistPersonalForm((prev) => ({
             ...prev,
-            [name]: value
+            [name]: sanitizedValue
         }))
     }
 
