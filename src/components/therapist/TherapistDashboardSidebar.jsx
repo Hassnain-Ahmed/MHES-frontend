@@ -54,15 +54,15 @@ const TherapistDashboardSidebar = (props) => {
                 strokeWidth={55}
             />
         },
-        {
-            id: 4,
-            item: "Sessions",
-            route: "/therapist/Sessions",
-            icon: <FaClapperboard fill="transparent" className={`${routeState == "/therapist/Sessions" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`}
-                stroke={themeMode === "dark" ? "#ccc" : "#555"}
-                strokeWidth={55}
-            />
-        },
+        // {
+        //     id: 4,
+        //     item: "Sessions",
+        //     route: "/therapist/Sessions",
+        //     icon: <FaClapperboard fill="transparent" className={`${routeState == "/therapist/Sessions" ? "fill-[#fff] dark:fill-[] stroke-[#f9f9f9] stroke-[10]" : "fill-[transparent] dark:fill-[]"} userDashboard-fa6`}
+        //         stroke={themeMode === "dark" ? "#ccc" : "#555"}
+        //         strokeWidth={55}
+        //     />
+        // },
         {
             id: 5,
             item: "Appointments",

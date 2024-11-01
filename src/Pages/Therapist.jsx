@@ -102,7 +102,7 @@ const Therapist = () => {
                     } />
                 <Route path="/profile" element={<TherapistProfileUpdate userData={userAuth} />} />
                 <Route path="/MyPatients" element={<TherapistPatients />} />
-                <Route path="/Sessions" element={<PatientSessions />} />
+                {/* <Route path="/Sessions" element={<PatientSessions />} /> */}
                 <Route path="/Appointments" element={<TherapistAppointments />} />
                 <Route path="/listing" element={<TherapistListing />} />
                 <Route path="*" element={<TherapistProfileUpdate userData={userAuth} />} />

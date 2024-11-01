@@ -88,9 +88,9 @@ export function Navbar(props) {
       <div
         className={
           nav ?
-            `lg:hidden fixed w-[60%] h-full left-0 top-0 ease-in-out duration-500 px-5 py-4 bg-[#e3e3e3] dark:bg-neutral-700 dark:text-[#eee] z-10`
+            `lg:hidden fixed w-[80%] h-full left-0 top-0 ease-in-out duration-500 px-5 py-4 bg-[#e3e3e3] dark:bg-neutral-700 dark:text-[#eee] z-10`
             :
-            `ease-in-out duration-500 fixed top-0 bottom-0 left-[-100%] w-[60%] h-full px-5 py-4 bg-[#e3e3e3] dark:bg-neutral-700 dark:text-[#eee] z-10`
+            `ease-in-out duration-500 fixed top-0 bottom-0 left-[-100%] w-[80%] h-full px-5 py-4 bg-[#e3e3e3] dark:bg-neutral-700 dark:text-[#eee] z-10`
         }
       >
 
@@ -143,7 +143,7 @@ export function Navbar(props) {
 
 
 
-        <div className="fixed bottom-[5%] w-[50%] md:w-[55%] dark:text-[#f9f9f9]">
+        <div className="fixed bottom-[5%] w-[60%] md:w-[55%] dark:text-[#f9f9f9]">
 
           {
             id == 0
@@ -154,7 +154,12 @@ export function Navbar(props) {
                 </div>
               </Link>
               : (
-                <div onClick={() => authService.logout(navigate)} className="flex items-center gap-2 flex-row-reverse p-3 bg-gradient-to-r from-[#55BC97] to-[#275645] rounded-xl text-white hover:cursor-pointer text-center"> <AiOutlineLogout /> Logout</div>
+                <div 
+                  onClick={() => 
+                  authService.logout(navigate)} 
+                  className="flex items-center gap-2 flex-row-reverse p-3 bg-gradient-to-r from-[#55BC97] to-[#275645] rounded-xl text-white hover:cursor-pointer text-center "> 
+                    <AiOutlineLogout /> Logout
+                </div>
               )
           }
 

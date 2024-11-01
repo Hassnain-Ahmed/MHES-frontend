@@ -51,174 +51,324 @@ const servers = {
 
 const PatientLayout = () => {
 
-    const [myAppointments, setMyAppointments] = useState()
-    const getTherapistAppointments = async () => {
-        try {
-            const docId = JSON.parse(localStorage.getItem("credentials")).response.docId
-            const { data } = await axios.post("http://localhost:5000/api/users/getPatientAppointments", { docId })
-            // console.log(data);
-            setMyAppointments(data?.message[0]?.id || null)
-        } catch (error) {
-            console.error(error);
-        }
-    }
-    useEffect(() => {
-        getTherapistAppointments()
-    }, [])
+    // const [myAppointments, setMyAppointments] = useState()
+    // const getTherapistAppointments = async () => {
+    //     try {
+    //         const docId = JSON.parse(localStorage.getItem("credentials")).response.docId
+    //         const { data } = await axios.post("http://localhost:5000/api/users/getPatientAppointments", { docId })
+    //         // console.log(data);
+    //         setMyAppointments(data?.message[0]?.id || null)
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
+    // useEffect(() => {
+    //     getTherapistAppointments()
+    // }, [])
 
+    // const [startVideoChat, setStartVideoChat] = useState(false);
+    // const [callInput, setCallInput] = useState("");
+    // const [isCallActive, setIsCallActive] = useState(false);
+    // const [incomingCall, setIncomingCall] = useState(false);
+
+
+    // const pc = new RTCPeerConnection(servers)
+    // let localStream = null
+    // let remoteStream = null
+
+    // const localVideoRef = useRef();
+    // const remoteVideoRef = useRef();
+
+    // useEffect(() => {
+    //     // Function to listen for incoming calls
+    //     const listenForIncomingCalls = () => {
+    //         const callsRef = collection(db, "calls");
+
+    //         onSnapshot(callsRef, (snapshot) => {
+    //             snapshot.docChanges().forEach((change) => {
+    //                 if (change.type === "added") {
+    //                     const callData = change.doc.data();
+
+    //                     // Check if the call is for the current patient's appointment
+    //                     const currentPatientAppointmentId = myAppointments
+    //                     if (change.doc.id === currentPatientAppointmentId) {
+    //                         // This call is for the current patient
+    //                         setIncomingCall(true);
+    //                         setCallInput(change.doc.id);
+    //                     }
+    //                 }
+    //             });
+    //         });
+    //     };
+
+    //     listenForIncomingCalls();
+    // }, []);
+
+    // // Function to set up media sources
+    // const setupMedia = async () => {
+    //     localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    //     remoteStream = new MediaStream()
+
+
+    //     localStream.getTracks().forEach((track) => {
+    //         pc.addTrack(track, localStream);
+    //     });
+
+    //     // Pull tracks from remote stream, add to video stream
+    //     pc.ontrack = (event) => {
+    //         event.streams[0].getTracks().forEach((track) => {
+    //             remoteStream.addTrack(track);
+    //         });
+    //     };
+
+    //     localVideoRef.current.srcObject = localStream;
+    //     remoteVideoRef.current.srcObject = remoteStream;
+    // };
+
+    // // Function to answer the call
+    // const answerCall = async () => {
+    //     if (!isCallActive) {
+    //         setStartVideoChat(true)
+
+    //         await setupMedia(); // Request media permissions when answering the call
+
+    //         const callDocRef = doc(db, "calls", callInput);
+    //         const answerCandidatesRef = collection(callDocRef, "answerCandidates");
+    //         const offerCandidatesRef = collection(callDocRef, "offerCandidates");
+
+    //         // Collect ICE candidates
+    //         pc.onicecandidate = (event) => {
+    //             event.candidate && addDoc(answerCandidatesRef, event.candidate.toJSON());
+    //         };
+
+    //         const callData = (await getDoc(callDocRef)).data();
+    //         const offerDescription = callData.offer;
+    //         await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
+
+    //         const answerDescription = await pc.createAnswer();
+    //         await pc.setLocalDescription(answerDescription);
+
+    //         const answer = {
+    //             type: answerDescription.type,
+    //             sdp: answerDescription.sdp,
+    //         };
+    //         await updateDoc(callDocRef, { answer });
+
+    //         setIsCallActive(true);
+    //         setIncomingCall(false);
+
+    //         onSnapshot(offerCandidatesRef, (snapshot) => {
+    //             snapshot.docChanges().forEach((change) => {
+    //                 if (change.type === "added") {
+    //                     const candidate = new RTCIceCandidate(change.doc.data());
+    //                     pc.addIceCandidate(candidate);
+    //                 }
+    //             });
+    //         });
+    //     }
+    // };
+
+    // // Function to hang up the call
+    // const hangUp = async () => {
+    //     // Stop all local stream tracks (turn off camera and microphone)
+    //     if (localStream) {
+    //         localStream.getTracks().forEach((track) => track.stop());
+    //     }
+
+    //     // Stop all remote stream tracks
+    //     if (remoteStream) {
+    //         remoteStream.getTracks().forEach((track) => track.stop());
+    //     }
+
+    //     // Close the peer connection
+    //     if (pc) {
+    //         pc.close();
+    //     }
+
+    //     // Delete the Firestore call document
+    //     if (callInput) {
+    //         const callDocRef = doc(db, "calls", callInput);
+    //         await deleteDoc(callDocRef);
+    //         const appointmentDocRef = doc(db, "appointments", myAppointments);
+    //         await deleteDoc(appointmentDocRef);
+    //     }
+
+    //     // Reset UI state and other variables
+    //     setCallInput("");
+    //     setIsCallActive(false);
+    //     setStartVideoChat(false);
+    //     localVideoRef.current.srcObject = null;
+    //     remoteVideoRef.current.srcObject = null;
+
+    //     console.log("Call ended, resources cleaned up.");
+    // };
+
+
+
+
+    // const userData = JSON.parse(localStorage.getItem("credentials"))
+    // console.log(userData);
+    // const userAuth = {
+    //     id: userData?.response?.docId,
+    //     name: userData?.response?.userData?.name,
+    //     contact: userData?.response?.userData?.contact,
+    //     email: userData?.response?.userData?.email,
+    //     password: userData?.response?.userData?.password,
+    //     profilePic: userData?.response?.userData?.profileUrl,
+    //     plan: userData?.response?.subscriptionData?.plan || "Trail",
+    //     created_at: userData?.response?.userData?.createdAt || "Error",
+    //     role: userData?.response?.role || "Error",
+    // }
+
+    const [myAppointments, setMyAppointments] = useState(null);
     const [startVideoChat, setStartVideoChat] = useState(false);
     const [callInput, setCallInput] = useState("");
     const [isCallActive, setIsCallActive] = useState(false);
     const [incomingCall, setIncomingCall] = useState(false);
 
+    const localVideoRef = useRef(null);
+    const remoteVideoRef = useRef(null);
 
-    const pc = new RTCPeerConnection(servers)
-    let localStream = null
-    let remoteStream = null
+    // WebRTC peer connection and media stream variables
+    const pc = useRef(new RTCPeerConnection(servers)); 
+    let localStream = useRef();
+    let remoteStream = useRef();
 
-    const localVideoRef = useRef();
-    const remoteVideoRef = useRef();
+    // Function to fetch therapist appointments for the patient
+    const getTherapistAppointments = async () => {
+        try {
+            const docId = JSON.parse(localStorage.getItem("credentials"))?.response?.docId;
+            const { data } = await axios.post("http://localhost:5000/api/users/getPatientAppointments", { docId });
+            setMyAppointments(data?.message[0]?.id || null);
+        } catch (error) {
+            console.error("Error fetching therapist appointments:", error);
+        }
+    };
+
+    useEffect(() => {
+        getTherapistAppointments();
+    }, []);
 
     useEffect(() => {
         // Function to listen for incoming calls
         const listenForIncomingCalls = () => {
             const callsRef = collection(db, "calls");
-
+    
             onSnapshot(callsRef, (snapshot) => {
                 snapshot.docChanges().forEach((change) => {
                     if (change.type === "added") {
                         const callData = change.doc.data();
-
+                        
                         // Check if the call is for the current patient's appointment
-                        const currentPatientAppointmentId = myAppointments
+                        const currentPatientAppointmentId = myAppointments;
                         if (change.doc.id === currentPatientAppointmentId) {
                             // This call is for the current patient
                             setIncomingCall(true);
-                            setCallInput(change.doc.id); // Store the call ID
+                            setCallInput(change.doc.id);
                         }
                     }
                 });
             });
         };
-
+    
         listenForIncomingCalls();
-    }, []);
-
-    // Function to set up media sources
+    }, [myAppointments]);
+    
+    // Function to set up media (camera and microphone)
     const setupMedia = async () => {
-        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-        remoteStream = new MediaStream()
+        try {
+            localStream.current = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            remoteStream.current = new MediaStream();
 
+            localStream.current.getTracks().forEach((track) => pc.current.addTrack(track, localStream.current));
 
-        localStream.getTracks().forEach((track) => {
-            pc.addTrack(track, localStream);
-        });
+            pc.current.ontrack = (event) => {
+                event.streams[0].getTracks().forEach((track) => {
+                    remoteStream.current.addTrack(track);
+                });
+            };
 
-        // Pull tracks from remote stream, add to video stream
-        pc.ontrack = (event) => {
-            event.streams[0].getTracks().forEach((track) => {
-                remoteStream.addTrack(track);
-            });
-        };
-
-        localVideoRef.current.srcObject = localStream;
-        remoteVideoRef.current.srcObject = remoteStream;
+            localVideoRef.current.srcObject = localStream.current;
+            remoteVideoRef.current.srcObject = remoteStream.current;
+        } catch (error) {
+            console.error("Error setting up media:", error);
+        }
     };
 
-    // Function to answer the call
+    // Function to answer an incoming call
     const answerCall = async () => {
         if (!isCallActive) {
-            setStartVideoChat(true)
-
-            await setupMedia(); // Request media permissions when answering the call
+            setStartVideoChat(true);
+            await setupMedia();
 
             const callDocRef = doc(db, "calls", callInput);
             const answerCandidatesRef = collection(callDocRef, "answerCandidates");
             const offerCandidatesRef = collection(callDocRef, "offerCandidates");
 
-            // Collect ICE candidates
-            pc.onicecandidate = (event) => {
-                event.candidate && addDoc(answerCandidatesRef, event.candidate.toJSON());
+            pc.current.onicecandidate = async (event) => {
+                event.candidate && await addDoc(answerCandidatesRef, event.candidate.toJSON());
             };
 
-            const callData = (await getDoc(callDocRef)).data();
-            const offerDescription = callData.offer;
-            await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
+            try {
+                const callData = (await getDoc(callDocRef)).data();
+                await pc.current.setRemoteDescription(new RTCSessionDescription(callData.offer));
 
-            const answerDescription = await pc.createAnswer();
-            await pc.setLocalDescription(answerDescription);
+                const answerDescription = await pc.current.createAnswer();
+                await pc.current.setLocalDescription(answerDescription);
+                await updateDoc(callDocRef, { answer: { type: answerDescription.type, sdp: answerDescription.sdp } });
 
-            const answer = {
-                type: answerDescription.type,
-                sdp: answerDescription.sdp,
-            };
-            await updateDoc(callDocRef, { answer });
+                setIsCallActive(true);
+                setIncomingCall(false);
 
-            setIsCallActive(true);
-            setIncomingCall(false);
-
-            onSnapshot(offerCandidatesRef, (snapshot) => {
-                snapshot.docChanges().forEach((change) => {
-                    if (change.type === "added") {
-                        const candidate = new RTCIceCandidate(change.doc.data());
-                        pc.addIceCandidate(candidate);
-                    }
+                onSnapshot(offerCandidatesRef, (snapshot) => {
+                    snapshot.docChanges().forEach((change) => {
+                        if (change.type === "added") {
+                            pc.current.addIceCandidate(new RTCIceCandidate(change.doc.data()));
+                        }
+                    });
                 });
-            });
+            } catch (error) {
+                console.error("Error answering call:", error);
+            }
         }
     };
 
-    // Function to hang up the call
+    // Function to hang up the current call
     const hangUp = async () => {
-        // Stop all local stream tracks (turn off camera and microphone)
-        if (localStream) {
-            localStream.getTracks().forEach((track) => track.stop());
+        if (localStream.current) localStream.current.getTracks().forEach((track) => track.stop());
+        if (remoteStream.current) remoteStream.current.getTracks().forEach((track) => track.stop());
+        
+        if (pc.current) {
+            pc.current.getSenders().forEach((sender) => pc.current.removeTrack(sender)); // Remove tracks from peer connection
+            pc.current.close();
         }
 
-        // Stop all remote stream tracks
-        if (remoteStream) {
-            remoteStream.getTracks().forEach((track) => track.stop());
-        }
-
-        // Close the peer connection
-        if (pc) {
-            pc.close();
-        }
-
-        // Delete the Firestore call document
         if (callInput) {
-            const callDocRef = doc(db, "calls", callInput);
-            await deleteDoc(callDocRef);
-            const appointmentDocRef = doc(db, "appointments", myAppointments);
-            await deleteDoc(appointmentDocRef);
+            await deleteDoc(doc(db, "calls", callInput));
+            await deleteDoc(doc(db, "appointments", myAppointments));
         }
 
-        // Reset UI state and other variables
         setCallInput("");
         setIsCallActive(false);
         setStartVideoChat(false);
         localVideoRef.current.srcObject = null;
         remoteVideoRef.current.srcObject = null;
 
-        console.log("Call ended, resources cleaned up.");
     };
 
-
-
-
-    const userData = JSON.parse(localStorage.getItem("credentials"))
-    console.log(userData);
+    // Fetch user data from local storage
+    const userData = JSON.parse(localStorage.getItem("credentials"));
     const userAuth = {
         id: userData?.response?.docId,
         name: userData?.response?.userData?.name,
         contact: userData?.response?.userData?.contact,
         email: userData?.response?.userData?.email,
-        password: userData?.response?.userData?.password,
         profilePic: userData?.response?.userData?.profileUrl,
-        plan: userData?.response?.subscriptionData?.plan || "Trail",
+        plan: userData?.response?.subscriptionData?.plan || "Trial",
         created_at: userData?.response?.userData?.createdAt || "Error",
         role: userData?.response?.role || "Error",
-    }
+    };
+
 
     return (
         <>
