@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { AiOutlineClose, AiOutlineMenu, AiOutlineLogout } from "react-icons/ai";
-import { FaHouse, FaUserDoctor, FaCircleInfo, FaPhone, FaRightFromBracket } from "react-icons/fa6";
+import { FaHouse, FaUserDoctor, FaCircleInfo, FaPhone } from "react-icons/fa6";
 
 import useTheme from "../../context/ThemeContext";
 import { authService } from "../../service/authService";
 
 import ProfileNav from "./ProfileNav";
-import ProfileNavMobile from "./ProfileNavMobile";
+// import ProfileNavMobile from "./ProfileNavMobile";
 import PatientMobileSidebar from "../patient/PatientMobileSidebar";
 import TherapistMobileSidebar from "../therapist/TherapistMobileSidebar";
 import AdminMobileSideBar from "../admin/AdminMobileSidebar";
@@ -33,28 +33,14 @@ export function Navbar(props) {
   ];
 
   const ProfileNavbar = <ProfileNav id={id} name={name} profilePic={profilePic} imgClass="" />
-  const ProfileNavbarMobile = <ProfileNavMobile id={id} name={name} profilePic={profilePic} imgClass="" />
+  // const ProfileNavbarMobile = <ProfileNavMobile id={id} name={name} profilePic={profilePic} imgClass="" />
 
   return (
-    <nav className={`flex justify-between items-center py-3 px-4 shadow dark:bg-gray-800 transition-all duration-300`}>
+    <nav className={`flex justify-between items-center py-3 px-4 shadow dark:bg-gray-800 transition-all duration-300 bg-zinc-200`}>
       <Link to="/" className="text-2xl font-extrabold text-[#333] dark:text-[#f9f9f9]">
         Mental Health <br />
         Evaluator System
       </Link>
-
-      {/* <ul className="lg:flex md:gap-3 lg:gap-5 hidden text-gray-700 dark:text-[#f9f9f9]">
-        {navItems.map((item) => (
-          <li key={item.id}>
-            <a
-              href={item.route}
-              key={item.id}
-              className="hover:cursor-pointer active:font-bold text-md"
-            >
-              {item.item}
-            </a>
-          </li>
-        ))}
-      </ul> */}
 
       <div className="hidden lg:flex">
         {
@@ -154,11 +140,11 @@ export function Navbar(props) {
                 </div>
               </Link>
               : (
-                <div 
-                  onClick={() => 
-                  authService.logout(navigate)} 
-                  className="flex items-center gap-2 flex-row-reverse p-3 bg-gradient-to-r from-[#55BC97] to-[#275645] rounded-xl text-white hover:cursor-pointer text-center "> 
-                    <AiOutlineLogout /> Logout
+                <div
+                  onClick={() =>
+                    authService.logout(navigate)}
+                  className="flex items-center gap-2 flex-row-reverse p-3 bg-gradient-to-r from-[#55BC97] to-[#275645] rounded-xl text-white hover:cursor-pointer text-center ">
+                  <AiOutlineLogout /> Logout
                 </div>
               )
           }

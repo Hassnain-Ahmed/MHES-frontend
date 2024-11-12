@@ -12,7 +12,7 @@ const TherapistPatients = () => {
             const therapistDocId = JSON.parse(localStorage.getItem("credentials")).response.docId
             const { data } = await axios.post("http://localhost:5000/api/therapists/getPatients", { therapistDocId })
             console.log(data);
-            setPatients(data.message == " " && data.message)
+            setPatients(data?.message || [])
             localStorage.setItem("myPatients", JSON.stringify(data.message))
         } catch (error) {
             console.error(error);
@@ -29,7 +29,7 @@ const TherapistPatients = () => {
                 {
                     paitnets &&
                     paitnets.map((patient) =>
-                    (<li key={patient.userId} className="dark:bg-neutral-700 p-4 rounded-md shadow-lg overflow-auto dark:text-neutral-50 flex flex-col lg:flex-row gap-2">
+                    (<li key={patient.userId} className="border dark:bg-neutral-700 p-4 rounded-md shadow-lg overflow-auto dark:text-neutral-50 flex flex-col lg:flex-row gap-2">
                         <div>
                             <img src={patient.userData.profileUrl || imgPlaceholder} alt="" className="w-24 aspect-square object-cover rounded-lg" />
                         </div>
@@ -38,7 +38,7 @@ const TherapistPatients = () => {
                             <div>
                                 <p className="text-lg font-semibold">{patient.userData.name}</p>
                                 <p className="text-gray-400 capitalize">{patient.planData.plan} plan User</p>
-                                <p className="text-md ">{patient.userData.email}</p>
+                                {/* <p className="text-md ">{patient.userData.email}</p> */}
                             </div>
                             <p>
                                 <span className="bg-gradient-to-br from-emerald-500 to-emerald-700 py-1 px-2 rounded-lg text-sm">Active Subscriber</span>

@@ -3,7 +3,7 @@ import { TherapistCard } from "./TherapistCard";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export function TherapistBannar({ handleGigToggle, heading }) {
+export function TherapistBannar({ handleGigToggle, heading, id }) {
 
   const [therapists, setTherapists] = useState(null);
 
@@ -26,7 +26,7 @@ export function TherapistBannar({ handleGigToggle, heading }) {
   }
 
   return (
-    <div className="bg-neutral-300 dark:bg-neutral-800 rounded-lg p-5">
+    <div className="bg-neutral-300 dark:bg-neutral-800 rounded-lg p-5" id={`#${id}`}>
       <h1 className="text-center font-bold text-[#555] dark:text-neutral-200 text-2xl md:text-2xl border-b mb-4">
         {heading}
       </h1>

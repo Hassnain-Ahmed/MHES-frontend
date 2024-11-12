@@ -65,15 +65,15 @@ const TherapistRegistrationStepInformation = () => {
                 break;
 
             case "therapistAddressStreet":
-                sanitizedValue = sanitizeString(value)
+                sanitizedValue = sanitizePassword(value)
                 break;
 
             case "therapistAddressAppartment":
-                sanitizedValue = sanitizeString(value)
+                sanitizedValue = sanitizePassword(value)
                 break;
 
             case "therapistAddressCity":
-                sanitizedValue = sanitizeString(value)
+                sanitizedValue = sanitizePassword(value)
                 break;
 
             default:

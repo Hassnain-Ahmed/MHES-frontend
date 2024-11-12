@@ -13,7 +13,7 @@ const TherapistDashboardSidebar = lazy(() => import("../components/therapist/The
 const TherapistProfileUpdate = lazy(() => import("../components/therapist/TherapistProfileUpdate"))
 const TherapistHeroEdit = lazy(() => import("../components/therapist/TherapistHeroEdit"))
 const TherapistPatients = lazy(() => import("../components/therapist/TherapistPatients"))
-const PatientSessions = lazy(() => import("../components/patient/PatientSessions"))
+// const PatientSessions = lazy(() => import("../components/patient/PatientSessions"))
 const TherapistAppointments = lazy(() => import("../components/therapist/TherapistAppointments"))
 
 const TherapistLayout = () => {
@@ -52,7 +52,7 @@ const TherapistLayout = () => {
                     </Suspense>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }
@@ -92,7 +92,7 @@ const Therapist = () => {
                             <TherapistHeroEdit user={userAuth} />
                             <div className="flex flex-col justify-center items-center relative">
                                 <div className="w-[90%] mt-4">
-                                    <Testimonials />
+                                    <Testimonials therapistId={userAuth.docId} />
                                 </div>
                                 {/* <div className="flex justify-center">
                                     <button className="bg-zinc-200 py-2 px-4 hover:bg-zinc-300 transition-colors rounded-3xl mt-2">Manage Testimonials</button>

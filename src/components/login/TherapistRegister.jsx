@@ -1,8 +1,8 @@
 import { lazy, Suspense } from "react"
 import { helix } from "ldrs"
 
-import { Footer } from "../home/Footer"
-import { Navbar } from "../home/Navbar"
+// import { Footer } from "../home/Footer"
+// import { Navbar } from "../home/Navbar"
 
 
 const TherapistRegistrationStepInformation = lazy(() => import("./TherapistRegistrationStepInformation"))
@@ -11,16 +11,16 @@ export const TherapistRegister = () => {
 
     helix.register()
 
-    const userAuth = {
-        id: 0,
-        name: "Hassnain Ahmed",
-        profilePic: "/img1.jpg",
-        token: "abc123",
-    }
+    // const userAuth = {
+    //     id: 0,
+    //     name: "Hassnain Ahmed",
+    //     profilePic: "/img1.jpg",
+    //     token: "abc123",
+    // }
 
     return (
         <>
-            <Navbar user={userAuth} />
+            {/* <Navbar user={userAuth} /> */}
             <div className="p-5 w-full">
                 <h1 className="p-2 border-b text-xl font-semibold  text-neutral-700 dark:text-neutral-300">Register Yourself as a Therapist</h1>
 
@@ -31,7 +31,7 @@ export const TherapistRegister = () => {
                 </div>
 
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }

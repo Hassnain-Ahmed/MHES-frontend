@@ -20,13 +20,13 @@ export default function Home() {
   // This is the initial landing page
   return (
     <>
-      <Navbar user={userAuth} />
+      {/* <Navbar user={userAuth} /> */}
       <Hero />
-      <TherapistBannar heading="OUR THERAPISTS" />
+      <TherapistBannar heading="OUR THERAPISTS" id="Therapist" />
       <Aboutus />
       <ContactUs />
       <ChatWithBloomBtn />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
