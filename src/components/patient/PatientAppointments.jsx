@@ -46,6 +46,9 @@ export const PatientAppointments = () => {
                                     </tr>
                                 ))
                             }
+                            {
+                                myAppointments.length <= 0 && "No Appintments Yet"
+                            }
                         </tbody>
                     </table>
                 </div>

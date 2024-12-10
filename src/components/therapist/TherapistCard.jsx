@@ -26,6 +26,7 @@ export function TherapistCard(props) {
   if (!props.img) {
     return <p className="dark:text-white">Loading...</p>
   }
+  console.log(props);
 
   return (
     <div
@@ -41,7 +42,7 @@ export function TherapistCard(props) {
         <div className="flex justify-between flex-col lg:flex-row">
           <h2 className="text-lg font-bold truncate dark:text-gray-50">{props.name}</h2>
           <div className="ratings flex items-center">
-            {printRatings(props.rating)}
+            {printRatings(props?.rating || 4)}
           </div>
         </div>
 

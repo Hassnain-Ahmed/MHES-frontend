@@ -2,16 +2,13 @@ import { Outlet, Routes, Route } from 'react-router-dom';
 import { useRef, useState, useEffect } from "react"
 
 
-// import { Footer } from "../components/home/Footer"
 import { Navbar } from '../components/home/Navbar';
 
 import { TherapistBannar } from "../components/therapist/TherapistBanner"
-// import { ChatWithBloomBtn } from '../components/chatbot/ChatWithBloomBtn';
 
 import PatientDashboardProfileBannar from "../components/patient/PatientDashboardProfileBannar"
 import PatientProfile from '../components/patient/PatientProfile';
 import PatientTherapist from '../components/patient/PatientTherapist';
-// import PatientSessions from '../components/patient/PatientSessions';
 import PatientSubscription from '../components/patient/PatientSubscription';
 import PatientListings from '../components/patient/PatientListings';
 import { PatientChatbot } from '../components/patient/PatientChatbot';
@@ -25,7 +22,6 @@ import axios from 'axios';
 import PatientExercise from '../components/patient/PatientExercise';
 import PatientMusic from '../components/patient/PatientMusic';
 
-// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBSEPpPP2BTag2kt12-_q0_u5cneF7kKkE",
     authDomain: "mhes-4cd62.firebaseapp.com",
@@ -51,175 +47,6 @@ const servers = {
 
 const PatientLayout = () => {
 
-    // const [myAppointments, setMyAppointments] = useState()
-    // const getTherapistAppointments = async () => {
-    //     try {
-    //         const docId = JSON.parse(localStorage.getItem("credentials")).response.docId
-    //         const { data } = await axios.post("http://localhost:5000/api/users/getPatientAppointments", { docId })
-    //         // console.log(data);
-    //         setMyAppointments(data?.message[0]?.id || null)
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
-    // useEffect(() => {
-    //     getTherapistAppointments()
-    // }, [])
-
-    // const [startVideoChat, setStartVideoChat] = useState(false);
-    // const [callInput, setCallInput] = useState("");
-    // const [isCallActive, setIsCallActive] = useState(false);
-    // const [incomingCall, setIncomingCall] = useState(false);
-
-
-    // const pc = new RTCPeerConnection(servers)
-    // let localStream = null
-    // let remoteStream = null
-
-    // const localVideoRef = useRef();
-    // const remoteVideoRef = useRef();
-
-    // useEffect(() => {
-    //     // Function to listen for incoming calls
-    //     const listenForIncomingCalls = () => {
-    //         const callsRef = collection(db, "calls");
-
-    //         onSnapshot(callsRef, (snapshot) => {
-    //             snapshot.docChanges().forEach((change) => {
-    //                 if (change.type === "added") {
-    //                     const callData = change.doc.data();
-
-    //                     // Check if the call is for the current patient's appointment
-    //                     const currentPatientAppointmentId = myAppointments
-    //                     if (change.doc.id === currentPatientAppointmentId) {
-    //                         // This call is for the current patient
-    //                         setIncomingCall(true);
-    //                         setCallInput(change.doc.id);
-    //                     }
-    //                 }
-    //             });
-    //         });
-    //     };
-
-    //     listenForIncomingCalls();
-    // }, []);
-
-    // // Function to set up media sources
-    // const setupMedia = async () => {
-    //     localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-    //     remoteStream = new MediaStream()
-
-
-    //     localStream.getTracks().forEach((track) => {
-    //         pc.addTrack(track, localStream);
-    //     });
-
-    //     // Pull tracks from remote stream, add to video stream
-    //     pc.ontrack = (event) => {
-    //         event.streams[0].getTracks().forEach((track) => {
-    //             remoteStream.addTrack(track);
-    //         });
-    //     };
-
-    //     localVideoRef.current.srcObject = localStream;
-    //     remoteVideoRef.current.srcObject = remoteStream;
-    // };
-
-    // // Function to answer the call
-    // const answerCall = async () => {
-    //     if (!isCallActive) {
-    //         setStartVideoChat(true)
-
-    //         await setupMedia(); // Request media permissions when answering the call
-
-    //         const callDocRef = doc(db, "calls", callInput);
-    //         const answerCandidatesRef = collection(callDocRef, "answerCandidates");
-    //         const offerCandidatesRef = collection(callDocRef, "offerCandidates");
-
-    //         // Collect ICE candidates
-    //         pc.onicecandidate = (event) => {
-    //             event.candidate && addDoc(answerCandidatesRef, event.candidate.toJSON());
-    //         };
-
-    //         const callData = (await getDoc(callDocRef)).data();
-    //         const offerDescription = callData.offer;
-    //         await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
-
-    //         const answerDescription = await pc.createAnswer();
-    //         await pc.setLocalDescription(answerDescription);
-
-    //         const answer = {
-    //             type: answerDescription.type,
-    //             sdp: answerDescription.sdp,
-    //         };
-    //         await updateDoc(callDocRef, { answer });
-
-    //         setIsCallActive(true);
-    //         setIncomingCall(false);
-
-    //         onSnapshot(offerCandidatesRef, (snapshot) => {
-    //             snapshot.docChanges().forEach((change) => {
-    //                 if (change.type === "added") {
-    //                     const candidate = new RTCIceCandidate(change.doc.data());
-    //                     pc.addIceCandidate(candidate);
-    //                 }
-    //             });
-    //         });
-    //     }
-    // };
-
-    // // Function to hang up the call
-    // const hangUp = async () => {
-    //     // Stop all local stream tracks (turn off camera and microphone)
-    //     if (localStream) {
-    //         localStream.getTracks().forEach((track) => track.stop());
-    //     }
-
-    //     // Stop all remote stream tracks
-    //     if (remoteStream) {
-    //         remoteStream.getTracks().forEach((track) => track.stop());
-    //     }
-
-    //     // Close the peer connection
-    //     if (pc) {
-    //         pc.close();
-    //     }
-
-    //     // Delete the Firestore call document
-    //     if (callInput) {
-    //         const callDocRef = doc(db, "calls", callInput);
-    //         await deleteDoc(callDocRef);
-    //         const appointmentDocRef = doc(db, "appointments", myAppointments);
-    //         await deleteDoc(appointmentDocRef);
-    //     }
-
-    //     // Reset UI state and other variables
-    //     setCallInput("");
-    //     setIsCallActive(false);
-    //     setStartVideoChat(false);
-    //     localVideoRef.current.srcObject = null;
-    //     remoteVideoRef.current.srcObject = null;
-
-    //     console.log("Call ended, resources cleaned up.");
-    // };
-
-
-
-
-    // const userData = JSON.parse(localStorage.getItem("credentials"))
-    // console.log(userData);
-    // const userAuth = {
-    //     id: userData?.response?.docId,
-    //     name: userData?.response?.userData?.name,
-    //     contact: userData?.response?.userData?.contact,
-    //     email: userData?.response?.userData?.email,
-    //     password: userData?.response?.userData?.password,
-    //     profilePic: userData?.response?.userData?.profileUrl,
-    //     plan: userData?.response?.subscriptionData?.plan || "Trail",
-    //     created_at: userData?.response?.userData?.createdAt || "Error",
-    //     role: userData?.response?.role || "Error",
-    // }
-
     const [myAppointments, setMyAppointments] = useState(null);
     const [startVideoChat, setStartVideoChat] = useState(false);
     const [callInput, setCallInput] = useState("");
@@ -229,12 +56,10 @@ const PatientLayout = () => {
     const localVideoRef = useRef(null);
     const remoteVideoRef = useRef(null);
 
-    // WebRTC peer connection and media stream variables
-    const pc = useRef(new RTCPeerConnection(servers)); 
+    const pc = useRef(new RTCPeerConnection(servers));
     let localStream = useRef();
     let remoteStream = useRef();
 
-    // Function to fetch therapist appointments for the patient
     const getTherapistAppointments = async () => {
         try {
             const docId = JSON.parse(localStorage.getItem("credentials"))?.response?.docId;
@@ -250,19 +75,16 @@ const PatientLayout = () => {
     }, []);
 
     useEffect(() => {
-        // Function to listen for incoming calls
         const listenForIncomingCalls = () => {
             const callsRef = collection(db, "calls");
-    
+
             onSnapshot(callsRef, (snapshot) => {
                 snapshot.docChanges().forEach((change) => {
                     if (change.type === "added") {
                         const callData = change.doc.data();
-                        
-                        // Check if the call is for the current patient's appointment
+
                         const currentPatientAppointmentId = myAppointments;
                         if (change.doc.id === currentPatientAppointmentId) {
-                            // This call is for the current patient
                             setIncomingCall(true);
                             setCallInput(change.doc.id);
                         }
@@ -270,11 +92,10 @@ const PatientLayout = () => {
                 });
             });
         };
-    
+
         listenForIncomingCalls();
     }, [myAppointments]);
-    
-    // Function to set up media (camera and microphone)
+
     const setupMedia = async () => {
         try {
             localStream.current = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
@@ -295,7 +116,6 @@ const PatientLayout = () => {
         }
     };
 
-    // Function to answer an incoming call
     const answerCall = async () => {
         if (!isCallActive) {
             setStartVideoChat(true);
@@ -333,13 +153,12 @@ const PatientLayout = () => {
         }
     };
 
-    // Function to hang up the current call
     const hangUp = async () => {
         if (localStream.current) localStream.current.getTracks().forEach((track) => track.stop());
         if (remoteStream.current) remoteStream.current.getTracks().forEach((track) => track.stop());
-        
+
         if (pc.current) {
-            pc.current.getSenders().forEach((sender) => pc.current.removeTrack(sender)); // Remove tracks from peer connection
+            pc.current.getSenders().forEach((sender) => pc.current.removeTrack(sender));
             pc.current.close();
         }
 
@@ -356,7 +175,6 @@ const PatientLayout = () => {
 
     };
 
-    // Fetch user data from local storage
     const userData = JSON.parse(localStorage.getItem("credentials"));
     const userAuth = {
         id: userData?.response?.docId,
@@ -375,8 +193,6 @@ const PatientLayout = () => {
             <Navbar user={userAuth} />
             <div className="flex flex-col md:flex-row items-start justify-between px-4 py-2 gap-5">
                 <PatientDashboardProfileBannar data={userAuth} />
-                {/* <div className='w-full'>
-                </div> */}
                 <div className="w-full">
                     <Outlet />
                 </div>
@@ -443,7 +259,7 @@ const PatientDashboard = () => {
                 <Route path='/' element={<PatientProfile userData={userAuth} />} />
                 {/* <Route path='/dashboard' element={<TherapistBannar heading="Recommended Therapists" />} /> */}
                 <Route path='/profile' element={<PatientProfile userData={userAuth} />} />
-                <Route path='/mytherapist' element={<PatientTherapist subscribed={true} />} />
+                <Route path='/mytherapist' element={<PatientTherapist subscribed={false} />} />
                 {/* <Route path='/sessions' element={<PatientSessions />} /> */}
                 <Route path='/subscription' element={<PatientSubscription />} />
                 <Route path='/listings' element={<PatientListings />} />

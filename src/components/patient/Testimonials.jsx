@@ -50,7 +50,7 @@ const Testimonials = ({ fireFetch, therapistId }) => {
                         <div>
                             <div className="flex justify-evenly items-baseline gap-2">
                                 <h2 className="text-xl truncate w-32">{testimonial.user.fullname}</h2>
-                                <div className="flex gap-1">{printRatings(testimonial.rating)}</div>
+                                <div className="flex gap-1">{printRatings(testimonial.number)}</div>
                             </div>
                             <p className=""> {testimonial.description}</p>
                         </div>

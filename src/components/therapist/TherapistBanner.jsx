@@ -11,7 +11,7 @@ export function TherapistBannar({ handleGigToggle, heading, id }) {
     try {
       const { data } = await axios.post("http://localhost:5000/api/users/listings");
       setTherapists(data);
-      // console.log(data.message);
+      console.log(data);
     } catch (error) {
       console.error("Error fetching therapist data:", error);
     }
