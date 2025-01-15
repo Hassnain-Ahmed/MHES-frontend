@@ -42,12 +42,24 @@ export function Navbar(props) {
         Evaluator System
       </Link>
 
-      <div className="hidden lg:flex">
-        {
-          props.user.role == "admin" && ProfileNavbar
-        }
-      </div>
+      <div>
+        {/* <div className="hidden lg:flex">
+          {
+            props.user.role == "admin" && ProfileNavbar
+          }
+        </div> */}
 
+        <div className="hidden md:block">
+          <ul className="flex gap-4">
+            <Link to="/Therapists"><li className="tracking-wide hover:font-semibold focus:font-semibold">Therapist</li></Link>
+            <Link to="/VideoChatting"><li className="tracking-wide hover:font-semibold focus:font-semibold">Video Chat</li></Link>
+            <Link to="/ChatWithBloom"><li className="tracking-wide hover:font-semibold focus:font-semibold">AI Therapist</li></Link>
+            <Link to="/AboutUs"><li className="tracking-wide hover:font-semibold focus:font-semibold">About Us</li></Link>
+            <Link to="/ContactUs"><li className="tracking-wide hover:font-semibold focus:font-semibold">Contact Us</li></Link>
+            <Link to="/Sitemap"><li className="tracking-wide hover:font-semibold focus:font-semibold">Sitemap</li></Link>
+          </ul>
+        </div>
+      </div>
       {/* Mobile View */}
 
       {

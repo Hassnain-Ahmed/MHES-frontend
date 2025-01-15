@@ -1,40 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-import { FaClock, FaUser, FaUserDoctor, FaClapperboard, FaRightFromBracket, FaFileInvoiceDollar, FaList, FaDumbbell, FaMusic } from "react-icons/fa6"
-
-import useTheme from "../../context/ThemeContext"
-
+import { FaClock, FaUser, FaUserDoctor, FaClapperboard, FaRightFromBracket, FaFileInvoiceDollar, FaList, FaDumbbell, FaMusic } from "react-icons/fa6";
+import useTheme from "../../context/ThemeContext";
 import ChatbotIcon from "/ChatbotIcon.svg";
 
 export default function PatientMobileSidebar() {
-
-    const userData = JSON.parse(localStorage.getItem("credentials"))
-    // console.log(userData);
-    const userAuth = {
-        id: userData?.response?.docId,
-        name: userData?.response?.userData?.name,
-        contact: userData?.response?.userData?.contact,
-        email: userData?.response?.userData?.email,
-        password: userData?.response?.userData?.password,
-        profilePic: userData?.response?.userData?.profileUrl,
-        plan: userData?.response?.subscriptionData?.plan || "Trail",
-        created_at: userData?.response?.userData?.createdAt || "Error",
-    }
-
+    const [credentials, setCredentials] = useState(null);
     const navigate = useNavigate();
+    const { themeMode } = useTheme();
+    const [routeState, setRouteState] = useState("/patient/Profile");
 
-    const patientPlan = JSON.parse(localStorage.getItem("credentials"))?.response?.subscriptionData?.plan || false
+    useEffect(() => {
+        try {
+            const storedCredentials = JSON.parse(localStorage.getItem("credentials"));
+            setCredentials(storedCredentials);
+        } catch (error) {
+            console.error("Failed to parse credentials from localStorage", error);
+        }
+    }, []);
 
-    const { themeMode } = useTheme()
-    const [routeState, setRouteState] = useState("/patient/Profile")
+    const userAuth = {
+        id: credentials?.response?.docId,
+        name: credentials?.response?.userData?.fullname,
+        contact: credentials?.response?.userData?.contact,
+        email: credentials?.response?.userData?.email,
+        password: credentials?.response?.userData?.password,
+        profilePic: credentials?.response?.userData?.profileUrl,
+        plan: credentials?.response?.subscriptionData?.plan || "Trail",
+        created_at: credentials?.response?.userData?.createdAt || "Error",
+    };
+
+    const patientPlan = credentials?.response?.subscriptionData?.plan || false;
 
     const handleRoute = (route) => {
-        setRouteState(route)
-    }
+        setRouteState(route);
+    };
+
     const isActiveRoute = (route) => {
-        return routeState === route ? "bg-neutral-600 text-neutral-100 dark:bg-neutral-700 dark:text-neutral-100 " : ""
-    }
+        return routeState === route ? "bg-neutral-600 text-neutral-100 dark:bg-neutral-700 dark:text-neutral-100 " : "";
+    };
 
     const userDashboardItems = [
         {
@@ -80,10 +84,10 @@ export default function PatientMobileSidebar() {
         <div className="bg-neutral-300 dark:bg-neutral-800 rounded-lg w-full h-[75dvh] p-4 relative overflow-auto mt-2">
 
             <div className="flex flex-col my-5 border-b-2 dark:border-neutral-900">
-                {/* <img src={userData.profilePic} className="w-[30%] rounded-[100%]" alt="" /> */}
-                <h1 className="text-xl font-bold text-neutral-800 dark:text-neutral-300">{userAuth.name}</h1>
-                <p className="text-neutral-600 dark:text-neutral-400">User Since: {new Date(userAuth.created_at).toLocaleString().split(",")[0]}</p>
-                <p className="text-neutral-600 dark:text-neutral-400">{userAuth.plan} Member</p>
+                {/* <img src={userAuth.profilePic} className="w-[30%] rounded-[100%]" alt="" /> */}
+                <h1 className="text-xl font-bold text-neutral-800 dark:text-neutral-300">{userAuth?.name}</h1>
+                <p className="text-neutral-600 dark:text-neutral-400">User Since: {new Date(userAuth?.created_at).toLocaleString().split(",")[0]}</p>
+                <p className="text-neutral-600 dark:text-neutral-400">{userAuth?.plan} Member</p>
             </div>
 
             <ul>

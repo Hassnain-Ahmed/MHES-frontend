@@ -178,7 +178,7 @@ const PatientLayout = () => {
     const userData = JSON.parse(localStorage.getItem("credentials"));
     const userAuth = {
         id: userData?.response?.docId,
-        name: userData?.response?.userData?.name,
+        name: userData?.response?.userData?.fullname,
         contact: userData?.response?.userData?.contact,
         email: userData?.response?.userData?.email,
         profilePic: userData?.response?.userData?.profileUrl,
@@ -244,7 +244,7 @@ const PatientDashboard = () => {
     const userData = JSON.parse(localStorage.getItem("credentials"))
     const userAuth = {
         id: userData?.response?.docId,
-        name: userData?.response?.userData?.name,
+        name: userData?.response?.userData?.fullname,
         contact: userData?.response?.userData?.contact,
         email: userData?.response?.userData?.email,
         password: userData?.response?.userData?.password,
