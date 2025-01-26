@@ -31,7 +31,7 @@ export const TherapistRegisterStepsBar = ({ therepistRegisterStep }) => {
                     <FaChevronRight size={22} />
                 </div>
                 <div className="absolute left-0 bottom-0">
-                    <span className={`uppercase font-extrabold text-sm text-neutral-400 ${therepistRegisterStep == 3 && ""}`}>Documents</span>
+                    <span className={`uppercase font-extrabold text-sm text-neutral-400 ${therepistRegisterStep == 3 && ""}`}>Experience</span>
                 </div>
 
             </div>

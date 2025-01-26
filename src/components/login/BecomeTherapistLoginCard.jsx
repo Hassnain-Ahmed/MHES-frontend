@@ -4,7 +4,7 @@ import { FaChevronRight } from "react-icons/fa6"
 
 export const BecomeTherapistLoginCard = ({ }) => {
 
-    console.log("Rendered: BecomeTherapistLoginCard");
+    // console.log("Rendered: BecomeTherapistLoginCard");
 
     return (
         <div className='p-5 md:p-10 w-full min-h-[620px] bg-gradient-to-br from-cyan-500 via-rose-400 to-orange-300 flex items-center justify-center rounded-r-lg'>

@@ -1,38 +1,89 @@
 import AdminStatCard from "./AdminStatCard"
 import { LineChart } from "../chartsGraphs/LineChart"
 import { BarChart } from "../chartsGraphs/BarChart"
+import axios from "axios"
+import { useEffect, useState } from "react"
 
 const AdminStatBannar = () => {
+
+    const [stats, setStats] = useState({
+        registeredAccounts: 0,
+        therapistsRequest: 0,
+        totalRevenue: 0,
+    })
+
+    const getAccountsCount = async () => {
+        try {
+            const { data } = await axios.post(`https://mhes-backend.vercel.app/api/admin/totalAccounts`)
+            setStats(prev => ({
+                ...prev,
+                registeredAccounts: data.message
+            }))
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const getTherapistRequestCount = async () => {
+        try {
+            const { data } = await axios.post(`https://mhes-backend.vercel.app/api/admin/totalTherapistRequest`)
+            setStats(prev => ({
+                ...prev,
+                therapistsRequest: data.message
+            }))
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const getRevenueCount = async () => {
+        try {
+            const { data } = await axios.post(`https://mhes-backend.vercel.app/api/admin/totalRevenue`)
+            setStats(prev => ({
+                ...prev,
+                totalRevenue: data.message
+            }))
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        getAccountsCount()
+        getRevenueCount()
+        getTherapistRequestCount()
+    }, [])
+
 
     const statInfo = [
         {
             id: 1,
             title: "Registered Accounts",
-            number: 598,
+            number: stats.registeredAccounts,
             route: "Users",
             class: "text-green-700 dark:text-green-600"
         },
         {
             id: 2,
             title: "Therapist Requests",
-            number: 10,
+            number: stats.therapistsRequest,
             route: "Therapists",
             class: "text-red-700 dark:text-red-600"
         },
         {
             id: 3,
             title: "Total Revenue",
-            number: 9999,
+            number: stats.totalRevenue,
             route: "Revenue",
             class: "text-[#333] dark:text-[#ccc]"
         },
-        {
-            id: 4,
-            title: "New Users",
-            number: 22,
-            route: "Users",
-            class: "text-[#333] dark:text-[#ccc]"
-        },
+        // {
+        //     id: 4,
+        //     title: "New Users",
+        //     number: 22,
+        //     route: "Users",
+        //     class: "text-[#333] dark:text-[#ccc]"
+        // },
     ]
 
     return (

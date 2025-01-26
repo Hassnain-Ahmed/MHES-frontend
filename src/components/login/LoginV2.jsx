@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from 'react-router-dom'
 
-import { Navbar } from '../home/Navbar'
-import { Footer } from '../home/Footer'
+// import { Navbar } from '../home/Navbar'
+// import { Footer } from '../home/Footer'
 
 import { UserLogin } from './UserLogin'
 import { UserRegister } from './UserRegister'
@@ -10,25 +10,17 @@ import { BecomeTherapistLoginCard } from './BecomeTherapistLoginCard';
 
 export const LoginV2 = () => {
 
-
-    const userAuth = {
-        id: 0,
-        name: "Hassnain Ahmed",
-        profilePic: "/img1.jpg",
-        token: "abc123",
-    }
-
     const LoginLayout = () => {
         return (
             <>
-                <Navbar user={userAuth} />
+                {/* <Navbar user={userAuth} /> */}
                 <main>
                     <div className='p-5 md:p-10 flex flex-col lg:flex-row'>
                         <Outlet />
                         <BecomeTherapistLoginCard />
                     </div >
                 </main>
-                <Footer />
+                {/* <Footer /> */}
             </>
         )
     }

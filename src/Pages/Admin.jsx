@@ -2,7 +2,6 @@ import { Outlet, Route, Routes } from "react-router-dom"
 import { lazy, Suspense } from "react"
 
 import AdminSideBar from "../components/admin/AdminSidebar"
-// import AdminStatBannar from "../components/AdminStatBannar"
 
 import { Navbar } from "../components/home/Navbar"
 import ProfileNav from "../components/home/ProfileNav"
@@ -17,11 +16,14 @@ const AdminRevenue = lazy(() => import("../components/admin/AdminRevenue"))
 
 const Admin = () => {
 
+    const adminData = JSON.parse(localStorage.getItem("credentials"))
+
     const userAuth = {
         id: 1,
         name: "Admin",
         profilePic: "/user.png",
         token: "abc123",
+        ...adminData.response
     }
 
     const AdminLayout = () => {
@@ -48,7 +50,7 @@ const Admin = () => {
                 <Route path="Query" element={<AdminQuery />} />
                 <Route path="Therapists" element={<AdminTherapists />} />
                 <Route path="Revenue" element={<AdminRevenue />} />
-                <Route path="DB-Rec" element={<div className="w-100 lg:w-[90%] p-5 bg-zinc-100 rounded-lg dark:bg-neutral-800"><PatientSessions /> </div>} />
+                {/* <Route path="DB-Rec" element={<div className="w-100 lg:w-[90%] p-5 bg-zinc-100 rounded-lg dark:bg-neutral-800"><PatientSessions /> </div>} /> */}
             </Route>
         </Routes>
     )

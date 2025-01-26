@@ -1,9 +1,16 @@
 import { useEffect, useRef, useState } from "react"
+import axios from "axios"
 import { FaGraduationCap, FaUserDoctor } from "react-icons/fa6"
 
-const TherapistRegistrationStepEducation = () => {
+const TherapistRegistrationStepEducation = ({ handleSetTherapistStep }) => {
 
     const specializationOthersInput = useRef(null)
+
+    const therapistPHDFile = useRef(null)
+    const therapistMastersFile = useRef(null)
+    const therapistBachelorsFile = useRef(null)
+
+
     const [isShowSpecializationOtherInput, setIsShowSpecializationOtherInput] = useState(false)
 
     const localStorageEducationFormData = JSON.parse(localStorage.getItem("therapistEducationForm"))
@@ -22,7 +29,6 @@ const TherapistRegistrationStepEducation = () => {
             ...prev,
             [name]: value
         }))
-        console.table(therapistEducationForm)
     }
 
     const handleShowSpecializationOtherInput = (e) => {
@@ -36,13 +42,49 @@ const TherapistRegistrationStepEducation = () => {
     }
 
     useEffect(() => {
-        localStorageEducationFormData.therpistSpecializationSelect == "Other" && setIsShowSpecializationOtherInput(true)
+        localStorageEducationFormData?.therpistSpecializationSelect == "Other" && setIsShowSpecializationOtherInput(true)
 
         localStorage.setItem("therapistEducationForm", JSON.stringify(therapistEducationForm))
     }, [therapistEducationForm])
 
+    const onSubmit = async (e) => {
+        e.preventDefault()
+
+        const formData = new FormData()
+        formData.append("therpistSpecializationSelect", therapistEducationForm.therpistSpecializationSelect)
+        formData.append("therpistSpecializationInput", therapistEducationForm.therpistSpecializationInput)
+        formData.append("therapistBachelors", therapistEducationForm.therapistBachelors)
+        formData.append("therapistMasters", therapistEducationForm.therapistMasters)
+        formData.append("therapistPHD", therapistEducationForm.therapistPHD)
+
+
+        if (therapistPHDFile.current.files[0]) {
+            formData.append("therapistPHDFile", therapistPHDFile.current.files[0])
+        }
+        if (therapistMastersFile.current.files[0]) {
+            formData.append("therapistMastersFile", therapistMastersFile.current.files[0])
+        }
+        if (therapistBachelorsFile.current.files[0]) {
+            formData.append("therapistBachelorsFile", therapistBachelorsFile.current.files[0])
+        }
+
+        try {
+            const res = await axios.post("https://mhes-backend.vercel.app/api/therapists/register/education", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+            console.log(res.data)
+        } catch (error) {
+            console.error("Error submitting form", error)
+        }
+
+
+    }
+
+
     return (
-        <form action="" method="post" className="w-full">
+        <form onSubmit={onSubmit} method="post" className="w-full">
             <div className="rounded-lg grid grid-cols-2 gap-y-4 gap-x-3 mx-5 mt-4">
                 <h2 className="col-span-2 border-b pb-1 text-md font-semibold text-neutral-600 dark:text-neutral-200 flex gap-2 items-center"> <FaGraduationCap /> Enter your Education information</h2>
 
@@ -61,7 +103,7 @@ const TherapistRegistrationStepEducation = () => {
                             }}
                             value={therapistEducationForm.therpistSpecializationSelect}
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 dark:bg-neutral-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required
+
                         >
                             <option value="Default" disabled>Choose One</option>
                             <option value="Mindfulness-Based Therapy">Mindfulness-Based Therapy</option>
@@ -94,7 +136,7 @@ const TherapistRegistrationStepEducation = () => {
                                     value={therapistEducationForm.therpistSpecializationInput}
                                     placeholder="Eg: Therapist Title"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 dark:bg-neutral-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                                    required
+
                                 />
                             </div>
                         </div>
@@ -117,7 +159,7 @@ const TherapistRegistrationStepEducation = () => {
                                 onChange={handleTherapistEducationFrom}
                                 value={therapistEducationForm.therapistBachelors}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5  dark:bg-neutral-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
-                                required
+
                             />
                         </div>
                     </div>
@@ -135,7 +177,7 @@ const TherapistRegistrationStepEducation = () => {
                                 value={therapistEducationForm.therapistMasters}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5  dark:bg-neutral-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                                 placeholder="Eg: SZABIST, LUMS"
-                                required
+
                             />
                         </div>
                     </div>
@@ -153,7 +195,7 @@ const TherapistRegistrationStepEducation = () => {
                                 value={therapistEducationForm.therapistPHD}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5  dark:bg-neutral-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                                 placeholder="Eg: SZABIST, LUMS"
-                                required
+
                             />
                         </div>
                     </div>
@@ -165,7 +207,9 @@ const TherapistRegistrationStepEducation = () => {
                             name="therapistBachelorsDegree"
                             accept=".pdf,.docx,.doc"
                             className="w-full border border-neutral-400 p-2 mb-2 rounded-md overflow-hidden"
-                            required
+                            ref={therapistBachelorsFile}
+
+
                         />
                     </div>
 
@@ -177,6 +221,7 @@ const TherapistRegistrationStepEducation = () => {
                             name="therapistMastersDegree"
                             accept=".pdf,.docx,.doc"
                             className="w-full border border-neutral-400 p-2 mb-2 rounded-md overflow-hidden"
+                            ref={therapistMastersFile}
                         />
                     </div>
 
@@ -186,11 +231,17 @@ const TherapistRegistrationStepEducation = () => {
                             type="file"
                             id="therapistPHDDegree"
                             name="therapistPHDDegree"
-                            accept=".jpg,.jpeg.png"
+                            ref={therapistPHDFile}
+                            accept=".jpg,.jpeg,.png,.pdf,.docx,.doc"
                             className="w-full border border-neutral-400 p-2 mb-2 rounded-md overflow-hidden"
-                            required
+
                         />
                     </div>
+
+                </div>
+                <div className="col-span-2 flex items-center justify-center gap-2 mt-3">
+                    <button type="submit" className="py-2 px-5 rounded-lg bg-gradient-to-br from-emerald-300 to-emerald-600 text-white">Save</button>
+                    <button type="button" className="py-2 px-5 rounded-lg bg-gradient-to-br from-sky-300 to-sky-600 text-white" onClick={() => handleSetTherapistStep(3)}>Save & Continue</button>
                 </div>
             </div>
         </form>

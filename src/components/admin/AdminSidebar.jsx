@@ -1,8 +1,12 @@
 import { useState } from "react"
-import { LuHome, LuUser, LuBadgeInfo, LuCamera, LuLogOut } from "react-icons/lu"
-import { Link } from "react-router-dom"
+import { FaUserDoctor } from "react-icons/fa6"
+import { LuHome, LuUser, LuBadgeInfo, LuCamera, LuLogOut, LuDollarSign } from "react-icons/lu"
+import { Link, useNavigate } from "react-router-dom"
+import { authService } from "../../service/authService"
 
 const AdminSideBar = () => {
+
+    const navigate = useNavigate()
 
     const [activeSidebarItem, setActiveSidebatItem] = useState("/admin")
 
@@ -31,15 +35,26 @@ const AdminSideBar = () => {
         },
         {
             id: 4,
-            icon: <LuCamera size={22} />,
-            title: "DB-Rec",
-            route: "/admin/DB-Rec"
+            icon: <FaUserDoctor size={22} />,
+            title: "Therapist",
+            route: "/admin/Therapists"
         },
+        {
+            id: 5,
+            icon: <LuDollarSign size={22} />,
+            title: "Revenue",
+            route: "/admin/Revenue"
+        },
+        // {
+        //     id: 4,
+        //     icon: <LuCamera size={22} />,
+        //     title: "DB-Rec",
+        //     route: "/admin/DB-Rec"
+        // },
     ]
 
     return (
-        <div className="bg-zinc-100 px-1 lg:px-3 py-0 lg:py-5 rounded-lg flex lg:flex-col justify-around lg:justify-start relative dark:bg-neutral-800 dark:text-white lg:min-h-[650px]">
-            {/* <ul> */}
+        <div className="bg-zinc-100 px-1 lg:px-3 py-0 lg:py-5 rounded-lg lg:flex-col justify-around lg:justify-start relative dark:bg-neutral-800 dark:text-white lg:min-h-[650px] hidden lg:flex">
             {
                 sidebarItems.map(item => (
                     <Link
@@ -56,8 +71,8 @@ const AdminSideBar = () => {
                     </Link>
                 ))
             }
-            {/* </ul> */}
-            <div className="mt-16 hidden lg:flex flex-col items-center transition ease-in-out duration-300 bg-red-500 hover:bg-red-600 px-2 py-4 rounded-lg text-white cursor-pointer absolute bottom-2">
+
+            <div onClick={() => authService.logout(navigate)} className="mt-16 hidden lg:flex flex-col items-center transition ease-in-out duration-300 bg-red-500 hover:bg-red-600 px-2 py-4 rounded-lg text-white cursor-pointer  bottom-2">
                 <span><LuLogOut size={22} /></span>
                 <span>Logout</span>
             </div>

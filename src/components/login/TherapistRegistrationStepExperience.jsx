@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import axios from "axios"
 import { FaAlignLeft, FaBriefcase, FaBriefcaseMedical, FaClock, FaUser } from "react-icons/fa6"
 
 const TherapistRegistrationStepExperience = () => {
+
+    const experienceDocumentOne = useRef(null)
+    const experienceDocumentTwo = useRef(null)
 
     const [therapistExperienceForm, setTherapistExperienceForm] = useState(JSON.parse(localStorage.getItem("therapistExperienceForm")) || {
         therapistExperienceOneInput: "",
         therapistExperienceOneSelectYears: "",
         therapistExperienceOneDesctiption: "",
         therapistExperienceTwoInput: "",
-        therapistExperienceTwoDesctiption: ""
+        therapistExperienceTwoDesctiption: "",
     })
 
     const handleTherapistExperienceForm = (e) => {
@@ -19,12 +23,50 @@ const TherapistRegistrationStepExperience = () => {
         }))
     }
 
+
     useEffect(() => {
         localStorage.setItem("therapistExperienceForm", JSON.stringify(therapistExperienceForm))
     }, [therapistExperienceForm])
 
+
+
+    const onSubmit = async (e) => {
+        e.preventDefault()
+
+        const formData = new FormData()
+
+        formData.append("therapistExperienceOneInput", therapistExperienceForm.therapistExperienceOneInput)
+        formData.append("therapistExperienceOneSelectYears", therapistExperienceForm.therapistExperienceOneSelectYears)
+        formData.append("therapistExperienceOneDesctiption", therapistExperienceForm.therapistExperienceOneDesctiption)
+        formData.append("therapistExperienceTwoInput", therapistExperienceForm.therapistExperienceTwoInput)
+        formData.append("therapistExperienceTwoDesctiption", therapistExperienceForm.therapistExperienceTwoDesctiption)
+
+
+        if (experienceDocumentOne.current.files[0]) {
+            formData.append("experienceDocumentOne", experienceDocumentOne.current.files[0])
+        }
+        if (experienceDocumentTwo.current.files[0]) {
+            formData.append("experienceDocumentTwo", experienceDocumentTwo.current.files[0])
+        }
+
+        try {
+            const res = await axios.post("https://mhes-backend.vercel.app/api/therapists/register/experience", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+            console.log(res.data)
+        } catch (error) {
+            console.error("Error submitting form", error)
+        }
+
+    }
+
+
+
+
     return (
-        <form action="" method="post" className="w-full">
+        <form onSubmit={onSubmit} method="post" className="w-full">
             <div className="rounded-lg grid grid-cols-2 gap-x-3 mx-5 mt-4">
 
                 <h2 className="col-span-2 border-b pb-1 text-md font-semibold text-neutral-600 dark:text-neutral-200 flex gap-2 items-center">
@@ -50,7 +92,7 @@ const TherapistRegistrationStepExperience = () => {
                             className="bg-gray-50 border border-neutral-200 text-gray-900 text-sm rounded-lg  block w-full ps-10 p-2.5  dark:bg-neutral-800 dark:border-neutral-500 dark:placeholder-gray-400 dark:text-white"
                             placeholder="Eg: Job Title"
                             pattern="[A-Za-z\s]{3,10}"
-                            required
+
                             onChange={handleTherapistExperienceForm}
                             value={therapistExperienceForm.therapistExperienceOneInput}
                         />
@@ -94,6 +136,7 @@ const TherapistRegistrationStepExperience = () => {
                             name="therapistExperienceOneDocument"
                             accept=".jpg,.jpeg.png"
                             className="w-full border border-dashed border-neutral-400 p-2 mb-2 rounded-md overflow-hidden"
+                            ref={experienceDocumentOne}
                         />
                     </div>
                 </div>
@@ -109,7 +152,7 @@ const TherapistRegistrationStepExperience = () => {
                             id="therapistExperienceTwoInput"
                             name="therapistExperienceTwoInput"
                             pattern="[A-Za-z\s]{3,10}"
-                            required
+
                             placeholder="Eg: Job Title"
                             className="bg-gray-50 border border-neutral-200 text-gray-900 text-sm rounded-lg  block w-full ps-10 p-2.5  dark:bg-neutral-800 dark:border-neutral-500 dark:placeholder-gray-400 dark:text-white"
                             onChange={handleTherapistExperienceForm}
@@ -139,10 +182,13 @@ const TherapistRegistrationStepExperience = () => {
                             name="therapistExperienceTwoDocument"
                             accept=".jpg,.jpeg.png"
                             className="w-full border border-dashed border-neutral-400 p-2 mb-2 rounded-md overflow-hidden"
+                            ref={experienceDocumentTwo}
                         />
                     </div>
                 </div>
-
+            </div>
+            <div className="col-span-2 flex items-center justify-center gap-2 mt-3">
+                <button type="submit" className="py-2 px-5 rounded-lg bg-gradient-to-br from-emerald-300 to-emerald-600 text-white">Submit</button>
             </div>
         </form>
     )
