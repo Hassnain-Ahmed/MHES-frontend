@@ -31,7 +31,7 @@ const TherapistListing = () => {
     const getListing = async () => {
         const therapistId = JSON.parse(localStorage.getItem("credentials")).response.user.uid
         try {
-            const { data } = await axios.post("http://localhost:5000/api/therapists/getListing", { therapistId }, {
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/therapists/getListing", { therapistId }, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -67,7 +67,7 @@ const TherapistListing = () => {
         formData.append("description", listingsForm.description)
 
         try {
-            const { data } = axios.put("http://localhost:5000/api/therapists/updateListing", formData, {
+            const { data } = axios.put("https://mhes-backend.vercel.app/api/therapists/updateListing", formData, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -96,7 +96,7 @@ const TherapistListing = () => {
         formData.append("description", listingsForm.description)
 
         try {
-            const { data } = axios.post("http://localhost:5000/api/therapists/createListing", formData, {
+            const { data } = axios.post("https://mhes-backend.vercel.app/api/therapists/createListing", formData, {
                 headers: {
                     "Content-Type": "application/json"
                 }

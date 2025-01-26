@@ -9,7 +9,7 @@ export function TherapistBannar({ handleGigToggle, heading, id }) {
 
   const therapistJsonFetch = async () => {
     try {
-      const { data } = await axios.post("http://localhost:5000/api/users/listings");
+      const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/listings");
       setTherapists(data);
       console.log(data);
     } catch (error) {

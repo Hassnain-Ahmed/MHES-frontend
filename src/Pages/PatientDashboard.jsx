@@ -63,7 +63,7 @@ const PatientLayout = () => {
     const getTherapistAppointments = async () => {
         try {
             const docId = JSON.parse(localStorage.getItem("credentials"))?.response?.docId;
-            const { data } = await axios.post("http://localhost:5000/api/users/getPatientAppointments", { docId });
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/getPatientAppointments", { docId });
             setMyAppointments(data?.message[0]?.id || null);
         } catch (error) {
             console.error("Error fetching therapist appointments:", error);

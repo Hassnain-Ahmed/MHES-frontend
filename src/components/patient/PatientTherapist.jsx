@@ -12,7 +12,7 @@ const PatientTherapist = () => {
     const getTherapist = async () => {
         try {
             const userId = JSON.parse(localStorage.getItem("credentials")).response.docId;
-            const { data } = await axios.post("http://localhost:5000/api/users/byUser", { userId });
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/byUser", { userId });
             setUserAuth(data.message[0]);
             setUserId(userId);
         } catch (error) {

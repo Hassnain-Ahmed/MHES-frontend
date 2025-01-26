@@ -7,7 +7,7 @@ export const PatientAppointments = () => {
     const getTherapistAppointments = async () => {
         try {
             const docId = JSON.parse(localStorage.getItem("credentials")).response.docId
-            const { data } = await axios.post("http://localhost:5000/api/users/getPatientAppointments", { docId })
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/getPatientAppointments", { docId })
             setMyAppointments(data.message)
             console.log(data.message[0]);
         } catch (error) {

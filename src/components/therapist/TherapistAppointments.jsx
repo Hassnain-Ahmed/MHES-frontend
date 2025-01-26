@@ -6,7 +6,7 @@ import { FaPhone, FaPlay, FaTrash } from "react-icons/fa6"
 import { initializeApp } from 'firebase/app';
 import { collection, getFirestore, doc, onSnapshot, setDoc, addDoc, deleteDoc } from 'firebase/firestore';
 
-// Firebase configuration
+
 const firebaseConfig = {
     apiKey: "AIzaSyBSEPpPP2BTag2kt12-_q0_u5cneF7kKkE",
     authDomain: "mhes-4cd62.firebaseapp.com",
@@ -33,15 +33,15 @@ const TherapistAppointments = () => {
     const [startVideoChat, setStartVideoChat] = useState(false);
     const [callId, setCallId] = useState("");
 
-    // Using useRef for persistent streams across renders
+
     const localStreamRef = useRef(null);
     const remoteStreamRef = useRef(null);
-    const pc = useRef(new RTCPeerConnection(servers)); // Use useRef for peer connection too
+    const pc = useRef(new RTCPeerConnection(servers));
 
     const localVideoRef = useRef();
     const remoteVideoRef = useRef();
 
-    // Function to set up media sources and start the video chat
+
     const setupMedia = async () => {
         localStreamRef.current = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
         remoteStreamRef.current = new MediaStream();
@@ -50,7 +50,7 @@ const TherapistAppointments = () => {
             pc.current.addTrack(track, localStreamRef.current);
         });
 
-        // Pull tracks from remote stream, add to video stream
+
         pc.current.ontrack = (event) => {
             event.streams[0].getTracks().forEach((track) => {
                 remoteStreamRef.current.addTrack(track);
@@ -61,7 +61,7 @@ const TherapistAppointments = () => {
         remoteVideoRef.current.srcObject = remoteStreamRef.current;
     };
 
-    // Function to start the call and create the offer
+
     const startCall = async (appointment) => {
         setStartVideoChat(true);
         await setupMedia();
@@ -70,7 +70,7 @@ const TherapistAppointments = () => {
         const offerCandidates = collection(callDoc, "offerCandidates");
         const answerCandidates = collection(callDoc, "answerCandidates");
 
-        setCallId(callDoc.id); // Save the call ID for patient use
+        setCallId(callDoc.id);
 
         pc.current.onicecandidate = async (event) => {
             if (event.candidate) {
@@ -78,7 +78,7 @@ const TherapistAppointments = () => {
             }
         };
 
-        // Create the offer
+
         const offerDescription = await pc.current.createOffer();
         await pc.current.setLocalDescription(offerDescription);
 
@@ -89,7 +89,7 @@ const TherapistAppointments = () => {
 
         await setDoc(callDoc, { offer });
 
-        // Listen for remote answer
+
         onSnapshot(callDoc, (snapshot) => {
             const data = snapshot.data();
             if (!pc.current.currentRemoteDescription && data?.answer) {
@@ -98,7 +98,7 @@ const TherapistAppointments = () => {
             }
         });
 
-        // Listen for remote ICE candidates
+
         onSnapshot(answerCandidates, (snapshot) => {
             snapshot.docChanges().forEach((change) => {
                 if (change.type === 'added') {
@@ -109,43 +109,43 @@ const TherapistAppointments = () => {
         });
     };
 
-    // Function to hang up the call
+
     const hangUp = async () => {
-        // Stop all local stream tracks (turn off camera and microphone)
+
         if (localStreamRef.current) {
             localStreamRef.current.getTracks().forEach((track) => {
                 if (track.readyState === 'live') {
-                    track.stop(); // Ensure that all tracks are properly stopped
+                    track.stop();
                 }
             });
         }
 
-        // Stop all remote stream tracks (although usually not necessary)
+
         if (remoteStreamRef.current) {
             remoteStreamRef.current.getTracks().forEach((track) => {
                 if (track.readyState === 'live') {
-                    track.stop(); // Stop remote tracks just to be thorough
+                    track.stop();
                 }
             });
         }
 
-        // Close the peer connection
+
         if (pc.current) {
-            pc.current.getSenders().forEach((sender) => pc.current.removeTrack(sender)); // Remove tracks from peer connection
+            pc.current.getSenders().forEach((sender) => pc.current.removeTrack(sender));
             pc.current.close();
         }
 
-        // Delete the Firestore call document
+
         if (callId) {
             const callDocRef = doc(db, "calls", callId);
             await deleteDoc(callDocRef);
         }
 
-        // Reset UI state and other variables
+
         setCallId("");
         setStartVideoChat(false);
 
-        // Clean up video element references
+
         if (localVideoRef.current) {
             localVideoRef.current.srcObject = null;
         }
@@ -175,9 +175,10 @@ const TherapistAppointments = () => {
     const getPatients = async () => {
         try {
             const therapistDocId = JSON.parse(localStorage.getItem("credentials")).response.docId
-            const { data } = await axios.post("http://localhost:5000/api/therapists/getPatients", { therapistDocId })
-            console.log(data.message);
-            setSubscribers(data.message)
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/therapists/getPatients", { therapistDocId })
+
+            setSubscribers(data?.message == "No Subscribers" ? [] : data?.message || [])
+
         } catch (error) {
             console.error(error);
         }
@@ -206,7 +207,7 @@ const TherapistAppointments = () => {
 
     const deleteAppointment = async (appointmentId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/therapists/appointments/${appointmentId}`);
+            await axios.delete(`https://mhes-backend.vercel.app/api/therapists/appointments/${appointmentId}`);
             setMyAppointments((prevAppointments) =>
                 prevAppointments.filter((appointment) => appointment.appointmentId !== appointmentId)
             );
@@ -218,7 +219,7 @@ const TherapistAppointments = () => {
     const getTherapistAppointments = async () => {
         try {
             const docId = JSON.parse(localStorage.getItem("credentials")).response.docId
-            const { data } = await axios.post("http://localhost:5000/api/therapists/getAppointments", { docId })
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/therapists/getAppointments", { docId })
             setMyAppointments(data.message)
         } catch (error) {
             console.error(error);
@@ -253,7 +254,7 @@ const TherapistAppointments = () => {
             formData.append("dateTime", new Date(appointment.dateTime).toISOString())
             formData.append("duration", appointment.duration)
 
-            const { data } = await axios.post("http://localhost:5000/api/therapists/appointment", formData, {
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/therapists/appointment", formData, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -297,7 +298,8 @@ const TherapistAppointments = () => {
                             <select required name="userId" onChange={handleAppointment} id="setPatientMeeting" className="dark:bg-neutral-800 p-2 rounded-md w-full">
                                 <option value="" >Choose Patient</option>
                                 {
-                                    subscribers && subscribers.map((subscriber) => (
+                                    subscribers.length > 0
+                                    && subscribers.map((subscriber) => (
                                         <option key={subscriber.userId} value={subscriber.userId} className="px-2">{subscriber.userData.name}</option>
                                     ))
                                 }

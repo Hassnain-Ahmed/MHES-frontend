@@ -10,7 +10,7 @@ const AdminRevenue = () => {
 
     const getUsers = async () => {
         try {
-            const { data } = await axios.post("http://localhost:5000/api/admin/premiumUser")
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/admin/premiumUser")
             // console.log(data);
             setPremiumUsers(data.message)
         } catch (error) {

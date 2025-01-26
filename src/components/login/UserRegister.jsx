@@ -65,7 +65,7 @@ export const UserRegister = () => {
         formData.append("role", "user")
 
         try {
-            const { data } = await axios.post("http://localhost:5000/api/users/register", formData, {
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/register", formData, {
                 headers: {
                     "Content-Type": "application/json"
                 }

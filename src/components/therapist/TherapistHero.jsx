@@ -58,7 +58,7 @@ const TherapistHero = ({ user, userTherapistIDs, setFireFetch }) => {
             formData.append("rating", respondInput.rate)
 
 
-            const { data } = await axios.post("http://localhost:5000/api/users/testimonials", formData, {
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/testimonials", formData, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -108,7 +108,7 @@ const TherapistHero = ({ user, userTherapistIDs, setFireFetch }) => {
             unSubscribeBtnRef.current.disabled = true;
             setStatus({ uploading: true, success: false, error: "" });
 
-            const { data } = await axios.put("http://localhost:5000/api/users/unSubscribeTherapist", {
+            const { data } = await axios.put("https://mhes-backend.vercel.app/api/users/unSubscribeTherapist", {
                 therapistId: userTherapistIDs.therapistId,
                 userId: userTherapistIDs.userId,
             });

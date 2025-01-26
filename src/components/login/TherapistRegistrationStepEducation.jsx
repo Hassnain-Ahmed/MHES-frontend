@@ -69,7 +69,7 @@ const TherapistRegistrationStepEducation = ({ handleSetTherapistStep }) => {
         }
 
         try {
-            const res = await axios.post("http://localhost:5000/api/therapists/register/education", formData, {
+            const res = await axios.post("https://mhes-backend.vercel.app/api/therapists/register/education", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

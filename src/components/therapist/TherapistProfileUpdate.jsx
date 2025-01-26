@@ -53,7 +53,7 @@ const TherapistProfileUpdate = ({ userData }) => {
     const getProfileById = async () => {
         try {
             const docId = JSON.parse(localStorage.getItem("credentials")).response.docId
-            const { data } = await axios.post("http://localhost:5000/api/therapists/getProfile", { docId })
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/therapists/getProfile", { docId })
             // console.log(data.message);
             setTherapistPersonalForm({
                 therapistProfilePicture: data.message.profilePictureURL,
@@ -110,7 +110,7 @@ const TherapistProfileUpdate = ({ userData }) => {
         }
 
         try {
-            const { data } = await axios.post("http://localhost:5000/api/therapists/updateProfile", formData, {
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/therapists/updateProfile", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -228,8 +228,9 @@ const TherapistProfileUpdate = ({ userData }) => {
                                 </div>
                                 <input
                                     type="password"
+                                    disabled
                                     id="therapistPassword"
-                                    className="bg-gray-50 border border-neutral-200 text-gray-900 text-sm rounded-lg  block w-full ps-10 p-2.5  dark:bg-neutral-800 dark:border-neutral-500 dark:placeholder-gray-400 dark:text-white"
+                                    className="disabled:dark:bg-neutral-600 disabled:bg-neutral-300 disabled:text-neutral-500 bg-gray-50 border border-neutral-200 text-gray-900 text-sm rounded-lg  block w-full ps-10 p-2.5  dark:bg-neutral-800 dark:border-neutral-500 dark:placeholder-gray-400 dark:text-white"
                                     placeholder="At least 6 Characters"
                                     name="therapistPassword"
                                     onChange={handleTherapistPersonalForm}

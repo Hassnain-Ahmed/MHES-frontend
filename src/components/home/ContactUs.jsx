@@ -45,7 +45,7 @@ const ContactUs = (props) => {
             formData.append("description", contactForm.description)
             formData.append("subject", contactForm.subject)
 
-            const { data } = await axios.post("http://localhost:5000/api/admin/contactUs", formData, {
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/admin/contactUs", formData, {
                 headers: {
                     "Content-Type": "application/json"
                 }

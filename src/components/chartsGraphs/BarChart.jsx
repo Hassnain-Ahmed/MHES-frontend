@@ -20,7 +20,7 @@ export const BarChart = (props) => {
 
     const getUserByPlan = async () => {
         try {
-            const { data } = await axios.post(`http://localhost:5000/api/admin/usersByPlan`)
+            const { data } = await axios.post(`https://mhes-backend.vercel.app/api/admin/usersByPlan`)
             // console.log(data.message);
             setUserType({
                 trailUser: data.message.usersNotInPlan.length,

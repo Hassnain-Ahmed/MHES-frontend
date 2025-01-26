@@ -7,7 +7,7 @@ export default function PatientExercise() {
 
 
     const getExercises = async () => {
-        const { data } = await axios.post("http://localhost:5000/api/users/exercise")
+        const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/exercise")
         console.log(data);
         setExercises(data.message)
     }

@@ -50,7 +50,7 @@ const TherapistRegistrationStepExperience = () => {
         }
 
         try {
-            const res = await axios.post("http://localhost:5000/api/therapists/register/experience", formData, {
+            const res = await axios.post("https://mhes-backend.vercel.app/api/therapists/register/experience", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

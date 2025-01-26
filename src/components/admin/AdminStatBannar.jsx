@@ -14,7 +14,7 @@ const AdminStatBannar = () => {
 
     const getAccountsCount = async () => {
         try {
-            const { data } = await axios.post(`http://localhost:5000/api/admin/totalAccounts`)
+            const { data } = await axios.post(`https://mhes-backend.vercel.app/api/admin/totalAccounts`)
             setStats(prev => ({
                 ...prev,
                 registeredAccounts: data.message
@@ -26,7 +26,7 @@ const AdminStatBannar = () => {
 
     const getTherapistRequestCount = async () => {
         try {
-            const { data } = await axios.post(`http://localhost:5000/api/admin/totalTherapistRequest`)
+            const { data } = await axios.post(`https://mhes-backend.vercel.app/api/admin/totalTherapistRequest`)
             setStats(prev => ({
                 ...prev,
                 therapistsRequest: data.message
@@ -38,7 +38,7 @@ const AdminStatBannar = () => {
 
     const getRevenueCount = async () => {
         try {
-            const { data } = await axios.post(`http://localhost:5000/api/admin/totalRevenue`)
+            const { data } = await axios.post(`https://mhes-backend.vercel.app/api/admin/totalRevenue`)
             setStats(prev => ({
                 ...prev,
                 totalRevenue: data.message

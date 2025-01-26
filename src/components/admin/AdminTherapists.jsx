@@ -18,7 +18,7 @@ const AdminTherapists = () => {
 
     const getTherapists = async () => {
         try {
-            const { data } = await axios.post("http://localhost:5000/api/admin/therapistRequests")
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/admin/therapistRequests")
             setTherapistData(data.message)
         } catch (error) {
             console.error(error);

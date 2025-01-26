@@ -9,7 +9,7 @@ export const PatientTherapistGig = ({ handleGigToggle }) => {
 
     // const getThatTherapist = async (req, res) => {
     //     try {
-    //         const { data } = await axios.post("http://localhost:5000/api/users/getThatTherapist", { therapistId })
+    //         const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/getThatTherapist", { therapistId })
 
     //     } catch (error) {
     //         console.error(error);

@@ -12,7 +12,7 @@ const AdminTherapistProfileCard = ({ setShowTherapist, showThatTherapist, setCha
     const approveTherapist = async () => {
         try {
             acceptBtnRef.current.disabled = true
-            const { data } = await axios.post("http://localhost:5000/api/admin/acceptTherapist", { therapistId: showThatTherapist.id })
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/admin/acceptTherapist", { therapistId: showThatTherapist.id })
             console.log(data);
             setShowTherapist(false)
 
@@ -27,7 +27,7 @@ const AdminTherapistProfileCard = ({ setShowTherapist, showThatTherapist, setCha
     const rejectTherapist = async () => {
         try {
             rejectBtnRef.current.disabled = true
-            const { data } = await axios.post("http://localhost:5000/api/admin/rejectTherapist", { therapistId: showThatTherapist.id })
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/admin/rejectTherapist", { therapistId: showThatTherapist.id })
             console.log(data);
             setShowTherapist(false)
         } catch (error) {

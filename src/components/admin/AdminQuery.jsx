@@ -48,7 +48,7 @@ const AdminQuery = () => {
             formData.append("userSubject", contactData.subject)
             formData.append("contactDocId", contactData.id)
 
-            const { data } = await axios.post("http://localhost:5000/api/admin/sendEmail", formData, {
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/admin/sendEmail", formData, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -78,7 +78,7 @@ const AdminQuery = () => {
     const [queries, setQueries] = useState([])
     const getQueries = async () => {
         try {
-            const { data } = await axios.post("http://localhost:5000/api/admin/getQueries")
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/admin/getQueries")
             // console.log(data);
             setQueries(data.message)
         } catch (error) {
@@ -93,7 +93,7 @@ const AdminQuery = () => {
     const [queryWithResponse, setQueryWithResponse] = useState([])
     const getQueryWithResponse = async () => {
         try {
-            const { data } = await axios.post("http://localhost:5000/api/admin/queryWithResponse")
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/admin/queryWithResponse")
             setQueryWithResponse(data?.message)
             console.log(data);
         } catch (error) {

@@ -84,7 +84,7 @@ const PatientProfile = ({ userData }) => {
         try {
             const userId = JSON.parse(localStorage.getItem("credentials")).response.user.uid;
             // Wrap the userId inside an object as the payload
-            const { data } = await axios.post("http://localhost:5000/api/users/getProfile", { userId });
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/getProfile", { userId });
             setPatientProfileForm(data.message)
         } catch (error) {
             console.error("Error fetching profile data:", error);
@@ -121,7 +121,7 @@ const PatientProfile = ({ userData }) => {
 
         try {
             // API request to update profile
-            const { data } = await axios.post(`http://localhost:5000/api/users/profile`, formData, {
+            const { data } = await axios.post(`https://mhes-backend.vercel.app/api/users/profile`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 }
@@ -234,11 +234,12 @@ const PatientProfile = ({ userData }) => {
                                 name="email"
                                 key={"inp" + 4}
                                 type="text"
+                                disabled
                                 placeholder="Eg: yourmail@mail.com"
                                 value={patientProfileForm.email}
                                 onChange={handleForm}
                                 id="PatientEmail"
-                                className="rounded-md p-2 text-neutral-800 dark:text-neutral-900 bg-neutral-100 dark:bg-neutral-300 focus:bg-white focus:dark:bg-white"
+                                className="disabled:dark:bg-neutral-600 disabled:bg-neutral-200 disabled:text-neutral-500 rounded-md p-2 text-neutral-800 dark:text-neutral-900 bg-neutral-100 dark:bg-neutral-300 focus:bg-white focus:dark:bg-white"
                             />
                         </div>
                         <div className="flex flex-col">
@@ -247,11 +248,12 @@ const PatientProfile = ({ userData }) => {
                                 name="password"
                                 key={"inp" + 5}
                                 type="password"
+                                disabled
                                 placeholder="Should contaim at least 8 unique characters"
                                 value={patientProfileForm.password}
                                 onChange={handleForm}
                                 id="PatientPassword"
-                                className="rounded-md p-2 text-neutral-800 dark:text-neutral-900 bg-neutral-100 dark:bg-neutral-300 focus:bg-white focus:dark:bg-white"
+                                className="disabled:dark:bg-neutral-600 disabled:bg-neutral-200 disabled:text-neutral-500 rounded-md p-2 text-neutral-800 dark:text-neutral-900 bg-neutral-100 dark:bg-neutral-300 focus:bg-white focus:dark:bg-white"
                             />
                         </div>
                         <div className="flex flex-col">

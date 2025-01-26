@@ -29,7 +29,7 @@ const getUserRole = () => {
 }
 
 const logout = async (navigate) => {
-    const { data } = await axios.post("http://localhost:5000/api/users/logout");
+    const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/logout");
     if (data?.message) {
         localStorage.clear();
         navigate("/");

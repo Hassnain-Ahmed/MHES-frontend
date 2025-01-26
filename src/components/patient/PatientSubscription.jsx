@@ -14,7 +14,7 @@ const PatientSubscription = () => {
         try {
             const userId = JSON.parse(localStorage.getItem("credentials")).response.user.uid
 
-            const { data } = await axios.post("http://localhost:5000/api/users/getPlan", { userId })
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/getPlan", { userId })
             setIsPlan(data?.message[0]?.id && true)
         } catch (error) {
             console.error(error);
@@ -31,7 +31,7 @@ const PatientSubscription = () => {
             const userId = JSON.parse(localStorage.getItem("credentials")).response.user.uid
             const userData = { userId, plan: "Premium", price: 2000 }
 
-            const { data } = await axios.post("http://localhost:5000/api/users/planSubscription", userData)
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/planSubscription", userData)
             setError(data.message)
             console.log(data.message);
 

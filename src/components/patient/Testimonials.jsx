@@ -7,7 +7,7 @@ const Testimonials = ({ fireFetch, therapistId }) => {
     const [testimonialsData, setTestimonialsData] = useState([])
     const getTestimonials = async (therapistID) => {
         try {
-            const { data } = await axios.post("http://localhost:5000/api/users/getTestimonials", { id: therapistID })
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/getTestimonials", { id: therapistID })
             setTestimonialsData(data.message)
             console.log(data);
         } catch (error) {

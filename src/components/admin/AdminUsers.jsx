@@ -30,7 +30,7 @@ const AdminUsers = () => {
 
     const getPatients = async () => {
         try {
-            const { data } = await axios.post("http://localhost:5000/api/admin/patients")
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/admin/patients")
             console.log(data.message);
             setPatients(data.message)
         } catch (error) {
@@ -41,7 +41,7 @@ const AdminUsers = () => {
 
     const getTherapists = async () => {
         try {
-            const { data } = await axios.post("http://localhost:5000/api/admin/therapists")
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/admin/therapists")
             console.log(data.message);
             setTherapists(data.message)
         } catch (error) {
@@ -53,7 +53,7 @@ const AdminUsers = () => {
     const deletePatient = async () => {
         try {
             userDeleteBtnRef.current.disabled = true
-            const { data } = await axios.post("http://localhost:5000/api/admin/deletePatient", { id: userId })
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/admin/deletePatient", { id: userId })
             console.log(data);
         } catch (error) {
             console.error(error);
@@ -72,7 +72,7 @@ const AdminUsers = () => {
     const deleteTherapist = async () => {
         try {
             therapistDeleteBtnRef.current.disabled = true
-            const { data } = await axios.post("http://localhost:5000/api/admin/deleteTherapist", { id: therapistId })
+            const { data } = await axios.post("https://mhes-backend.vercel.app/api/admin/deleteTherapist", { id: therapistId })
             console.log(data);
         } catch (error) {
             console.error(error);

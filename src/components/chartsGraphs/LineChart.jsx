@@ -15,7 +15,7 @@ export const LineChart = (props) => {
 
     const getWeeklyRevenue = async () => {
         try {
-            const { data } = await axios.post(`http://localhost:5000/api/admin/monthlySubscriptions`);
+            const { data } = await axios.post(`https://mhes-backend.vercel.app/api/admin/monthlySubscriptions`);
 
             // Process the data
             const labels = data.message.map(item => item.weekYear);

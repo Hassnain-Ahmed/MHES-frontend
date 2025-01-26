@@ -15,7 +15,7 @@ export function PatientTherapistBanner({ heading }) {
 
   const therapistJsonFetch = async () => {
     try {
-      const { data } = await axios.post("http://localhost:5000/api/users/listings");
+      const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/listings");
       setTherapists(data);
 
       localStorage.setItem("therapistListings", JSON.stringify(data.message))
@@ -49,7 +49,7 @@ export function PatientTherapistBanner({ heading }) {
       setStatus({
         uploading: true, success: false, error: ""
       })
-      const { data } = await axios.post("http://localhost:5000/api/users/subscribeTherapist", { therapistId: userTherapistIDs.therapistId, userId: userTherapistIDs.userId })
+      const { data } = await axios.post("https://mhes-backend.vercel.app/api/users/subscribeTherapist", { therapistId: userTherapistIDs.therapistId, userId: userTherapistIDs.userId })
       console.log(data);
       setStatus({
         uploading: false, success: true, error: ""
